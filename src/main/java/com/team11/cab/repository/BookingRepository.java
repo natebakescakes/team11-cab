@@ -1,6 +1,18 @@
 package com.team11.cab.repository;
 
-public interface BookingRepository  {
+import java.util.ArrayList;
 
-	public ArrayList<Booking> ListAll();
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.team11.cab.model.Course;
+
+public interface BookingRepository extends JpaRepository<Booking, Integer> {
+
+	@Query("SELECT * FROM booking")
+	ArrayList<Booking> ListAll();
+	
+	@Query("SELECT c from booking c WHERE c.BookingId = :id")
+	Booking findBookingByID(@Param("id") String id);
 }
