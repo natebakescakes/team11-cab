@@ -1,7 +1,10 @@
 /.mvn/
 /.settings/
+*/target/*
+*/target/**
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
 .project
 */META-INF/MANIFEST.MF
+*/pom.properties
