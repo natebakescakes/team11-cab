@@ -1,6 +1,7 @@
 /.mvn/
 /.settings/
-/target/
+*/target/*
+*/target/**
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
