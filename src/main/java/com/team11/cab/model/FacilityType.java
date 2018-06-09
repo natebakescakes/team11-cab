@@ -1,6 +1,6 @@
 package com.team11.cab.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,75 +16,55 @@ import javax.persistence.Table;
 public class FacilityType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int TypeId;
-	private String TypeName;
-    private String Description;
-    
-    
+	private int typeId;
+	private String typeName;
+	private String description;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "facilityType")
+	private List<Facility> facilities;
+
 	public FacilityType() {
 		super();
 	}
 
-
-	public FacilityType(int typeId, String typeName, String description) {
+	public FacilityType(int typeId, String typeName, String description, List<Facility> facilities) {
 		super();
-		this.TypeId = typeId;
-		this.TypeName = typeName;
-		this.Description = description;
-	}
-	
-	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="facility")
-	private Set<Facility> setFacility; 
-    
-    
-    
-
-	 public int getTypeId() {
-		return TypeId;
+		this.typeId = typeId;
+		this.typeName = typeName;
+		this.description = description;
+		this.facilities = facilities;
 	}
 
+	public int getTypeId() {
+		return typeId;
+	}
 
 	public void setTypeId(int typeId) {
-		TypeId = typeId;
+		this.typeId = typeId;
 	}
-
 
 	public String getTypeName() {
-		return TypeName;
+		return typeName;
 	}
-
 
 	public void setTypeName(String typeName) {
-		TypeName = typeName;
+		this.typeName = typeName;
 	}
-
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-
-	public Set<Facility> getSetFacility() {
-		return setFacility;
+	public List<Facility> getFacilities() {
+		return facilities;
 	}
 
+	public void setFacilities(List<Facility> facilities) {
+		this.facilities = facilities;
+	}
 
-	public Set<Facility> getSetfacility() {
-	        return setFacility;
-	    }
-	 
-	    public void setSetFacility(Set<Facility> setFacility) {
-	        this.setFacility = setFacility;
-	    }
-    
 }
-
-
-
-
