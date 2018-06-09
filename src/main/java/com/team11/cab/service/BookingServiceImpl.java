@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.team11.cab.model.CourseEvent;
+import com.team11.cab.model.Booking;
 import com.team11.cab.repository.BookingRepository;
 
 
@@ -20,7 +20,7 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	@Transactional
 	public ArrayList<Booking> findAllBookings() {
-		ArrayList<Booking> bookinglist = (ArrayList<Booking>).findAllBookings();
+		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.ListAll();
 		
 		return bookinglist;
 	}
