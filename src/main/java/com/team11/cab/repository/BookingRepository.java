@@ -10,9 +10,9 @@ import com.team11.cab.model.Booking;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
-	@Query("SELECT * FROM booking")
+	@Query(value = "SELECT * FROM Booking", nativeQuery=true)
 	ArrayList<Booking> ListAll();
 	
-	@Query("SELECT c from booking c WHERE c.BookingId = :id")
+	@Query("SELECT c from Booking c WHERE c.bookingId = :id")
 	Booking findBookingByID(@Param("id") String id);
 }
