@@ -34,7 +34,7 @@ public class Booking {
 
 	@OneToOne
 	@JoinColumn(name = "userId")
-	private User user;
+	private Member member;
 
 	public int getBookingId() {
 		return bookingId;
@@ -92,12 +92,12 @@ public class Booking {
 		this.facility = facility;
 	}
 
-	public User getUser() {
-		return user;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMember(Member member) {
+		this.member = member;
 	}
-
+	
 }
