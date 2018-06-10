@@ -20,7 +20,7 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	@Transactional
 	public ArrayList<Booking> findAllBookings() {
-		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.ListAll();
+		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.findAll();
 		
 		return bookinglist;
 	}

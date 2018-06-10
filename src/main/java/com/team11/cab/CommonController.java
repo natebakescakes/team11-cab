@@ -28,6 +28,13 @@ public class CommonController {
 	@Autowired
 	private EmployeeService eService;
 
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String home() {
+		
+		return "home";
+	}
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String logic(Model model) {
 		model.addAttribute("user", new User());
