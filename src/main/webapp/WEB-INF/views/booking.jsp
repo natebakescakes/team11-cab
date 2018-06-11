@@ -5,30 +5,22 @@
 <h3>Make Booking</h3>
 <form action="/action_page.php">
 
-	<label>Choose Facility Type</label>
-	<!-- The second value will be selected initially -->
-	<select name="text">
-		<!--Supplement an id here instead of using 'text'-->
+	<label>Choose Facility Type</label> <select name="text">
 		<option value="first">First Value</option>
 		<option value="second" selected>Second Value</option>
 		<option value="third">Third Value</option>
 	</select> <label>Date</label> <input id="starttime" type="datetime-local">
 
-	<br> <label>Choose Room</label>
-	<!-- The second value will be selected initially -->
-	<select name="text">
-		<!--Supplement an id here instead of using 'text'-->
-		<option value="first">First Value</option>
-		<option value="second" selected>Second Value</option>
-		<option value="third">Third Value</option>
+	<br> <label>Choose Room</label> <select name="text">
+		<c:forEach var="facility" items="${facilityList}">
+			<option value="${facility.facilityId}">${facility.facilityName}</option>
+		</c:forEach>
 	</select> <label>Start Time</label> <input id="starttime" type="datetime-local">
 
 	<label>End Time</label> <input id="endtime" type="datetime-local">
 
-	<br>
-	<input type="submit" value="Book Now">
-	<br>
-	
+	<br> <input type="submit" value="Book Now"> <br>
+
 	<!-- Generate tables for each room -->
 	<label>Function Room 1</label>
 	<table>

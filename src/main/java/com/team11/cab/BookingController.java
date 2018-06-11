@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
 import com.team11.cab.service.BookingService;
+import com.team11.cab.service.FacilityService;
 
 
 @RequestMapping(value="/booking")
@@ -19,10 +20,15 @@ import com.team11.cab.service.BookingService;
 public class BookingController {
 	@Autowired
 	private BookingService bService;
+	@Autowired
+	private FacilityService facilityService;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookingPage() {
 		ModelAndView mav = new ModelAndView("booking");
+		
+		List<Facility> facilityList = (ArrayList<Facility>)facilityService.findAllFacilities();
+		mav.addObject("facilityList", facilityList);
 		return mav;
 	}
 	
