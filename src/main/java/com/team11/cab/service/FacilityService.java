@@ -6,7 +6,13 @@ import com.team11.cab.model.Facility;
 
 public interface FacilityService {
 	List<Facility> findAllFacilities();
-	
-	
+
+	Facility createFacility(Facility fac);
+
+    Facility editFacility(Facility fac);
+
+	Facility findFacility(int id);
+
+    void deleteFacility(Facility fac);
 
 }
