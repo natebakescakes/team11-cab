@@ -30,6 +30,12 @@ $(document).ready(function(){
 						},
 						{
 							data: 'address'
+						},
+						{
+							data: 'phone'
+						},
+						{
+							data: 'dob'
 						}
 						
 					]
