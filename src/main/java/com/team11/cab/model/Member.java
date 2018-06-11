@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,8 +50,8 @@ public class Member {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 	
-//	@OneToMany(targetEntity=Booking.class, mappedBy="user")
-//	private ArrayList<Booking> bookings=new ArrayList<Booking>();
+	@OneToOne(targetEntity=Booking.class, mappedBy="member")
+	private Booking booking;
 	
 	public Member() {}
 

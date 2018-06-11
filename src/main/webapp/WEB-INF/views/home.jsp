@@ -13,17 +13,22 @@
 <body>
 
 Hello World
-
-
-<form action ="bookingdetails" method ="get" class="Searchbox">
-Already have a booking?
 <br>
-Key in your Booking ID here:
-<br>
-<p>${error-message}</p>
-<input name="booking_id"/>
-<input type="submit" value="Search"/>
 
-</form>
+<div class="Searchbox">
+	<form action ="bookingdetails" method ="POST">
+	
+	Already have a booking?
+	<br>
+	Key in your Booking ID here:
+	<br>
+ 	<font color='red'>${ErrorMessage}</font>
+	<br>
+	<input name="booking_id">
+	<button type="submit"><i class="fa fa-search"></i></button>
+	
+	</form>
+</div>
+
 </body>
 </html>

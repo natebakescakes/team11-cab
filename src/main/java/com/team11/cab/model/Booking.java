@@ -12,7 +12,7 @@ import javax.persistence.*;
  * @version $Revision: 1.0
  */
 @Entity
-@Table(name = "Booking")
+@Table(name = "booking")
 public class Booking {
 	@Id
 	@Column(name = "BookingId")
@@ -22,7 +22,7 @@ public class Booking {
 	@Column(name = "FacilityId")
 	private int facilityId;
 	@Column(name = "UserId")
-	private int userId;
+	private int userid;
 	@Column(name = "StartDate")
 	private Date startDate;
 	@Column(name = "EndDate")
@@ -34,7 +34,7 @@ public class Booking {
 
 	@OneToOne
 	@JoinColumn(name = "userId")
-	private User user;
+	private Member member;
 
 	public int getBookingId() {
 		return bookingId;
@@ -61,11 +61,11 @@ public class Booking {
 	}
 
 	public int getUserId() {
-		return userId;
+		return userid;
 	}
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.userid = userId;
 	}
 
 	public Date getStartDate() {
@@ -92,12 +92,13 @@ public class Booking {
 		this.facility = facility;
 	}
 
-	public User getUser() {
-		return user;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setMember(Member member) {
+		this.member = member;
 	}
+
 
 }

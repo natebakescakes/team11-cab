@@ -10,7 +10,25 @@
 <!--  put in the include confirmbooking logo here -->
 
 Is this the booking ID that you sent me?
-${booking_id}
+
+Booking ID: ${booking.bookingId}
+<br>
+Booking Date: ${booking.transDate}
+<br>
+Name:  ${booking.member.firstName} ${booking.member.lastName}
+<br>
+Member ID: ${booking.member.userid}
+<br>
+Start Date: ${booking.startDate}
+<br>
+End Date: ${booking.endDate}
+<br>
+Start Time: ${start_time}
+<br>
+End Time: ${end_time}
+
+
+
 
 </body>
 </html>
