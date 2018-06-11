@@ -16,7 +16,7 @@
 				<tr class="listRecord">
 					<td>${facility.facilityId}</td>
 					<td>${facility.facilityName}</td>
-					<td>${facility.facilityType}</td>
+					<td>${facility.facilityType.typeName}</td>
 					
 				</tr>
 			</c:forEach>
