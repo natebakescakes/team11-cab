@@ -3,21 +3,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <h3>Make Booking</h3>
-<form action="/action_page.php">
 
-	<label>Choose Facility Type</label> <select name="text">
+<ul>
+	<li>${ftype}</li>
+	<li>${date}</li>
+	<li>${room}</li>
+	<li>${stime}</li>
+	<li>${endtime}</li>
+</ul>
+
+<form action="" method="POST">
+	<label>Choose Facility Type</label>
+	<select name="ftype">
 		<option value="first">First Value</option>
 		<option value="second" selected>Second Value</option>
 		<option value="third">Third Value</option>
-	</select> <label>Date</label> <input id="starttime" type="datetime-local">
+	</select>
+	
+	<label>Date</label>
+	<input name="date" type="datetime-local">
 
-	<br> <label>Choose Room</label> <select name="text">
+	<br>
+	
+	<label>Choose Room</label>
+	<select name="room">
 		<c:forEach var="facility" items="${facilityList}">
 			<option value="${facility.facilityId}">${facility.facilityName}</option>
 		</c:forEach>
-	</select> <label>Start Time</label> <input id="starttime" type="datetime-local">
+	</select>
+	
+	<label>Start Time</label>
+	<input name="stime" id="starttime" type="datetime-local">
 
-	<label>End Time</label> <input id="endtime" type="datetime-local">
+	<label>End Time</label>
+	<input name="endtime" id="endtime" type="datetime-local">
 
 	<br> <input type="submit" value="Book Now"> <br>
 
