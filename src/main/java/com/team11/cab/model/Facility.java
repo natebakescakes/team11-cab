@@ -1,72 +1,81 @@
 package com.team11.cab.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/* facility class */
+
 @Entity
-@Table
+@Table(name = "facility")
 public class Facility {
-
 	@Id
-	private int FacilityId;
-	private String FacilityName;
-	private int FacilityType;
-	private String Location;
-	private String Description;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int facilityId;
+	private String facilityName;
+	private String location;
+	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name = "FacilityType")
+	private FacilityType facilityType;
 
-//	public Facility(int FacilityId, String FacilityName, int FacilityType, String Location, String Description) {
-//		super();
-//		FacilityId = this.FacilityId;
-//		FacilityName = this.FacilityName;
-//		FacilityType = this.FacilityType;
-//		Location = this.Location;
-//		Description = this.Description;
-//	}
-
-	public int getFacilityId() {
-		return FacilityId;
+	public Facility() {
+		super();
 	}
 
-	public void setFacilityId(int facilityId) {
-		FacilityId = facilityId;
-	}
-
-	public String getFacilityName() {
-		return FacilityName;
-	}
-
-	public void setFacilityName(String facilityName) {
-		FacilityName = facilityName;
-	}
-
-	public int getFacilityType() {
-		return FacilityType;
-	}
-
-	public void setFacilityType(int facilityType) {
-		FacilityType = facilityType;
-	}
-
-	public String getLocation() {
-		return Location;
-	}
-
-	public void setLocation(String location) {
-		Location = location;
+	public Facility(int facilityId, String facilityName, String location, String description,
+			FacilityType facilityType) {
+		super();
+		this.facilityId = facilityId;
+		this.facilityName = facilityName;
+		this.location = location;
+		this.description = description;
+		this.facilityType = facilityType;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
+	}
+
+	public int getFacilityId() {
+		return facilityId;
+	}
+
+	public String getFacilityName() {
+		return facilityName;
+	}
+
+	public FacilityType getFacilityType() {
+		return facilityType;
+	}
+
+	public String getLocation() {
+		return location;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "Facility [FacilityId=" + FacilityId + ", FacilityName=" + FacilityName + ", FacilityType="
-				+ FacilityType + ", Location=" + Location + ", Description=" + Description + "]";
+	public void setFacilityId(int facilityId) {
+		this.facilityId = facilityId;
 	}
+
+	public void setFacilityName(String facilityName) {
+		this.facilityName = facilityName;
+	}
+
+	public void setFacilityType(FacilityType facilityType) {
+		this.facilityType = facilityType;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
 }
