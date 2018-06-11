@@ -2,48 +2,42 @@
 	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 <html>
 <head>
-	<c:choose>
-		<c:when test="${user.role eq 'admin'}">
-			<%@ include file="header-admin.jsp"%>
-		</c:when>
-		<c:when test="${user.role eq 'member'}">
-			<%@ include file="header-member.jsp"%>
-		</c:when>
-		<c:otherwise>
-			<%@ include file="header-guest.jsp"%>
-		</c:otherwise>
-	</c:choose>
-<c:url value="/css/simple.css" var="ss"/>
-<link rel="STYLESHEET" type="text/css"
-	href="${ss}" />
+<%@ include file="Header.jsp"%>
+<!-- <c:url value="/css/simple.css" var="ss" /> 
+<link rel="stylesheet" type="text/css" href="${ss}" /> -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 <dec:head />
 </head>
 <body>
-	<table style="width: 100%">
-		<tr>
-			<td style="width: 180; border: 1" valign="top">
-				<div>
-					
-					<%@ include file="Menu.jsp"%>
-				</div>
-			</td>
-			<td>
-				<div>
-					<h3>
-						<spring:message code="${bodyTitle}" />
-					</h3>
-					<dec:body />
-				</div>
-			</td>
-		</tr>
-	</table>
-	
+	<div class="container">
+		<%@ include file="Menu.jsp"%>
+		<dec:body />
+	</div>
+
 	<!-- ======== Footer ======== -->
-				<div id="footer" align="center">
-				  <hr>
-					<small> &copy; ISS NUS SA46 Team 11 </small>
-				</div>
+	<div id="footer" align="center">
+		<hr>
+		<small> &copy; ISS NUS SA46 Team 11 </small>
+	</div>
 </body>
 </html>
