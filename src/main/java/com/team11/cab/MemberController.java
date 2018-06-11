@@ -1,24 +1,15 @@
 package com.team11.cab;
 
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.team11.cab.model.Member;
-import com.team11.cab.service.MemberService;
 
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
-
-	@Autowired
-	private MemberService mService;
 	
 	@InitBinder
 	private void initRoleBinder(WebDataBinder binder) {
@@ -26,12 +17,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView membersListPage() 
-	{
-		ModelAndView mav = new ModelAndView("view-members");
-		ArrayList<Member> members = mService.findAllMember();
-		mav.addObject("members", members);
-		return mav;
+	public String membersList() {
+		
+		return "view-members";
 	}
-
+	
+	
+	
 }

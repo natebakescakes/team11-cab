@@ -2,22 +2,48 @@
 	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html>
 <head>
-	<c:choose>
-		<c:when test="${user.role eq 'admin'}">
-			<%@ include file="header-admin.jsp"%>
-		</c:when>
-		<c:when test="${user.role eq 'member'}">
-			<%@ include file="header-member.jsp"%>
-		</c:when>
-		<c:otherwise>
-			<%@ include file="header-guest.jsp"%>
-		</c:otherwise>
-	</c:choose>
-<c:url value="/css/simple.css" var="ss"/>
+
+<script type="text/javascript" src="<c:url value="/js/jquery.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/bootstrap.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/jquery.dataTables.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+
+
+
+<c:url value="/css/simple.css" var="ss" />
+<link rel="STYLESHEET" type="text/css" href="${ss}" />
 <link rel="STYLESHEET" type="text/css"
-	href="${ss}" />
+	href="<c:url value="/css/bootstrap.min.css" />" />
+<link rel="STYLESHEET" type="text/css"
+	href="<c:url value="/css/dataTables.bootstrap.css" />" />
+
+
+<c:choose>
+	<c:when test="${user.role eq 'admin'}">
+		<%@ include file="header-admin.jsp"%>
+	</c:when>
+	<c:when test="${user.role eq 'member'}">
+		<%@ include file="header-member.jsp"%>
+	</c:when>
+	<c:otherwise>
+		<%@ include file="header-guest.jsp"%>
+	</c:otherwise>
+</c:choose>
+
+<script>
+	
+	window.contextRoot='${contextRoot}';
+	
+</script>
+
 <dec:head />
 </head>
 <body>
@@ -25,7 +51,7 @@
 		<tr>
 			<td style="width: 180; border: 1" valign="top">
 				<div>
-					
+
 					<%@ include file="Menu.jsp"%>
 				</div>
 			</td>
@@ -39,11 +65,14 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<!-- ======== Footer ======== -->
-				<div id="footer" align="center">
-				  <hr>
-					<small> &copy; ISS NUS SA46 Team 11 </small>
-				</div>
+	<div id="footer" align="center">
+		<hr>
+		<small> &copy; ISS NUS SA46 Team 11 </small>
+	</div>
+
+
 </body>
+
 </html>
