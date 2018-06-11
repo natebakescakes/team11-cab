@@ -4,7 +4,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<%@include file="Header.jsp"%>
+	<c:choose>
+		<c:when test="${user.role eq 'admin'}">
+			<%@ include file="header-admin.jsp"%>
+		</c:when>
+		<c:when test="${user.role eq 'member'}">
+			<%@ include file="header-member.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="header-guest.jsp"%>
+		</c:otherwise>
+	</c:choose>
 <c:url value="/css/simple.css" var="ss"/>
 <link rel="STYLESHEET" type="text/css"
 	href="${ss}" />
@@ -33,7 +43,7 @@
 	<!-- ======== Footer ======== -->
 				<div id="footer" align="center">
 				  <hr>
-					<small> &copy; ISS NUS SA42 2016 </small>
+					<small> &copy; ISS NUS SA46 Team 11 </small>
 				</div>
 </body>
 </html>
