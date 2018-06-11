@@ -1,36 +1,44 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html>
-<spring:url value="/css/simple.css" var="style"/>
-<link rel="STYLESHEET" type="text/css"
-	href="${style}" />
-<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/home/authenticate" >
-	<table class="framed" >
-		<tr>
-			<td>
-			<spring:message code="fieldLabel.username" /></td>
-			<td colspan="3"><form:input path="name" size="40" /></td>
-		</tr>
-		<tr>
-			<td><spring:message code="fieldLabel.password" /></td>
-			<td colspan="3"><form:password path="password" size="40" /></td>
-		</tr>
-		<tr>
-			<td colspan="4">&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>
-			<form:button name="submit" type="submit" value="s">
-					<img src="${pageContext.request.contextPath}/image/button_login.gif" alt="" align="middle">
-				</form:button></td>
-			<td>
-			<form:button name="clear" type="reset" value="r">
-					<img src="${pageContext.request.contextPath}/image/button_clear.gif" alt="" align="middle">
-				</form:button>
-				</td>
-		</tr>
-	</table>
-</form:form>
-</html>
+<body onload='document.f.j_username.focus();'>
+	<c:if test="${param.error != null}">
+		<div class="row">
+			<div class="alert alert-warning" role="alert">Invalid username
+				and password.</div>
+		</div>
+	</c:if>
+	<c:if test="${param.logout != null}">
+		<div class="row">
+			<div class="alert alert-success" role="alert">You have been
+				logged out.</div>
+		</div>
+	</c:if>
+
+	<c:url value="/login" var="loginUrl" />
+
+	<div class="row">
+		<form action="${loginUrl}" method="post">
+			<div class="form-group">
+				<spring:message code="fieldLabel.username" var="username" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user"></i></span> <input
+						type="text" id="username" class="form-control" name="username"
+						placeholder="${username}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<spring:message code="fieldLabel.password" var="password" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input
+						type="password" id="password" class="form-control" name="password"
+						placeholder="${password}" />
+				</div>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+			<button type="submit" class="btn btn-primary">Sign In</button>
+		</form>
+	</div>
+</body>
