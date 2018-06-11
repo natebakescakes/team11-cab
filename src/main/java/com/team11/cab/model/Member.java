@@ -1,7 +1,6 @@
 package com.team11.cab.model;
 
 import java.util.Date;
-import java.util.ArrayList;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

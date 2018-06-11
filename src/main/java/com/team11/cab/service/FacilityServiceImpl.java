@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.team11.cab.model.Facility;
 import com.team11.cab.repository.FacilityRepository;
+import com.team11.cab.repository.FacilityTypeRepository;
 
 @Service
-public class FacilityServiceImpl implements FacilityService{
-	
+public class FacilityServiceImpl implements FacilityService {
+
 	@Resource
 	private FacilityRepository facilityrepository;
 
@@ -20,6 +21,12 @@ public class FacilityServiceImpl implements FacilityService{
 	public List<Facility> findAllFacilities() {
 		List<Facility> l = (ArrayList<Facility>) facilityrepository.findAll();
 		return l;
+	}
 
-		}
+	@Override
+	public ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId) {
+		ArrayList<Facility> f = facilityrepository.findFacilityByFacilityType(facilityTypeId);
+		return f;
+	}
+
 }

@@ -18,7 +18,5 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	@Query(value = "SELECT * FROM course WHERE status = ?0", nativeQuery = true)
 	ArrayList<Course> findPendingCoursesByStatus(String status);
-	
-	
 
 }
