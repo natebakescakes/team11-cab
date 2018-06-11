@@ -3,31 +3,42 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body onload='document.f.j_username.focus();'>
+	<c:if test="${param.error != null}">
+		<div class="row">
+			<div class="alert alert-warning" role="alert">Invalid username
+				and password.</div>
+		</div>
+	</c:if>
+	<c:if test="${param.logout != null}">
+		<div class="row">
+			<div class="alert alert-success" role="alert">You have been
+				logged out.</div>
+		</div>
+	</c:if>
+
+	<c:url value="/login" var="loginUrl" />
+
 	<div class="row">
-		<c:if test="${param.error != null}">
-			<p>Invalid username and password.</p>
-		</c:if>
-		<c:if test="${param.logout != null}">
-			<p>You have been logged out.</p>
-		</c:if>
-
-		<c:url value="/login" var="loginUrl" />
-
 		<form action="${loginUrl}" method="post">
 			<div class="form-group">
 				<spring:message code="fieldLabel.username" var="username" />
-				<label for="username">${username}: </label> <input type="text"
-					id="username" class="form-control" name="username"
-					placeholder="${username}" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user"></i></span> <input
+						type="text" id="username" class="form-control" name="username"
+						placeholder="${username}" />
+				</div>
 			</div>
 			<div class="form-group">
 				<spring:message code="fieldLabel.password" var="password" />
-				<label>${password}: </label> <input type="password" id="password"
-					class="form-control" name="password" placeholder="${password}" />
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input
+						type="password" id="password" class="form-control" name="password"
+						placeholder="${password}" />
+				</div>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-primary">Sign In</button>
 		</form>
 	</div>
 </body>

@@ -82,7 +82,7 @@
 <body> 
 -->
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!-- 
 <nav class="nav" role="navigation">
@@ -135,7 +135,14 @@
 							<li><a href="#">My Bookings</a></li>
 							<li><a href="#">Edit Profile</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+							<li><form class="form-group" action="${contextPath}/logout"
+									method="POST">
+									<button class="form-control btn-link" type="submit">
+										<i class="fa fa-sign-out"></i> Logout
+									</button>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+								</form></li>
 						</ul></li>
 				</sec:authorize>
 			</ul>
