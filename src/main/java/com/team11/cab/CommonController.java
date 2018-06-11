@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team11.cab.model.Employee;
 import com.team11.cab.model.User;
+import com.team11.cab.service.BookingService;
 import com.team11.cab.service.EmployeeService;
 import com.team11.cab.service.UserService;
 
@@ -29,6 +30,9 @@ public class CommonController {
 
 	@Autowired
 	private EmployeeService eService;
+	
+	@Autowired
+	private BookingService bService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String home() {
@@ -68,11 +72,14 @@ public class CommonController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@RequestMapping(value="bookingdetails", method=RequestMethod.GET)
 	public String searchBooking(@RequestParam String booking_id, ModelMap model) {
 		//declare booking service
+		
 	    //validate booking exists
+		
 		//else throw error and redirect user back to homepage
+	
 		model.put("booking_id", booking_id);
 		return "booking-details";
 	}

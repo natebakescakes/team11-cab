@@ -20,6 +20,7 @@ Already have a booking?
 <br>
 Key in your Booking ID here:
 <br>
+<p>${error-message}</p>
 <input name="booking_id"/>
 <input type="submit" value="Search"/>
 
