@@ -41,7 +41,7 @@ float: right
 
 <div class="navbar">
 
-		<a href="#home">Home</a>
+		<a href="home">Home</a>
 		<a href="#home">Facilities</a>
 		<a href="#news">My Bookings</a>
 		<div class="navbar-right"> 

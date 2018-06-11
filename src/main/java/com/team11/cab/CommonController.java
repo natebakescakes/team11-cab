@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team11.cab.model.Employee;
@@ -65,5 +67,13 @@ public class CommonController {
 		session.setAttribute("USERSESSION", us);
 		return mav;
 	}
-
+	
+	@RequestMapping(value="/home", method=RequestMethod.GET)
+	public String searchBooking(@RequestParam String booking_id, ModelMap model) {
+		//declare booking service
+	    //validate booking exists
+		//else throw error and redirect user back to homepage
+		model.put("booking_id", booking_id);
+		return "booking-details";
+	}
 }

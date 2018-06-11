@@ -12,7 +12,17 @@
 </head>
 <body>
 
+Hello World
 
-	Hello World
+
+<form action ="bookingdetails" method ="get" class="Searchbox">
+Already have a booking?
+<br>
+Key in your Booking ID here:
+<br>
+<input name="booking_id"/>
+<input type="submit" value="Search"/>
+
+</form>
 </body>
 </html>

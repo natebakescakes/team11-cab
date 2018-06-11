@@ -90,7 +90,7 @@ float: right
 			</div>
 		</div>
 	</div>
-		<a href="homepage.jsp">Home</a>
+		<a href="home">Home</a>
 		<a href="#news">Facilities</a> 
 		<a href="#home">My Bookings</a>
 		
