@@ -3,13 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>     
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Club Application for Booking</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick-1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick-1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
 
@@ -36,17 +34,51 @@
 <form:form action = "booking" method= "POST">
 <h3>Make your booking here</h3>
 
-Choose A Facility Type:
-<!-- <td>Country :</td>
-				<td><form:select path="country">
-					  <form:options value="NONE" label="--- Select ---" />
-					  <form:options items="${countrylist}" />
-				       </form:select>
+<label>Choose Facility Type</label>
+<div class="thing" id="wrapper">
+		
+			<c:forEach var="facilityType" items="${fTypeList}">
+			<div><img src="${pageContext.request.contextPath}/image/FacilityTypeIcons/${facilityType.typeId}.png" alt="slider-image"></div>
+			
+		</c:forEach>
 
+</div>
+<select name="ftype">
+			<c:forEach var="facilityType" items="${fTypeList}">
+			<option value="${facilityType.typeId}">${facilityType.typeName}</option>
+			</c:forEach>
+	</select>
+	<br>
+	<label>Date</label>
+	<input name="date" type="date">
 
--->
-
+	<br>
+	
+	<label>Start Time</label>
+	<input name="stime" id="starttime" type="time">
+	<br>
+	<label>End Time</label>
+	<input name="endtime" id="endtime" type="time">
+	<br>
+	<input type="Submit" value="Search">
 </form:form> 
 </div>
-</body>
-</html>
+
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/slick-1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.thing').slick({
+	  
+		arrows: true,
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 3
+  });
+}
+</script>
+
