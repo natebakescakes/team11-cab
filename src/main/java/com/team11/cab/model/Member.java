@@ -1,14 +1,20 @@
 package com.team11.cab.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,6 +54,9 @@ public class Member {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
+	
+	@OneToMany(mappedBy="member", fetch=FetchType.EAGER)
+	private List<Booking> bookings=new ArrayList<Booking>();
 	
 //	@OneToMany(targetEntity=Booking.class, mappedBy="user")
 //	private ArrayList<Booking> bookings=new ArrayList<Booking>();
