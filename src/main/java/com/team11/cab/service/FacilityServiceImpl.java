@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.team11.cab.model.Facility;
 import com.team11.cab.repository.FacilityRepository;
-import com.team11.cab.repository.FacilityTypeRepository;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
