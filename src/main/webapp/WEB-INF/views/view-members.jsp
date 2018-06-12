@@ -24,14 +24,14 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>FIRST NAME</th>
-							<th>LAST NAME</th>
-							<th>EMAIL</th>
-							<th>ADDRESS</th> 
-							<th>CONTACT NO</th>
-							<th>DATE OF BIRTH</th> 
-							<th>EDIT</th>
-							<th>DELETE</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Address</th> 
+							<th>Conctact No</th>
+							<th>Date of Birth</th> 
+							<th></th>
+							<th></th>
 						</tr>
 
 					</thead>
