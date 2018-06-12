@@ -4,6 +4,6 @@ import java.util.ArrayList;
 import com.team11.cab.model.Member;
 
 public interface MemberService {
-
 	ArrayList<Member> findAllMember();
+	Member findMemberById(int id);
 }

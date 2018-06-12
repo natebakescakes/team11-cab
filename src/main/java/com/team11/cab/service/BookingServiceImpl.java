@@ -22,12 +22,18 @@ public class BookingServiceImpl implements BookingService {
 	@Transactional
 	public ArrayList<Booking> findAllBookings() {
 		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.findAll();
-		
 		return bookinglist;
 	}
 
 	@Override
 	public boolean isBookingValid(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
 		 return !((start1.isBefore(end2)) && (start2.isBefore(end1))) ? true : false;
+	}
+
+	@Override
+	@Transactional
+	public Booking makeBooking(Booking newBooking) {
+		Booking result = bookingRepository.save(newBooking);
+		return result;
 	}
 }

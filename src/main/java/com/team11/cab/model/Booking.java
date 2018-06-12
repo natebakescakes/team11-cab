@@ -1,7 +1,7 @@
 
 package com.team11.cab.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,23 +22,23 @@ public class Booking {
 	@Column(name = "BookingId")
 	private int bookingId;
 	@Column(name = "TransDate")
-	private Date transDate;
-	@Column(name = "FacilityId")
-	private int facilityId;
-	@Column(name = "UserId")
-	private int userId;
+	private LocalDateTime transDate;
 	@Column(name = "StartDate")
-	private Date startDate;
+	private LocalDateTime startDateTime;
 	@Column(name = "EndDate")
-	private Date endDate;
+	private LocalDateTime endDateTime;
 
 	@OneToOne
-	@JoinColumn(name = "facilityId")
+	@JoinColumn(name = "FacilityId")
 	private Facility facility;
 
 	@OneToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "UserId")
 	private Member member;
+	
+	public Booking() {
+		super();
+	}
 
 	public int getBookingId() {
 		return bookingId;
@@ -48,44 +48,28 @@ public class Booking {
 		this.bookingId = bookingId;
 	}
 
-	public Date getTransDate() {
+	public LocalDateTime getTransDate() {
 		return transDate;
 	}
 
-	public void setTransDate(Date transDate) {
+	public void setTransDate(LocalDateTime transDate) {
 		this.transDate = transDate;
 	}
 
-	public int getFacilityId() {
-		return facilityId;
+	public LocalDateTime getStartDate() {
+		return startDateTime;
 	}
 
-	public void setFacilityId(int facilityId) {
-		this.facilityId = facilityId;
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDateTime = startDate;
 	}
 
-	public int getUserId() {
-		return userId;
+	public LocalDateTime getEndDate() {
+		return endDateTime;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDateTime = endDate;
 	}
 
 	public Facility getFacility() {

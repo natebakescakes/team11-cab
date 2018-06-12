@@ -1,5 +1,6 @@
 package com.team11.cab.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,13 @@ import javax.persistence.Table;
 public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "FacilityId")
 	private int facilityId;
+	@Column(name = "FacilityName")
 	private String facilityName;
+	@Column(name = "Location")
 	private String location;
+	@Column(name = "Description")
 	private String description;
 	
 	@ManyToOne

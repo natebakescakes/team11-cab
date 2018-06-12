@@ -24,4 +24,9 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 
+	@Override
+	public Member findMemberById(int id) {
+		return memberrepository.findOne(id);
+	}
+
 }
