@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<h3>Facility List page</h3>
+<h3>Function Room Booking</h3>
 <table style="cellspacing: 2; cellpadding: 2; border: 1;">
 		<thead>
 			<tr class="listHeading">
