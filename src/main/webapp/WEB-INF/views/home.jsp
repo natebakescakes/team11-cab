@@ -37,14 +37,7 @@
 <h3>Make your booking here</h3>
 
 Choose A Facility Type:
-<!-- <td>Country :</td>
-				<td><form:select path="country">
-					  <form:options value="NONE" label="--- Select ---" />
-					  <form:options items="${countrylist}" />
-				       </form:select>
 
-
--->
 
 </form:form> 
 </div>
