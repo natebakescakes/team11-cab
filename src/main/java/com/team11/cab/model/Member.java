@@ -12,13 +12,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -33,14 +34,18 @@ public class Member {
 	
 	@Basic(optional=false)
 	@Column(name="FirstName")
+	@NotEmpty(message = "*Please provide your first name")
 	private String firstName;
 	
 	@Basic(optional=false)
 	@Column(name="LastName")
+	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 	
 	@Basic(optional=false)
 	@Column(name="Email")
+	@Email(message = "*Please provide a valid email")
+	@NotEmpty(message = "*Please provide an email")
 	private String email;
 	
 	@Column(name="Address")
@@ -48,6 +53,7 @@ public class Member {
 	
 	@Basic(optional=false)
 	@Column(name="ContactNo")
+	@NotEmpty(message = "*Please provide a contact number")
 	private String phone;
 	
 	@Column(name="DateOfBirth", columnDefinition="DATETIME")
@@ -58,7 +64,12 @@ public class Member {
 	@OneToMany(targetEntity=Booking.class, mappedBy="member", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 	
+	@Length(min = 5, message = "*Your username must have at least 5 characters")
+	@NotEmpty(message = "*Please provide your username")
 	private String username;
+	
+	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	@NotEmpty(message = "*Please provide your password")
 	private String password;
 	private boolean enabled;
 
