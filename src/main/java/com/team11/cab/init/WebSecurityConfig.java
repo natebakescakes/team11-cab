@@ -3,6 +3,7 @@ package com.team11.cab.init;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +21,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Value("select username,password,enabled from user where username=?")
+	private String usersQuery;
+	
+	@Value("select u.username,a.authority from user u inner join authorities a on(u.username=a.username) where u.username=?")
+	private String rolesQuery;
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //		auth
@@ -30,6 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth
 			.jdbcAuthentication()
+				.usersByUsernameQuery(usersQuery)
+				.authoritiesByUsernameQuery(rolesQuery)
 				.dataSource(dataSource)
 				.passwordEncoder(passwordEncoder);
 	}

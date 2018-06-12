@@ -58,10 +58,10 @@ public class Member {
 	@OneToMany(targetEntity=Booking.class, mappedBy="member", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 	
-	@OneToOne
-	@JoinColumn(name = "username")
-	private User user;
-	
+	private String username;
+	private String password;
+	private boolean enabled;
+
 	public Member() {}
 
 	public Member(int userid, String firstName, String lastName, String email, String address, String phone, Date dob
@@ -78,64 +78,96 @@ public class Member {
 		//this.bookings = bookings;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getAddress() {
 		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
 	}
 
 	public List<Booking> getBookings() {
 		return bookings;
 	}
 
-	public void setBookings(ArrayList<Booking> bookings) {
-		this.bookings = bookings;
+	public Date getDob() {
+		return dob;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhone() {
+		return phone;
 	}
 
 	public int getUserid() {
 		return userid;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setBookings(ArrayList<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	
