@@ -25,7 +25,7 @@ Hello World
 	<br>
  	<font color='red'>${ErrorMessage}</font>
 	<br>
-	<input name="booking_id">
+	<input name="booking_id" type="text">
 	<button type="submit"><i class="fa fa-search"></i></button>
 	
 	</form:form>

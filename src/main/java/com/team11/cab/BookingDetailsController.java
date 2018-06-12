@@ -18,14 +18,22 @@ public class BookingDetailsController {
 	
 	
 @RequestMapping(value="/bookingdetails", method=RequestMethod.POST)
-	public ModelAndView searchBooking(@RequestParam int booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
-		//declare booking service
+	public ModelAndView searchBooking(@RequestParam String booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
+		
 		
 	    //validate booking exists
-		if(!bService.validateBookings(booking_id))
+		if(booking_id.isEmpty())
+		{
+			 modelAndView.setViewName("redirect:home");
+			 redir.addFlashAttribute("ErrorMessage","Please enter Booking ID");
+			 return modelAndView;
+		}
+		int id = Integer.parseInt(booking_id);
+		if(!bService.validateBookings(id))
 		{
 			 modelAndView.setViewName("redirect:home");
 			 redir.addFlashAttribute("ErrorMessage","Booking not found");
+			
 			    
 			  
 		}
@@ -33,10 +41,11 @@ public class BookingDetailsController {
 		else
 		{	
 			modelAndView.setViewName("booking-details");
-			modelAndView.addObject("booking",bService.findBookingByID(booking_id));
+			modelAndView.addObject("booking",bService.findBookingByID(id));
+		
 		}
 		
-		  return modelAndView;
+		 return modelAndView;
 	}
 
 }

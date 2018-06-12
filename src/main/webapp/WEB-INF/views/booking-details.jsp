@@ -22,14 +22,14 @@ Member ID: ${booking.member.userid}
 <br>
 Facility Name: ${booking.facility.facilityName }
 <br>
-Start Date: ${booking.startDate}
+Start Date: <fmt:formatDate pattern = "dd-MMM-yyyy"  value = "${booking.startDate}" />
 <br>
-End Date: ${booking.endDate}
+End Date: <fmt:formatDate pattern = "dd-MMM-yyyy"  value = "${booking.endDate}" />
+<br>
 
+Start Time: <fmt:formatDate type="time" value="${booking.startDate}" />
 <br>
-Start Time: ${start_time}
-<br>
-End Time: ${end_time}
+End Time: <fmt:formatDate type="time" value="${booking.endDate}" />
 
 
 
