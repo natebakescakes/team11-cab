@@ -1,7 +1,9 @@
 package com.team11.cab;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.team11.cab.exception.EmployeeNotFound;
 import com.team11.cab.model.Employee;
 import com.team11.cab.model.Facility;
+import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 
 @Controller
@@ -34,7 +37,11 @@ public class FacilityController {
 		List<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
 		mav.addObject("facilityList", facilityList);
 		return mav;
+	
 	}
+	
+	
+	
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newFacility(Model model) {
@@ -82,6 +89,7 @@ public class FacilityController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
+
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteFacility(@PathVariable int id, final RedirectAttributes redirectAttributes)
 			throws EmployeeNotFound {
@@ -92,5 +100,14 @@ public class FacilityController {
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
-	}
+}
+	
+//	@ModelAttribute("allTypes")
+//	public List<FacilityType> testFacilityTypes() {
+//		ArrayList<FacilityType> types = new ArrayList<FacilityType>();
+//		types.add(new FacilityType(9,"test","test"));
+//		return types;
+//		
+//	}
+
 }

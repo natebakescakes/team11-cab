@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <h3>Facility List page</h3>
+<a href="${pageContext.request.contextPath}/facility/create">Add
+	Facility</a>
 <table style="cellspacing: 2; cellpadding: 2; border: 1;">
 	<thead>
 		<tr class="listHeading">

@@ -21,9 +21,13 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityType" /></td>
-				<td><form:input path="facilityType" /></td>
-				<td><form:errors path="facilityType" cssStyle="color: red;" /></td>
+				<td><form:select path="facilityName">
+						
+
+					</form:select></td>
+
 			</tr>
+
 			<tr>
 				<td><spring:message code="fieldLabel.location" /></td>
 				<td><form:input path="location" /></td>
