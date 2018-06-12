@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @version $Revision: 1.0
  */
 @Entity
-@Table(name = "Booking")
+@Table(name = "booking")
 public class Booking {
 	@Id
 	@Column(name = "BookingId")
@@ -80,11 +80,11 @@ public class Booking {
 		this.facility = facility;
 	}
 
-	public Member getUser() {
+	public Member getMember() {
 		return member;
 	}
 
-	public void setUser(Member member) {
+	public void setMember(Member member) {
 		this.member = member;
 	}
 

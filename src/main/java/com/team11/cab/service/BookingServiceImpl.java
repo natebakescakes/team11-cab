@@ -36,4 +36,16 @@ public class BookingServiceImpl implements BookingService {
 		Booking result = bookingRepository.save(newBooking);
 		return result;
 	}
+	public boolean validateBookings(int id) {
+
+		
+		if(bookingRepository.findOne(id)!= null) return true;
+		else return false;
+		
+	}
+
+	@Override
+	public Booking findBookingByID(int id) {
+		return bookingRepository.findOne(id);
+	}
 }

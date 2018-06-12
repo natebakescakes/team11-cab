@@ -83,7 +83,7 @@ public class BookingController {
 		b.setFacility(facilityService.findFacilityById(facilityId));
 		b.setStartDate(startDateTime);
 		b.setEndDate(endDateTime);
-		b.setUser(memberService.findMemberById(userId));
+		b.setMember(memberService.findMemberById(userId));
 		
 		bookingService.makeBooking(b);
 		boolean bookingSuccess = true;
@@ -101,7 +101,7 @@ public class BookingController {
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		
 		// Display "Choose Room" dropdown by Facility Type
-		int typeId = Integer.parseInt(request.getParameter("ftype"));
+		int typeId = Integer.parseInt(request.getParameter("typeId"));
 		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(typeId);
 		
 		mav.addObject("typeId", typeId);

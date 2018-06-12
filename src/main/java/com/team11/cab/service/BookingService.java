@@ -8,4 +8,6 @@ public interface BookingService {
 	ArrayList<Booking> findAllBookings();
 	boolean isBookingValid(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2);
 	Booking makeBooking(Booking newBooking);
+	boolean validateBookings(int id);
+	Booking findBookingByID(int id);
 }
