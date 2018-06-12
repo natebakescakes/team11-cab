@@ -31,12 +31,13 @@ public class BookingController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
-
+		
+		// Make Booking
+		bService.
+		
 		ModelAndView mav = new ModelAndView("booking");
 		
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-		
-		System.out.println(request.getParameter("ftype"));
 		
 		// Display "Choose Room" dropdown by Facility Type
 		int typeId = Integer.parseInt(request.getParameter("ftype"));

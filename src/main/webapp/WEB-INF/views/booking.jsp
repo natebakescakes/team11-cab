@@ -5,27 +5,37 @@
 
 <h3>Make Booking</h3>
 
+<div class="form-group">
 <form:form action="" method="POST">
+
+	
 	<label>Choose Facility Type</label>
-	<select name="ftype">
-		<option value="" selected disabled hidden>- Select a Facility Type -</option>
+	<select name="ftype" class="form-control">
+		<option value="" selected disabled hidden>- Select a
+			Facility Type -</option>
 		<c:forEach var="facilityType" items="${ftypes}">
 			<option value="${facilityType.typeId}"
-					${facilityType.typeId == typeId ? 'selected="selected"' : ''}>
-				${facilityType.typeName}
-			</option>
+				${facilityType.typeId == typeId ? 'selected="selected"' : ''}>
+				${facilityType.typeName}</option>
 		</c:forEach>
 	</select>
-	
+
 	<input type="submit" value="Refresh">
-	
+	<br>
 	<label>Date</label>
-	<input name="date" type="date" value="${date}">
+<%-- 	<input name="date" type="date" value="${date}" class="form-control"> --%>
+	
+	<div class="input-group date" data-provide="datepicker">
+    <input name="date" type="text" class="form-control" value="${date}">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+</div>
 
 	<br>
 	
 	<label>Choose Room</label>
-	<select name="room">
+	<select name="room" class="form-control">
 		<c:forEach var="room" items="${rooms}">
 			<option value="${room.facilityId}">${room.facilityName}</option>
 		</c:forEach>
@@ -37,9 +47,10 @@
 	<label>End Time</label>
 	<input name="endtime" id="endtime" type="time" step=3600>
 
-	<br>  <br>
+</form:form>
+</div>
 
-	<!-- Generate tables for each room -->
+<!-- Generate tables for each room -->
 	<c:forEach var="room" items="${rooms}">
 		<label>${room.facilityName}</label>
 		<table>
@@ -61,4 +72,3 @@
 			</tr>
 		</table>
 	</c:forEach>
-</form:form>
