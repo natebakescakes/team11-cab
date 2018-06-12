@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/member")
 public class MemberController {
 	
-	@InitBinder
-	private void initRoleBinder(WebDataBinder binder) {
-		
-	}
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String membersList() {
 		

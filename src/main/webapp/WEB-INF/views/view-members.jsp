@@ -15,30 +15,6 @@
 <h3>Member List page</h3>
 
 
-<%-- 	<c:if test="${fn:length(members) gt 0}"> --%>
-<!-- 	<table style="cellspacing: 2; cellpadding: 2; border: 1;"> -->
-<!-- 		<thead> -->
-<!-- 			<tr class="listHeading"> -->
-<%-- 				<th><spring:message code="fieldLabel.userId" /></th> --%>
-<%-- 				<th><spring:message code="fieldLabel.firstName" /></th> --%>
-<%-- 				<th><spring:message code="fieldLabel.lastName" /></th> --%>
-				
-				
-<!-- 			</tr> -->
-<!-- 		</thead> -->
-<!-- 		<tbody> -->
-<%-- 			<c:forEach var="member" items="${members}"> --%>
-<!-- 				<tr class="listRecord"> -->
-<%-- 					<td>${member.userId}</td> --%>
-<%-- 					<td>${member.firstName}</td> --%>
-<%-- 					<td>${member.lastName}</td> --%>
-					
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</tbody> -->
-<!-- 	</table> -->
-<%-- </c:if> --%>
-
 	<div class="container">
 
 		<div class="row" style="max-width:100%">
