@@ -17,7 +17,7 @@
 <br>
 
 <div class="BookingID-Searchbox">
-	<form:form action ="bookingdetails" method ="POST">
+	<form:form action ="${pageContext.request.contextPath}/bookingdetails" method ="POST">
 	
 	Already have a booking?
 	<br>
