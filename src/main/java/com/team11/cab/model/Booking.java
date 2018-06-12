@@ -28,7 +28,7 @@ public class Booking {
 	@Column(name = "EndDate")
 	private Date endDate;
 
-	@OneToOne
+	@OneToOne 
 	@JoinColumn(name = "facilityId")
 	private Facility facility;
 

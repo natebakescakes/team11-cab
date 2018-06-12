@@ -118,8 +118,8 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="home">Home</a></li>
-				<li><a href="#news">Facilities</a></li>
+				<li><a href="${contextPath}/home">Home</a></li>
+				<li><a href="${contextPath}/facilities">Facilities</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="isAnonymous()">

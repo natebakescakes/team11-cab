@@ -1,13 +1,20 @@
 package com.team11.cab.model;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 /* facility class */
 
@@ -25,8 +32,8 @@ public class Facility {
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
 	
-	@OneToOne(targetEntity=Booking.class, mappedBy="facility")
-	private Booking booking;
+	@OneToMany(targetEntity=Booking.class, mappedBy="facility", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Booking> bookings = new ArrayList<Booking>();
 	
 	public Facility() {
 		super();
