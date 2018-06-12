@@ -18,8 +18,8 @@
 			
 	        <tr>
         	<c:forEach var="facility" items="${type.facilities}">
-            <td> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"  
-					width="100" height="100" alt="" align="middle"> 
+            <td><a	href="${pageContext.request.contextPath}/booking"> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"  
+					width="100" height="100" alt="" align="middle"> </a>
 					<br/>
                   ${facility.facilityName}  
            </td>		
