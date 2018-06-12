@@ -52,6 +52,10 @@
 							<th>LAST NAME</th>
 							<th>EMAIL</th>
 							<th>ADDRESS</th> 
+							<th>CONTACT NO</th>
+							<th>DATE OF BIRTH</th> 
+							<th>EDIT</th>
+							<th>DELETE</th>
 						</tr>
 
 					</thead>

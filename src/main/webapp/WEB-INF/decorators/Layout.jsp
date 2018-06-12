@@ -4,6 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	
+<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 
 <html>
 <head>
@@ -33,6 +35,10 @@
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+
+<script>
+window.contextRoot='${contextRoot}';
+</script>
 
 <dec:head />
 </head>

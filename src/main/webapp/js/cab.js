@@ -1,12 +1,14 @@
 $(document).ready(function(){
 	
 	var u=window.contextRoot + '/json/showmember/jsonlist';
+//	
+//	$.getJSON(u, function(data) {         
+//	    alert(JSON.stringify(data));
+//	});
 	
-	$.getJSON(u, function(data) {         
-	    alert(data);
-	});
 	
 		var $table=$('#myTable');
+		//var editor = $table.Editor();
 		
 		$table.DataTable(
 				{
@@ -17,7 +19,7 @@ $(document).ready(function(){
 				
 					columns: [
 						{
-							data: 'userId'
+							data: 'userid'
 						},
 						{
 							data: 'firstName'
@@ -36,9 +38,27 @@ $(document).ready(function(){
 						},
 						{
 							data: 'dob'
+						},
+						{
+							defaultContent: "<button>Edit</button>"
+						},
+						{
+							defaultContent: "<button>Delete</button>"
 						}
-						
 					]
+					
 				});
+		
+//		 $('#table').on( 'click', 'button', function (e) {
+//		        editor.inline( this );
+//		    });
+	
+		
+		
+//		
+//		$('#myTable tbody').on( 'click', function () {
+//	        var data = table.row( $(this).parents('tr') ).data();
+//	        alert( "Do you want to delete " + data[1] +" "+data[2]+" (Member ID: "+ data[ 0 ]+"?" );
+//	    } );
 
 });
