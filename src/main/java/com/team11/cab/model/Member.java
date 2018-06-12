@@ -53,7 +53,7 @@ public class Member {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 	
-	@OneToMany(targetEntity=Booking.class, mappedBy="member", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Booking.class, mappedBy="member", fetch=FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 	
 	public Member() {}
@@ -120,13 +120,13 @@ public class Member {
 		this.dob = dob;
 	}
 
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(ArrayList<Booking> bookings) {
-		this.bookings = bookings;
-	}
+//	public List<Booking> getBookings() {
+//		return bookings;
+//	}
+//
+//	public void setBookings(ArrayList<Booking> bookings) {
+//		this.bookings = bookings;
+//	}
 
 	public int getUserid() {
 		return userid;
