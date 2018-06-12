@@ -2,7 +2,9 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body onload='document.f.j_username.focus();'>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<body>
 	<c:if test="${param.error != null}">
 		<div class="row">
 			<div class="alert alert-warning" role="alert">Invalid username
@@ -25,7 +27,7 @@
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-user"></i></span> <input
 						type="text" id="username" class="form-control" name="username"
-						placeholder="${username}" />
+						placeholder="${username}" autofocus/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -39,6 +41,7 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<button type="submit" class="btn btn-primary">Sign In</button>
+			<a href="${contextPath}/register" class="btn btn-primary">Register</a>
 		</form>
 	</div>
 </body>

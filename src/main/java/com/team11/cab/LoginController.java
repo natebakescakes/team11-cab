@@ -12,10 +12,10 @@ public class LoginController {
 
 		return "login";
 	}
-//
-//	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-//	public String logout() {
-//		return "login";
-//	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "register";
+	}
 
 }
