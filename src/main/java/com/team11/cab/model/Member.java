@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,46 +18,51 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class Member {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="UserId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "UserId")
 	private int userid;
-	
-	@Basic(optional=false)
-	@Column(name="FirstName")
+
+	@Basic(optional = false)
+	@Column(name = "FirstName")
 	private String firstName;
-	
-	@Basic(optional=false)
-	@Column(name="LastName")
+
+	@Basic(optional = false)
+	@Column(name = "LastName")
 	private String lastName;
-	
-	@Basic(optional=false)
-	@Column(name="Email")
+
+	@Basic(optional = false)
+	@Column(name = "Email")
 	private String email;
-	
-	@Column(name="Address")
+
+	@Column(name = "Address")
 	private String address;
-	
-	@Basic(optional=false)
-	@Column(name="ContactNo")
+
+	@Basic(optional = false)
+	@Column(name = "ContactNo")
 	private String phone;
-	
-	@Column(name="DateOfBirth", columnDefinition="DATETIME")
+
+	@Column(name = "DateOfBirth", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
-	
-//	@OneToMany(targetEntity=Booking.class, mappedBy="user")
-//	private ArrayList<Booking> bookings=new ArrayList<Booking>();
-	
-	public Member() {}
+
+	@OneToOne
+	@JoinColumn(name = "username")
+	private User user;
+
+	// @OneToMany(targetEntity=Booking.class, mappedBy="user")
+	// private ArrayList<Booking> bookings=new ArrayList<Booking>();
+
+	public Member() {
+	}
 
 	public Member(int userid, String firstName, String lastName, String email, String address, String phone, Date dob
-			//,ArrayList<Booking> bookings
-			) {
+	// ,ArrayList<Booking> bookings
+	) {
 		super();
 		this.userid = userid;
 		this.firstName = firstName;
@@ -64,7 +71,7 @@ public class Member {
 		this.address = address;
 		this.phone = phone;
 		this.dob = dob;
-		//this.bookings = bookings;
+		// this.bookings = bookings;
 	}
 
 	public String getFirstName() {
@@ -115,29 +122,16 @@ public class Member {
 		this.dob = dob;
 	}
 
-//	public ArrayList<Booking> getBookings() {
-//		return bookings;
-//	}
-//
-//	public void setBookings(ArrayList<Booking> bookings) {
-//		this.bookings = bookings;
-//	}
+	// public ArrayList<Booking> getBookings() {
+	// return bookings;
+	// }
+	//
+	// public void setBookings(ArrayList<Booking> bookings) {
+	// this.bookings = bookings;
+	// }
 
 	public int getUserid() {
 		return userid;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
