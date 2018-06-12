@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
+import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeService;
 
 @RequestMapping(value = "/booking")
 @Controller
@@ -22,17 +24,26 @@ public class BookingController {
 	private BookingService bService;
 	@Autowired
 	private FacilityService facilityService;
+	@Autowired
+	private FacilityTypeService facilityTypeService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("booking");
-
-		// System.out.println(request.getParameter("ftype"));
-
-		mav.addObject("ftype", request.getParameter("ftype"));
+		
+		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
+		
+		System.out.println(request.getParameter("ftype"));
+		
+		// Display "Choose Room" dropdown by Facility Type
+		int typeId = Integer.parseInt(request.getParameter("ftype"));
+		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(typeId);
+		
+		mav.addObject("typeId", typeId);
+		mav.addObject("ftypes", ftypes);
 		mav.addObject("date", request.getParameter("date"));
-		mav.addObject("room", request.getParameter("room"));
+		mav.addObject("rooms", rooms);
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
 
@@ -40,18 +51,18 @@ public class BookingController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView bookingPage() {
+	public ModelAndView bookingPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("booking");
 
-		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
-		ArrayList<Facility> fList2 = facilityService.findFacilitiesByFacilityType(1);
-		
-		System.out.println("--TEST--");
-		for (Facility facility : fList2) {
-			System.out.println(facility.getFacilityName());
-		}
+		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 
-		mav.addObject("facilityList", facilityList);
+		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(1);
+
+		mav.addObject("ftypes", ftypes);
+		mav.addObject("date", request.getParameter("date"));
+		mav.addObject("rooms", rooms);
+		mav.addObject("stime", request.getParameter("stime"));
+		mav.addObject("endtime", request.getParameter("endtime"));
 
 		return mav;
 	}

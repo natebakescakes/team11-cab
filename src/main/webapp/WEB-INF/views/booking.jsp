@@ -1,23 +1,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <h3>Make Booking</h3>
 
 <ul>
-	<li>${ftype}</li>
+	<li>${ftypes}</li>
 	<li>${date}</li>
-	<li>${room}</li>
+	<li>${rooms}</li>
 	<li>${stime}</li>
 	<li>${endtime}</li>
 </ul>
 
-<form action="" method="POST">
+<form:form action="" method="POST">
 	<label>Choose Facility Type</label>
 	<select name="ftype">
-		<option value="first">First Value</option>
-		<option value="second" selected>Second Value</option>
-		<option value="third">Third Value</option>
+		<c:forEach var="facilityType" items="${ftypes}">
+			<option value="${facilityType.typeId}"
+					${facilityType.typeId == typeId ? 'selected="selected"' : ''}">
+				${facilityType.typeName}
+			</option>
+		</c:forEach>
 	</select>
 	
 	<label>Date</label>
@@ -27,8 +31,8 @@
 	
 	<label>Choose Room</label>
 	<select name="room">
-		<c:forEach var="facility" items="${facilityList}">
-			<option value="${facility.facilityId}">${facility.facilityName}</option>
+		<c:forEach var="room" items="${rooms}">
+			<option value="${room.facilityId}">${room.facilityName}</option>
 		</c:forEach>
 	</select>
 	
@@ -60,4 +64,4 @@
 			<td>8PM</td>
 		</tr>
 	</table>
-</form>
+</form:form>
