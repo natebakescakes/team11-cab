@@ -1,5 +1,6 @@
 package com.team11.cab;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -79,13 +80,9 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("booking");
 
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(1);
 
 		mav.addObject("ftypes", ftypes);
-		mav.addObject("date", request.getParameter("date"));
-		mav.addObject("rooms", rooms);
-		mav.addObject("stime", request.getParameter("stime"));
-		mav.addObject("endtime", request.getParameter("endtime"));
+		mav.addObject("date", LocalDate.now().toString());
 
 		return mav;
 	}

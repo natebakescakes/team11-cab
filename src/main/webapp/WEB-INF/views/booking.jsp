@@ -8,16 +8,19 @@
 <form:form action="" method="POST">
 	<label>Choose Facility Type</label>
 	<select name="ftype">
+		<option value="" selected disabled hidden>- Select a Facility Type -</option>
 		<c:forEach var="facilityType" items="${ftypes}">
 			<option value="${facilityType.typeId}"
-					${facilityType.typeId == typeId ? 'selected="selected"' : ''}">
+					${facilityType.typeId == typeId ? 'selected="selected"' : ''}>
 				${facilityType.typeName}
 			</option>
 		</c:forEach>
 	</select>
 	
+	<input type="submit" value="Refresh">
+	
 	<label>Date</label>
-	<input name="date" type="datetime-local">
+	<input name="date" type="date" value="${date}">
 
 	<br>
 	
@@ -29,12 +32,12 @@
 	</select>
 	
 	<label>Start Time</label>
-	<input name="stime" id="starttime" type="datetime-local">
+	<input name="stime" id="starttime" type="time" step=3600>
 
 	<label>End Time</label>
-	<input name="endtime" id="endtime" type="datetime-local">
+	<input name="endtime" id="endtime" type="time" step=3600>
 
-	<br> <input type="submit" value="Book Now"> <br>
+	<br>  <br>
 
 	<!-- Generate tables for each room -->
 	<c:forEach var="room" items="${rooms}">
