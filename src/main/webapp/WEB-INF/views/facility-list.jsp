@@ -27,7 +27,9 @@
 			
 			<tr class="listRecord">	
 			
+
 			<td height="50px" valign="middle" colspan="4"><a href="${pageContext.request.contextPath}/booking"> ${type.typeName}</a> </td>
+
 			   
 			</tr>
 	     
