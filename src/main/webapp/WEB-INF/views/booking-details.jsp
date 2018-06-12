@@ -9,7 +9,8 @@
 </head>
 <body>
 <!--  put in the include confirm booking logo here -->
-
+<img src="/image/bookingcomplete.png" alt="">
+<br>
 Is this the booking ID that you sent me?
 <br>
 Booking ID: ${booking.bookingId}
