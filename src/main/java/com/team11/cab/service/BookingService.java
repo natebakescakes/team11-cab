@@ -7,5 +7,6 @@ import com.team11.cab.model.Booking;
 public interface BookingService {
 	
 	ArrayList<Booking> findAllBookings();
-
+	boolean validateBookings(int id);
+	Booking findBookingByID(int id);
 }
