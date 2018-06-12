@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team11.cab.model.Facility;
+import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeService;
 
 @Controller
 @RequestMapping(value="/facility")
@@ -19,11 +21,19 @@ public class FacilityController {
 	@Autowired
 	private FacilityService facilityService;
 	
-	@RequestMapping(value = "/facilitylist", method = RequestMethod.GET)
+	@Autowired
+	private FacilityTypeService facilityTypeService;
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
-		List<Facility> facilityList = (ArrayList<Facility>)facilityService.findAllFacilities();
-		mav.addObject("facilityList", facilityList);
+	//	List<Facility> facilityList = (ArrayList<Facility>)facilityService.findAllFacilities();
+		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
+		
+		mav.addObject("typeList",typeList);
+		
+		//mav.addObject("facilityList", facilityList);
+		
 		return mav;
 	}
 
