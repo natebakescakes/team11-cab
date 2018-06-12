@@ -13,10 +13,10 @@
 </head>
 <body>
 
-Hello World
+<h1>Hello World </h1>
 <br>
 
-<div class="Searchbox">
+<div class="BookingID-Searchbox">
 	<form:form action ="bookingdetails" method ="POST">
 	
 	Already have a booking?
@@ -31,5 +31,22 @@ Hello World
 	</form:form>
 </div>
 
+
+<div class="SearchBox">
+<form:form action = "booking" method= "POST">
+<h3>Make your booking here</h3>
+
+Choose A Facility Type:
+<!-- <td>Country :</td>
+				<td><form:select path="country">
+					  <form:options value="NONE" label="--- Select ---" />
+					  <form:options items="${countrylist}" />
+				       </form:select>
+
+
+-->
+
+</form:form> 
+</div>
 </body>
 </html>
