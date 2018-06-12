@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.team11.cab.model.Employee;
 import com.team11.cab.model.Facility;
 import com.team11.cab.repository.FacilityRepository;
 
@@ -48,5 +47,4 @@ public class FacilityServiceImpl implements FacilityService {
 		facilityrepository.delete(fac);
 
 	}
-
-	}
+}

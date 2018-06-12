@@ -3,8 +3,12 @@ package com.team11.cab.model;
 
 import java.util.Date;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Department class
@@ -34,7 +38,7 @@ public class Booking {
 
 	@OneToOne
 	@JoinColumn(name = "userId")
-	private User user;
+	private Member member;
 
 	public int getBookingId() {
 		return bookingId;
@@ -92,12 +96,12 @@ public class Booking {
 		this.facility = facility;
 	}
 
-	public User getUser() {
-		return user;
+	public Member getUser() {
+		return member;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Member member) {
+		this.member = member;
 	}
 
 }
