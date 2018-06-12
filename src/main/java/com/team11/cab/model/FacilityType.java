@@ -20,7 +20,7 @@ public class FacilityType {
 	private String typeName;
 	private String description;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "facilityType")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "facilityType")
 	private List<Facility> facilities;
 
 	public FacilityType() {
