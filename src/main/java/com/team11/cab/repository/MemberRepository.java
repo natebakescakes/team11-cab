@@ -5,4 +5,6 @@ import com.team11.cab.model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, String> {
 
+	Member findByUsername(String username);
+	
 }
