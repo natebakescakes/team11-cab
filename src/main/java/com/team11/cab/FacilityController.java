@@ -2,6 +2,7 @@ package com.team11.cab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team11.cab.exception.EmployeeNotFound;
-import com.team11.cab.model.Employee;
 import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeService;
 
 @Controller
 @RequestMapping(value = "/facility")
@@ -30,6 +30,8 @@ public class FacilityController {
 
 	@Autowired
 	private FacilityService facilityService;
+	@Autowired
+	private FacilityTypeService facilityTypeService;
 
 	@RequestMapping(value = "/facilitylist", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
@@ -37,15 +39,19 @@ public class FacilityController {
 		List<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
 		mav.addObject("facilityList", facilityList);
 		return mav;
-	
+
 	}
-	
-	
-	
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newFacility(Model model) {
-		model.addAttribute("facility", new Facility());
+//		 List<FacilityType> typeList = facilityTypeService.findAllFacilityTypes();
+//		 Map<FacilityType, String> typeMap = new LinkedHashMap<FacilityType,
+//		 String>();
+//		 for (int i = 0; i< typeList.size();i++) {
+//		 typeMap.put(typeList.get(i), typeList.get(i).getTypeName());
+//		 }
+//		 model.addAttribute("typeMap", typeMap);
+		 model.addAttribute("facility", new Facility());
 		return "facility-new";
 	}
 
@@ -57,10 +63,10 @@ public class FacilityController {
 		// return new ModelAndView("facility-new");
 
 		ModelAndView mav = new ModelAndView();
-		String message = "New facility " + facility.getFacilityId() + " was successfully created.";
+	    String message = "New facility " + facility.getFacilityId() + " was successfully created.";
 
 		facilityService.createFacility(facility);
-		mav.setViewName("redirect:facilitylist");
+		mav.setViewName("redirect:/facility/facilitylist");
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
@@ -91,23 +97,14 @@ public class FacilityController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteFacility(@PathVariable int id, final RedirectAttributes redirectAttributes)
-			throws EmployeeNotFound {
+	public ModelAndView deleteFacility(@PathVariable int id, final RedirectAttributes redirectAttributes) {
 		ModelAndView mav = new ModelAndView("redirect:/facility/facilitylist");
 		Facility facility = facilityService.findFacility(id);
 		facilityService.deleteFacility(facility);
-		String message = "The employee " + facility.getFacilityId() + " was successfully deleted.";
+		String message = "The facility " + facility.getFacilityId() + " was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
-}
-	
-//	@ModelAttribute("allTypes")
-//	public List<FacilityType> testFacilityTypes() {
-//		ArrayList<FacilityType> types = new ArrayList<FacilityType>();
-//		types.add(new FacilityType(9,"test","test"));
-//		return types;
-//		
-//	}
+	}
 
 }

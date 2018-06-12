@@ -21,10 +21,11 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityType" /></td>
-				<td><form:select path="facilityName">
-						
-
-					</form:select></td>
+				<td><form:select path="FacilityType">
+				<form:option value="" label="...." />
+				<form:options items="${typeMap}" />
+				</form:select>
+				</td>
 
 			</tr>
 

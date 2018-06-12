@@ -15,12 +15,12 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityName" /></td>
-				<td><form:input path="FacilityName" /></td>
+				<td><form:input path="facilityName" /></td>
 				<td><form:errors path="facilityName" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityType" /></td>
-				<td><form:input path="FacilityType" /></td>
+				<td><form:input path="facilityType" /></td>
 				<td><form:errors path="facilityType" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
