@@ -5,14 +5,6 @@
 
 <h3>Make Booking</h3>
 
-<ul>
-	<li>${ftypes}</li>
-	<li>${date}</li>
-	<li>${rooms}</li>
-	<li>${stime}</li>
-	<li>${endtime}</li>
-</ul>
-
 <form:form action="" method="POST">
 	<label>Choose Facility Type</label>
 	<select name="ftype">

@@ -1,5 +1,6 @@
 package com.team11.cab;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,12 +51,34 @@ public class BookingController {
 		return mav;
 	}
 
+	/*
+	 * TODO: Includes test for isBookingValid
+	 * */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookingPage(HttpServletRequest request) {
+		
+//		LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
+//		LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
+//		
+//		LocalDateTime start2 = LocalDateTime.of(2018, 6, 12, 10, 0);
+//		LocalDateTime end2 = LocalDateTime.of(2018, 6, 12, 12, 0);
+//		
+//		System.out.println("--TEST 1--");
+//		System.out.println(bService.isBookingValid(start1, end1, start2, end2));
+//		
+//		end1 = LocalDateTime.of(2018, 6, 12, 10, 0);
+//
+//		System.out.println("--TEST 2--");
+//		System.out.println(bService.isBookingValid(start1, end1, start2, end2));
+//		
+//		end1 = LocalDateTime.of(2018, 6, 12, 11, 0);
+//
+//		System.out.println("--TEST 3--");
+//		System.out.println(bService.isBookingValid(start1, end1, start2, end2));
+				
 		ModelAndView mav = new ModelAndView("booking");
 
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-
 		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(1);
 
 		mav.addObject("ftypes", ftypes);
