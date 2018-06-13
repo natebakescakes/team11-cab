@@ -15,30 +15,6 @@
 <h3>Member List page</h3>
 
 
-<%-- 	<c:if test="${fn:length(members) gt 0}"> --%>
-<!-- 	<table style="cellspacing: 2; cellpadding: 2; border: 1;"> -->
-<!-- 		<thead> -->
-<!-- 			<tr class="listHeading"> -->
-<%-- 				<th><spring:message code="fieldLabel.userId" /></th> --%>
-<%-- 				<th><spring:message code="fieldLabel.firstName" /></th> --%>
-<%-- 				<th><spring:message code="fieldLabel.lastName" /></th> --%>
-				
-				
-<!-- 			</tr> -->
-<!-- 		</thead> -->
-<!-- 		<tbody> -->
-<%-- 			<c:forEach var="member" items="${members}"> --%>
-<!-- 				<tr class="listRecord"> -->
-<%-- 					<td>${member.userId}</td> --%>
-<%-- 					<td>${member.firstName}</td> --%>
-<%-- 					<td>${member.lastName}</td> --%>
-					
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</tbody> -->
-<!-- 	</table> -->
-<%-- </c:if> --%>
-
 	<div class="container">
 
 		<div class="row" style="max-width:100%">
@@ -48,14 +24,14 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>FIRST NAME</th>
-							<th>LAST NAME</th>
-							<th>EMAIL</th>
-							<th>ADDRESS</th> 
-							<th>CONTACT NO</th>
-							<th>DATE OF BIRTH</th> 
-							<th>EDIT</th>
-							<th>DELETE</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Address</th> 
+							<th>Conctact No</th>
+							<th>Date of Birth</th> 
+							<th></th>
+							<th></th>
 						</tr>
 
 					</thead>

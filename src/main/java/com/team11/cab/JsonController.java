@@ -20,11 +20,6 @@ public class JsonController {
 	@Autowired
 	private MemberService mService;
 	
-	@InitBinder
-	private void initRoleBinder(WebDataBinder binder) {
-		
-	}
-	
 	
 	@RequestMapping(value = "/jsonlist")
 	@ResponseBody
