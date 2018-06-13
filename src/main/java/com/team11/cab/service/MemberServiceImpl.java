@@ -56,6 +56,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		memberFromDb.setDob(m.getDob());
 		memberFromDb.setAddress(m.getAddress());
 		memberFromDb.setPhone(m.getPhone());
+		memberFromDb.setEnabled(m.isEnabled());
 		
 		memberRepository.saveAndFlush(memberFromDb);
 	}
