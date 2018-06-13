@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +40,10 @@ public class BookingController {
 		
 		ModelAndView mav = new ModelAndView("booking");
 		
+		// Convert POST attributes to the LocalDateTime objects
+		LocalDate date = LocalDate.parse(request.getParameter("date"),
+		DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		
 		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("ftypes", ftypes);
@@ -57,8 +59,6 @@ public class BookingController {
 			
 			// Display schedule for all (relevant) Facilities
 			ArrayList<FacilityTypeSchedule> allFacilitySchedules = new ArrayList<FacilityTypeSchedule>();
-			LocalDate date = LocalDate.parse(request.getParameter("date"),
-					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			
 			for (Facility facility : facilities) {
 				String facilityName = facility.getFacilityName();
@@ -78,10 +78,12 @@ public class BookingController {
 	@RequestMapping(value = "", method = RequestMethod.POST, params={"submit"})
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
 		
-		// Make Booking
-		int facilityId = Integer.parseInt(request.getParameter("facility"));
+		// Render view
+		ModelAndView mav = new ModelAndView("booking");
+		
 		int userId = 1; // TODO: Change this when you can get userId
 		boolean bookingSuccess;
+		int facilityId;
 		
 		// Convert POST attributes to the LocalDateTime objects
 		LocalDate date = LocalDate.parse(request.getParameter("date"),
@@ -92,6 +94,9 @@ public class BookingController {
 		LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 		LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
 		
+		facilityId = Integer.parseInt(request.getParameter("facility"));
+		
+		// Make booking
 		Booking b = new Booking();
 		b.setFacility(facilityService.findFacilityById(facilityId));
 		b.setStartDateTime(startDateTime);
@@ -112,30 +117,37 @@ public class BookingController {
 //		b.setEndDate(LocalDateTime.of(2018, 6, 12, 10, 0));
 //		b.setUser(memberService.findMemberById(1));
 		
-		// Render view
-		ModelAndView mav = new ModelAndView("booking");
-		
+		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
+		mav.addObject("ftypes", ftypes);
 		
-		// Display "Choose Room" dropdown by Facility Type
-		int typeId = Integer.parseInt(request.getParameter("typeId"));
-		ArrayList<Facility> facilities = facilityService.findFacilitiesByFacilityType(typeId);
-		
-		ArrayList<FacilityTypeSchedule> schedule;
-		
-		for (Facility facility : facilities) {
-			String facilityName = facility.getFacilityName();
-			ArrayList<Slot> schedule = bookingService.makeFacilityDaySchedule(facilityId, date);
-			schedule.add(new FacilityTypeSchedule(facilityName, facilityId, schedule));
+		// Display menu of Facilities
+		ArrayList<Facility> facilities;
+		if (request.getParameter("typeId") != null) {
+			String typeId = request.getParameter("typeId");
+			int typeIdNum = Integer.parseInt(typeId);
+			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
+			mav.addObject("facilities", facilities);
+			mav.addObject("typeId", typeId);
+			
+			// Display schedule for all (relevant) Facilities
+			ArrayList<FacilityTypeSchedule> allFacilitySchedules = new ArrayList<FacilityTypeSchedule>();
+			
+			for (Facility facility : facilities) {
+				String facilityName = facility.getFacilityName();
+				ArrayList<Slot> schedule = bookingService.makeFacilityDaySchedule(facility.getFacilityId(), date);
+				allFacilitySchedules.add(new FacilityTypeSchedule(facilityName, facility.getFacilityId(), schedule));
+			}
+			mav.addObject("facilitySchedules", allFacilitySchedules);
 		}
 		
-		mav.addObject("typeId", typeId);
-		mav.addObject("ftypes", ftypes);
 		mav.addObject("date", request.getParameter("date"));
-		mav.addObject("facilities", facilities);
-		mav.addObject("stime", request.getParameter("stime"));
-		mav.addObject("endtime", request.getParameter("endtime"));
 		
+		// pass-through values
+		if (bookingSuccess == false) {
+			mav.addObject("stime", request.getParameter("stime"));
+			mav.addObject("endtime", request.getParameter("endtime"));
+		}
 		mav.addObject("bookingSuccess", bookingSuccess);
 
 		return mav;

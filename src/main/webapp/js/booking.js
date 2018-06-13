@@ -7,7 +7,7 @@ $( document ).ready(function() {
 		// 4) DONE: set the #starttime input to what was clicked
 		// 5) DONE: set the #endtime input to what was clicked + 1 hour
 	
-	var box = $(".booking-grid>.row>div")
+	var box = $(".booking-grid>.row>div:not(.booked)")
 	var times = {
 		"9AM" 	: "09:00",
 		"10AM" 	: "10:00",
