@@ -48,7 +48,7 @@ $(document).ready(function(){
 							data: 'description'
 						},
 						{
-							data: 'enabled',
+							data: 'status',
 							//defaultContent: "<input type='checkbox' class='td-button btn-delete'></input>"
 							render: simple_checkbox	
 						},
@@ -66,7 +66,7 @@ $(document).ready(function(){
 	    	 var counter = 0;
 	         $($(this).parents('tr')).find("td").each(function(){
         		 counter++;
-	        	 if(counter < 3){
+	        	 if(counter < 2){
 	        		 return;
 	        	 }
 //	        	 if(this.hasClass("sorting_1")){
@@ -98,7 +98,7 @@ $(document).ready(function(){
 //	        		 return true;
 //	        	 }
         		 counter++;
-	        	 if(counter < 3){
+	        	 if(counter < 2){
 	        		 return;
 	        	 }
 	        	 

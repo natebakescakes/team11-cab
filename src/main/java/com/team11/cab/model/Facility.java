@@ -31,7 +31,7 @@ public class Facility {
 	private String facilityName;
 	private String location;
 	private String description;
-	private int status;
+	private boolean status;
 
 	// @Transient
 	// private int facTypeId;
@@ -49,7 +49,7 @@ public class Facility {
 	}
 
 	public Facility(int facilityId, String facilityName, String location, String description,
-			FacilityType facilityType, int status) {
+			FacilityType facilityType, boolean status) {
 		super();
 		this.facilityId = facilityId;
 		this.facilityName = facilityName;
@@ -99,11 +99,11 @@ public class Facility {
 		this.location = location;
 	}
 
-	public int getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
