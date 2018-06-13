@@ -16,6 +16,12 @@ $(document).ready(function(){
 		var $table=$('#myTable');
 		//editor= $table.Editor();
 		
+		var simple_checkbox=function(data,type,full, meta){
+			var checked= (data==true)? "checked" : "";
+			return '<input type="checkbox"  disabled="true" class="checkbox td-button" ' + checked + '/>';
+		}
+		
+		
 		var datatbl = $table.DataTable(
 				{
 					ajax: {
@@ -48,14 +54,19 @@ $(document).ready(function(){
 							data: 'dob'
 						},
 						{
-							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
+							data: 'enabled',
+							//defaultContent: "<input type='checkbox' class='td-button btn-delete'></input>"
+							render: simple_checkbox	
 						},
 						{
-							defaultContent: "<button class='td-button btn-delete'>Delete</button>"
+							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
 						}
+						
 					]
 					
 				});
+		
+		
 		
 
 	     $('#myTable tbody').on('click', '.btn-edit', function (e) {
@@ -69,6 +80,11 @@ $(document).ready(function(){
 //	        	 if(this.hasClass("sorting_1")){
 //	        		 return true;
 //	        	 }
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+	        		( $(this).find("input")).prop("disabled",false);
+	        		 
+	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        	        var text = $(this).text();
@@ -93,6 +109,27 @@ $(document).ready(function(){
 	        	 if(counter < 3){
 	        		 return;
 	        	 }
+	        	 
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+		        		( $(this).find("input")).prop("disabled",true);
+		        		
+		        		if ( ($(this).find("input")).prop('checked')==true)
+		        		{
+				        	 var cell = datatbl.cell( $(this) );
+				        	 
+				        	 cell.data(1).draw();
+		   	        	}
+		        		
+		   	        	 else
+		   	        	 {
+			   	        	 var cell = datatbl.cell( $(this) );
+			   	        	 cell.data(0).draw();
+		   	        	 }
+	        		
+	        	 }
+	        	 
+	        	 
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        		 	var text = $(this).find("input").val();
@@ -105,13 +142,14 @@ $(document).ready(function(){
 		    	 
 	        	 if ($(this).children().hasClass("btn-save"))
 	        		 {
-	        	        $(this).html ('<button class="td-button btn-edit">Edit</button>')
+	        	        $(this).html ('<button class="td-button btn-edit">Edit</button>');
 	        		 } 
 	        	 
-	        	 
-	        	});
+	    	 }) ;
+	        
 	    	 
 	         var memberdata = datatbl.row( parenttr ).data();
+	        // alert(JSON.stringify(memberdata));
 
 	         
 	         $.ajax({
@@ -121,33 +159,33 @@ $(document).ready(function(){
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (result) {
-	            	 alert("Member has been updated");
+	            	 //alert("Member has been updated");
 
 	             }
 	           });
 	      	    
 	      } );    
 	         
-	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
-	         var del = datatbl.row( $(this).parents('tr') ).data();
-	         $.ajax({
-	             url: window.contextRoot + "/admin/members/delete",
-	             type: "POST",
-	             data: JSON.stringify(del),
-	             contentType: "application/json",
-	             cache: true,
-	             success: function (result) {
-	            	 alert("Member has been deleted");
-	    	         datatbl.ajax.reload();
-	 
-	             }
-	         
-	        
-	           });
-	         
-	      } );	
-	     
-	     
+//	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
+//	         var del = datatbl.row( $(this).parents('tr') ).data();
+//	         $.ajax({
+//	             url: window.contextRoot + "/admin/members/delete",
+//	             type: "POST",
+//	             data: JSON.stringify(del),
+//	             contentType: "application/json",
+//	             cache: true,
+//	             success: function (result) {
+//	            	 alert("Member has been deleted");
+//	    	         datatbl.ajax.reload();
+//	 
+//	             }
+//	         
+//	        
+//	           });
+//	         
+//	      } );	
+//	     
+//	     
 	     
 	     
 //			$('.edit').each(function () {
