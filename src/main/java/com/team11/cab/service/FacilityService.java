@@ -15,6 +15,8 @@ public interface FacilityService {
 
 	void deleteFacility(Facility fac);
 
+	void updateFacility(Facility f);
+
 	Facility findFacilityById(int facilityId);
 
 	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);

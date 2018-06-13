@@ -2,7 +2,6 @@ package com.team11.cab.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "facilitytype")
@@ -20,6 +21,7 @@ public class FacilityType {
 	private String typeName;
 	private String description;
 
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "facilityType")
 	private List<Facility> facilities;
 
