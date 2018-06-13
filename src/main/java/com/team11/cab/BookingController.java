@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -193,5 +195,53 @@ public class BookingController {
 
 		mav.addObject("bookingList", bookingList);
 		return mav;
+	}
+
+	@RequestMapping(value = "/typeid={typeid}", method = RequestMethod.GET)
+	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) 
+	{
+		ModelAndView mav = new ModelAndView("booking");
+		
+		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
+		
+		ArrayList<FacilityType> typeList= facilityTypeService.findAllFacilityTypes();
+		
+		mav.addObject("facilityList", facilityList);
+		
+		mav.addObject("typeList", typeList);
+		
+		int TypeId=Integer.valueOf(typeid);
+		
+		mav.addObject("typeidchosen", TypeId);
+		
+		return mav;
+		
+	}
+	
+	@RequestMapping(value = "tid={tid}/fid={fid}", method = RequestMethod.GET)
+	public ModelAndView Booking_FacilityChosen(@PathVariable  String fid ,@PathVariable String tid ) 
+	{
+		ModelAndView mav = new ModelAndView("booking");
+		
+		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
+		
+		ArrayList<FacilityType> typeList= facilityTypeService.findAllFacilityTypes();
+		
+		mav.addObject("facilityList", facilityList);
+		
+		mav.addObject("typeList", typeList);
+				
+         int fId=Integer.valueOf(fid);
+		
+		mav.addObject("fidchosen", fId);
+		
+		  int tId=Integer.valueOf(tid);
+			
+			mav.addObject("typeidchosen", tId);
+		
+		
+		
+		return mav;
+		
 	}
 }

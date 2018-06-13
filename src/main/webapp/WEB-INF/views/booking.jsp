@@ -42,11 +42,11 @@
 		</div>
 		<div class="col-md-5">
 			<label>Date</label> <input id="datepicker" name="date" type="text"
-				class="form-control" value="${date}">
+				class="form-control datepicker" value="${date}">
 			<label>Start Time</label>
-			<input name="stime" id="starttime" type="time" step=3600 value="${stime}">
+			<input class="timepicker" name="stime" id="starttime" type="text" step=3600 value="${stime}" autocomplete="off">
 			<label>End Time</label>
-			<input name="endtime" id="endtime" type="time" step=3600 alue="${endtime}">
+			<input class="timepicker" name="endtime" id="endtime" type="text" step=3600 value="${endtime}" autocomplete="off">
 		</div>
 		<div class="col-md-2">
 			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit">
@@ -68,11 +68,17 @@
 </c:forEach>
 
 <script>
-	$('#datepicker').datepicker({
-		format : "dd/mm/yyyy"
+
+	$(document).ready(function() {
+		// for timepicker
+		$('input.timepicker').timepicker({});
+		// for datepicker
+		$('.datepicker').datepicker();
+		// for validation
+		$.validate();
 	});
+	
 </script>
 <script type="text/javascript"
 	src="<c:url value="/js/booking.js" />">
 </script>
-
