@@ -7,15 +7,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Member List page</h3>
+<h3>Facility List page</h3>
 
 
 	<div class="container">
@@ -23,17 +20,14 @@
 		<div class="row" style="max-width:100%">
 			<div class="centered" style="align:center; width:80%"  >
 
-				<table id="myTable" style="width:100%" class="table table-striped table-bordered">
+				<table id="myFacTable" style="width:100%" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th >ID</th>
-							<th>Username</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Email</th>
-							<th>Address</th> 
-							<th>Contact No</th>
-							<th>Date of Birth</th> 
+							<th>Facility ID</th>
+							<th>Facility Name</th>
+							<th>Facility Type</th>
+							<th>Location</th>
+							<th>Description</th> 
 							<th></th>
 							<th></th>
 						</tr>

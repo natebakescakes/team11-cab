@@ -2,8 +2,8 @@ package com.team11.cab.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.persistence.Column;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /* facility class */
 
@@ -23,22 +26,22 @@ import javax.persistence.Table;
 public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "FacilityId")
 	private int facilityId;
-	@Column(name = "FacilityName")
 	private String facilityName;
-	@Column(name = "Location")
 	private String location;
-	@Column(name = "Description")
 	private String description;
-	
+
+	// @Transient
+	// private int facTypeId;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
-	
-	@OneToMany(targetEntity=Booking.class, mappedBy="facility", fetch=FetchType.EAGER)
+
+	@JsonIgnore
+	@OneToMany(targetEntity = Booking.class, mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
-	
+
 	public Facility() {
 		super();
 	}
@@ -92,5 +95,18 @@ public class Facility {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
+	@JsonGetter
+	public String getFacilityTypeName() {
+		return this.facilityType.getTypeName();
+	}
+
+	// public int getFacTypeId() {
+	// return facTypeId;
+	// }
+	//
+	// public void setFacTypeId(int facTypeId) {
+	// this.facTypeId = facTypeId;
+	// }
+
 }
