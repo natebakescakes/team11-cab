@@ -13,10 +13,9 @@
 <!-- <c:url value="/css/simple.css" var="ss" /> 
 <link rel="stylesheet" type="text/css" href="${ss}" /> -->
 
-<<<<<<< HEAD
-=======
+
 <!--  Bootstrap -->
->>>>>>> refs/heads/master
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -65,15 +64,15 @@
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
-<<<<<<< HEAD
 
 
 
 
-=======
+
+
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/dataTables.bootstrap.css" />" />
->>>>>>> refs/heads/master
+
 <script>
 window.contextRoot='${contextRoot}';
 </script>
