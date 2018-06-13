@@ -10,7 +10,7 @@ public interface BookingService {
 	Booking makeBooking(Booking newBooking);
 	boolean validateBookings(int id);
 	Booking findBookingByID(int id);
-	Booking createBooking(Booking booking);
 	Booking changeBooking(Booking booking);
 	void removeBooking(Booking booking);
+	ArrayList<Booking> findMyBookings(String username);
 }

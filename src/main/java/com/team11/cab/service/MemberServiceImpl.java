@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team11.cab.model.Authority;
+import com.team11.cab.model.Booking;
 import com.team11.cab.model.Member;
 import com.team11.cab.repository.AuthorityRepository;
 import com.team11.cab.repository.MemberRepository;
@@ -95,5 +96,4 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public Member findMemberById(int id) {
 		return memberRepository.findOne(id);
 	}
-
 }

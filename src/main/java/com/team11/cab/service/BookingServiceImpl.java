@@ -26,6 +26,14 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
+	@Transactional
+	public ArrayList<Booking> findMyBookings(String username) {
+		ArrayList<Booking> bookinglist= new ArrayList<Booking>();
+		 bookinglist= (ArrayList<Booking>) bookingRepository.findMyBookingsbyusername(username);
+		return bookinglist;
+	}
+	
+	@Override
 	public boolean isBookingValid(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
 		return !((start1.isBefore(end2)) && (start2.isBefore(end1))) ? true : false;
 	}
@@ -47,26 +55,23 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public Booking findBookingByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Booking findBookingByID(int id)
+	{
+		return bookingRepository.findOne(id);
+	}
+	
+	@Override
+	@Transactional
+	public Booking changeBooking(Booking b)
+	{
+		bookingRepository.saveAndFlush(b);
+		return b;
 	}
 
 	@Override
-	public Booking createBooking(Booking booking) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Booking changeBooking(Booking booking) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeBooking(Booking booking) {
-		// TODO Auto-generated method stub
+	public void removeBooking(Booking booking) 
+	{
+		bookingRepository.delete(booking);
 		
 	}
 }

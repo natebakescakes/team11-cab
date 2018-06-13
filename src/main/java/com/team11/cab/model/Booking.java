@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 @Table(name = "booking")
@@ -99,7 +100,6 @@ public class Booking {
 		this.member = member;
 	}
 
-
 	@JsonGetter
 	public String getStartDateDate() 
 	{	
@@ -157,4 +157,10 @@ public class Booking {
 	{	
 		return facility.getFacilityName();
 	}
+	
+	public int getmemberId() 
+	{	
+		return member.getUserid();
+	}
+	
 }

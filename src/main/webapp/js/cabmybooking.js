@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	   		var b=window.contextRoot + '/json/showmember/jsonbookinglist';
+	   		var b=window.contextRoot + '/json/showmember/jsonmybookinglist';
 	   		
 	   		var token = $('#_csrf').attr('content');
 	   	    var header = $('#_csrf_header').attr('content');
@@ -11,9 +11,9 @@ $(document).ready(function(){
 	   		    }
 	   		});
 	   		
-	    	var $bookingtable=$('#bTable');
+	    	var $mybookingtable=$('#mbTable');
     	    	
-	    	 			var datatbl1 = $bookingtable.DataTable(
+	    	 			var datatbl1 = $mybookingtable.DataTable(
 	    					{
 	    						ajax: {
 	    							url: b,
@@ -32,7 +32,7 @@ $(document).ready(function(){
 						
 	    					});
 	    	 			
-	    	 			 $('#bTable tbody').on('click', '.btn-edit', function (e) {
+	    	 			 $('#mbTable tbody').on('click', '.btn-edit', function (e) {
 	    	 		         var data = datatbl1.row( $(this).parents('tr') ).data();
 	    	 		    	 var counter = 0;
 	    	 		         $($(this).parents('tr')).find("td").each(function(){
@@ -53,7 +53,7 @@ $(document).ready(function(){
 	    	 		      
 	    	 		      } );
 	    	 		     
-	    	 		     $('#bTable tbody').on('click', '.btn-save', function (e) {
+	    	 		     $('#mbTable tbody').on('click', '.btn-save', function (e) {
 	    	 	    		 var parenttr = $(this).parents('tr');
 	    	 		    	 var counter = 0;
 	    	 		    	 $($(this).parents('tr')).find("td").each(function(){
@@ -96,7 +96,7 @@ $(document).ready(function(){
 	    	 		      	    
 	    	 		      } );    
 	    	 		         
-	    	 		     $('#bTable tbody').on('click', '.btn-delete', function (e) {
+	    	 		     $('#mbTable tbody').on('click', '.btn-delete', function (e) {
 	    	 		         var del = datatbl1.row( $(this).parents('tr') ).data();
 	    	 		         $.ajax({
 	    	 		             url: window.contextRoot + "/booking/delete",

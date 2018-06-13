@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
@@ -157,7 +161,27 @@ public class BookingController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String bookingsList() 
 	{
-		
 		return "booking-list";
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String memberUpdate(@RequestBody Booking b) 
+	{
+		bookingService.changeBooking(b);
+		return "booking-list";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public @ResponseBody String bookingDelete(@RequestBody Booking b) {
+		bookingService.removeBooking(b);
+		return "booking-list";
+		
+	}
+	
+	@RequestMapping(value = "/mlist", method = RequestMethod.GET)
+	public String membermybookingsList() 
+	{
+			return "membooking-list";
+	}
+	
 }

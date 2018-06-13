@@ -2,8 +2,7 @@
 	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 	
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 
@@ -40,6 +39,7 @@
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cabbooking.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/cabmybooking.js" />"></script>
 
 <script>
 window.contextRoot='${contextRoot}';

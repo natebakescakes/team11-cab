@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row" style="max-width:100%">
 			<div class="centered" style="align:center; width:80%"  >
-				<table id="bTable" style="width:100%" class="table table-striped table-bordered">
+				<table id="mbTable" style="width:100%" class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>Booking ID</th>
@@ -26,8 +26,6 @@
 							<th>End Time</th>
 							<th>Edit</th> 
 							<th>Delete</th>
-							<th></th>
-							<th></th>
 						</tr>
 
 					</thead>
@@ -36,7 +34,7 @@
 		</div>
 	</div>
 	
-<button >back</button>
+<a href="${pageContext.request.contextPath}/home" class="btn btn-primary">Back</a>
 
 </body>
 </html>
