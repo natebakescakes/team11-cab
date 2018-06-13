@@ -74,15 +74,20 @@ public class Member implements Serializable {
 	@OneToMany(targetEntity = Booking.class, mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 
+	@JsonIgnore
 	@Length(min = 5, message = "*Your username must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your username")
 	private String username;
 
+	@JsonIgnore
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
+
+	@JsonIgnore
 	private boolean enabled;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private Set<Authority> authorities;
 
