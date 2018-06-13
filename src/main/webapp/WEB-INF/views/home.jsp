@@ -37,7 +37,7 @@
 	</div>
 
 
-	<div class="SearchBox">
+	<div class="panel panel-default" id="SearchBox">
 		<form:form action="booking" method="POST">
 			<h3>Make your booking here</h3>
 
