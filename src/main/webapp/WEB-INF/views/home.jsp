@@ -7,8 +7,7 @@
 <head>
 <title>Club Application for Booking</title>
 
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
 </head>
 <body>
 	<div style="max-width: 300px; margin: auto">
@@ -149,9 +148,6 @@
 		</div>
 	</div>
 
-
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/home.js"></script>
 
 </body>
