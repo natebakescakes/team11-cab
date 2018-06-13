@@ -87,16 +87,22 @@ $(document).ready(function(){
 	        		 {
 	        	        $(this).html ('<button class="td-button btn-edit">Edit</button>')
 	        		 } 
+	        	 
+	        	 
 	        	});
 	    	 
 	         var memberdata = datatbl.row( parenttr ).data();
+	         alert(JSON.stringify(memberdata));
+	         
 	         $.ajax({
 	             url: '/member/update',
 	             type: 'POST',
 	             dataType: 'json',
-	             data: memberdata,
+	             data: JSON.stringify(memberdata),
 	             cache: true,
-	             success: function (data) {}
+	             success: function (data) {
+	            	 alert("HII");
+	             }
 	           });
 	      	    
 	      } );    
