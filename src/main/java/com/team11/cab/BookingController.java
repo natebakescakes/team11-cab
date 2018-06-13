@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
-import com.team11.cab.model.Member;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
@@ -69,6 +68,7 @@ public class BookingController {
 		// Make Booking
 		int facilityId = Integer.parseInt(request.getParameter("room"));
 		int userId = 1; // TODO: Change this when you can get userId
+		boolean bookingSuccess;
 		
 		// Convert POST attributes to the LocalDateTime objects
 		LocalDate date = LocalDate.parse(request.getParameter("date"),
@@ -81,12 +81,17 @@ public class BookingController {
 		
 		Booking b = new Booking();
 		b.setFacility(facilityService.findFacilityById(facilityId));
-		b.setStartDate(startDateTime);
-		b.setEndDate(endDateTime);
+		b.setStartDateTime(startDateTime);
+		b.setEndDateTime(endDateTime);
 		b.setMember(memberService.findMemberById(userId));
 		
-		bookingService.makeBooking(b);
-		boolean bookingSuccess = true;
+		if (bookingService.isBookingValid(b)) {
+			bookingService.makeBooking(b);
+			bookingSuccess = true;
+		} else {
+			bookingSuccess = false;
+		}
+		
 		
 //		// Test booking
 //		Booking b = new Booking();
@@ -104,6 +109,8 @@ public class BookingController {
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
 		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(typeId);
 		
+		
+		
 		mav.addObject("typeId", typeId);
 		mav.addObject("ftypes", ftypes);
 		mav.addObject("date", request.getParameter("date"));
@@ -116,12 +123,10 @@ public class BookingController {
 		return mav;
 	}
 
-	/*
-	 * TODO: Includes test for isBookingValid
-	 * */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView bookingPage(HttpServletRequest request) {
 		
+//		// Tests for Booking		
 //		LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
 //		LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
 //		

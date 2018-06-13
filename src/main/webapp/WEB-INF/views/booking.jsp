@@ -5,11 +5,17 @@
 
 <h3>Make Booking</h3>
 
-<c:if test="${bookingSuccess}">
+<c:if test="${bookingSuccess == true}">
 	<div class="alert alert-success">
 		Booking Successful!
 	</div>
 </c:if>
+<c:if test="${bookingSuccess == false}">
+	<div class="alert alert-danger">
+		There is already a booking at that slot...
+	</div>
+</c:if>
+
 
 <div class="form-group">
 <form:form action="" method="POST">

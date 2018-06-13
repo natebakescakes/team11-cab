@@ -26,8 +26,22 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public boolean isBookingValid(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
-		 return !((start1.isBefore(end2)) && (start2.isBefore(end1))) ? true : false;
+	public boolean isBookingValid(Booking newBooking) {
+		ArrayList<Booking> bookings = findAllBookings();
+		// if you find a booking with same facility and it the timings overlap with each other, it's invalid
+		for (Booking booking : bookings) {
+			Boolean sameFac = (newBooking.getFacility().getFacilityId() == booking.getFacility().getFacilityId());
+			Boolean overlaps = isOverlap(newBooking.getStartDateTime(), newBooking.getEndDateTime(),
+					booking.getStartDateTime(), booking.getEndDateTime());
+			if (sameFac && overlaps) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean isOverlap(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
+		 return (start1.isBefore(end2)) && (start2.isBefore(end1));
 	}
 
 	@Override
