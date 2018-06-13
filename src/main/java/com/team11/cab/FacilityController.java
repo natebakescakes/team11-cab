@@ -35,7 +35,7 @@ public class FacilityController {
 	@Autowired
 	private FacilityTypeService facilityTypeService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/facilities", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
 		// List<Facility> facilityList =
@@ -118,13 +118,13 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/facility/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/facilities", method = RequestMethod.GET)
 	public String facilityList() {
 
 		return "admin-facility-list2";
 	}
 
-	@RequestMapping(value = "/admin/facility/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
 	public @ResponseBody String facilityUpdate(@RequestBody Facility f, HttpServletRequest request) {
 
 		System.out.println(f.getFacilityName());

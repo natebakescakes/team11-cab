@@ -1,20 +1,16 @@
 package com.team11.cab;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team11.cab.model.Facility;
-import com.team11.cab.model.FacilityType;
 import com.team11.cab.model.Member;
 import com.team11.cab.service.FacilityService;
-import com.team11.cab.service.FacilityTypeService;
+//import com.team11.cab.service.FacilityTypeService;
 import com.team11.cab.service.MemberService;
 
 
@@ -26,8 +22,8 @@ public class JsonController {
 	private MemberService mService;
 	@Autowired
 	private FacilityService fService;
-	@Autowired
-	private FacilityTypeService ftService;
+//	@Autowired
+//	private FacilityTypeService ftService;
 	
 	@RequestMapping(value = "/showmember")
 	@ResponseBody

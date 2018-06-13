@@ -98,7 +98,7 @@ $(document).ready(function(){
 //	         alert(JSON.stringify(facilitydata));
 	         
 	         $.ajax({
-	             url: window.contextRoot + "/admin/facility/update",
+	             url: window.contextRoot + "/admin/facilities/update",
 	             type: 'POST',
 	             data: JSON.stringify(facilitydata),
 	             contentType: "application/json",
