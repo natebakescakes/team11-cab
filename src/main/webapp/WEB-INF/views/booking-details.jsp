@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--  put in the include confirm booking logo here -->
-<c:if test="${pageContext.request.contextPath=='/booking'}">
+<c:if test="${param.bookingid==${booking.bookingId}">
 
 <img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG" />
 </c:if>

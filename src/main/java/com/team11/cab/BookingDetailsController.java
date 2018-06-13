@@ -21,6 +21,7 @@ public class BookingDetailsController {
 	public ModelAndView searchBooking(@RequestParam String booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
 		
 		
+	
 	    //validate input not empty
 		if(booking_id.isEmpty())
 		{

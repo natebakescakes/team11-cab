@@ -12,11 +12,7 @@
 <%@ include file="Header.jsp"%>
 <!-- <c:url value="/css/simple.css" var="ss" /> 
 <link rel="stylesheet" type="text/css" href="${ss}" /> -->
-<<<<<<< HEAD
 
-
-=======
->>>>>>> refs/remotes/origin/booking-page
 <!--  Bootstrap -->
 
 <link rel="stylesheet"
@@ -55,7 +51,7 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 	
 <!-- Slick Slider -->
-<<<<<<< HEAD
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/slick/slick-theme.css" />
 <link rel="stylesheet" type="text/css"
@@ -72,7 +68,7 @@
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
-=======
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick-theme.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
@@ -81,21 +77,12 @@
 <script type="text/javascript" src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"/></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/jquery.form-validator.min.js"/></script>
-
->>>>>>> refs/remotes/origin/booking-page
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
-<<<<<<< HEAD
-
-
-
-
-
-
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/dataTables.bootstrap.css" />" />
-=======
+
 <link rel="stylesheet" type="text/css"href="<c:url value="/css/dataTables.bootstrap.css" />" />
->>>>>>> refs/remotes/origin/booking-page
+
 
 <script>
 	window.contextRoot = '${contextRoot}';

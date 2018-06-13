@@ -2,13 +2,8 @@ package com.team11.cab.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-
-import javax.persistence.Column;
 
 import javax.persistence.CascadeType;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,7 +16,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /* facility class */
 
@@ -43,12 +37,8 @@ public class Facility {
 	private FacilityType facilityType;
 
 	
-	@OneToMany(targetEntity=Booking.class, mappedBy="facility", fetch=FetchType.EAGER)
-
-
 	@JsonIgnore
 	@OneToMany(targetEntity = Booking.class, mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
 	private List<Booking> bookings = new ArrayList<Booking>();
 
 	public Facility() {

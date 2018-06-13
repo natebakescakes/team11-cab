@@ -6,7 +6,7 @@
 
 <head>
 <title>Club Application for Booking</title>
-
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 </head>
 <body>
@@ -82,12 +82,10 @@
 							<label>Date: </label>
 						</div>
 						<div class="col-sm-10">
-<<<<<<< HEAD
-							<input name="date" type="date" style="text-align:center">
-=======
-							<input name="date" class="form-control datepicker"
-							autocomplete="off">
->>>>>>> refs/remotes/origin/booking-page
+
+							<input name="date" class="form-control" type="date" style="text-align:center">
+							
+
 						</div>
 
 						<br>
@@ -102,12 +100,9 @@
 							<label>Start Time: </label>
 						</div>
 						<div class="col-sm-10">
-<<<<<<< HEAD
-							<input class="timepicker" name="stime" id="starttime" style="text-align:center">
-=======
+
 							<input class="form-control timepicker" name="stime" id="starttime"
 							autocomplete="off">
->>>>>>> refs/remotes/origin/booking-page
 						
 						</div>
 
@@ -119,12 +114,9 @@
 							<label>End Time: </label>
 						</div>
 						<div class="col-sm-10">
-<<<<<<< HEAD
-							<input class="timepicker" name="endtime" id="endtime" style="text-align:center">
-=======
-							<input class="form-control timepicker" name="endtime" id="endtime"
-							autocomplete="off">
->>>>>>> refs/remotes/origin/booking-page
+
+						<input class="form-control timepicker" name="endtime" id="endtime"autocomplete="off">
+
 						</div>
 
 						<br>
@@ -168,7 +160,7 @@
 
 		</div>
 	</div>
-
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/home.js"></script>
 
 </body>
