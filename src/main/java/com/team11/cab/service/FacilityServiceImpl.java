@@ -28,4 +28,10 @@ public class FacilityServiceImpl implements FacilityService {
 		return f;
 	}
 
+	@Override
+	public ArrayList<Facility> findAvaibleFacility() {
+		ArrayList<Facility> f= facilityrepository.findAvaibleFacility();
+		return f;
+	}
+
 }

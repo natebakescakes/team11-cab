@@ -8,4 +8,5 @@ import com.team11.cab.model.Facility;
 public interface FacilityService {
 	List<Facility> findAllFacilities();
 	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);
+	ArrayList<Facility> findAvaibleFacility();
 }

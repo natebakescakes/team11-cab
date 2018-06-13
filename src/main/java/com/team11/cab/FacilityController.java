@@ -27,12 +27,12 @@ public class FacilityController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
-	//	List<Facility> facilityList = (ArrayList<Facility>)facilityService.findAllFacilities();
+		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvaibleFacility();
 		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
 		
 		mav.addObject("typeList",typeList);
 		
-		//mav.addObject("facilityList", facilityList);
+		mav.addObject("facilityList", AvailblefacilityList);
 		
 		return mav;
 	}

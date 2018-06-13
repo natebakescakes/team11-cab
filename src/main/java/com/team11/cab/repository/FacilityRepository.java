@@ -11,4 +11,12 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	
 	@Query(value = "SELECT * FROM Facility WHERE FacilityType = ?1", nativeQuery = true)
 	ArrayList<Facility> findFacilityByFacilityType(int fid);
+	
+	@Query(value = "SELECT f FROM Facility f WHERE f.status= 1")
+	ArrayList<Facility> findAvaibleFacility();
+	
+	
+	
+	
+	
 }

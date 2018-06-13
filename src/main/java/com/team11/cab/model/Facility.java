@@ -19,7 +19,10 @@ public class Facility {
 	private String facilityName;
 	private String location;
 	private String description;
+	private int status;
 	
+
+
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
@@ -76,6 +79,15 @@ public class Facility {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }
