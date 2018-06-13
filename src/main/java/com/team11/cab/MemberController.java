@@ -3,7 +3,9 @@ package com.team11.cab;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,14 @@ public class MemberController {
 		ArrayList<Member> members = mService.findAllMember();
 		mav.addObject("members", members);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String memberProfile(Model model, Authentication authentication) {
+		
+		model.addAttribute("member", mService.findMemberByUsername(authentication.getName()));
+		
+		return "member-profile";
 	}
 
 }

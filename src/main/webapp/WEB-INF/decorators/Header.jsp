@@ -32,8 +32,8 @@
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><i class="fa fa-user"></i> <i
-							class="fa fa-caret-down"></i></a>
+						aria-expanded="false"><i class="fa fa-user"></i> <sec:authentication
+								property="principal.username" /> <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">My Bookings</a></li>
 							<li><a href="#">Edit Profile</a></li>

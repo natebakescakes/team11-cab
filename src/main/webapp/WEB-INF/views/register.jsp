@@ -5,94 +5,73 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <body>
-	<c:url value="/register" var="registerUrl" />
-
 	<div class="row">
-		<form:form modelAttribute="user" action="${contextPath}/register"
-			method="POST">
-			<div class=" form-group">
-				<spring:message code="fieldLabel.username" var="username" />
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-user"></i></span> <input
-						type="text" class="form-control" name="${user.username}"
-						value="${status.value}" placeholder="${username}" autofocus />
+		<div style="max-width: 300px; margin: auto">
+			<form:form modelAttribute="member" action="${contextPath}/register"
+				method="POST">
+				<div class=" form-group">
+					<spring:message code="fieldLabel.username" var="username" />
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user"></i></span>
+						<input type="text" class="form-control" id="username"
+							name="username" placeholder="${username}" autofocus />
+					</div>
+					<form:errors path="username" cssClass="form-text text-muted" />
 				</div>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.password" var="password" />
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-					<spring:bind path="userDto.password">
-						<input type="text" class="form-control"
-							name="${status.expression}" value="${status.value}"
-							placeholder="${password}" autofocus />
-					</spring:bind>
+				<div class="form-group">
+					<spring:message code="fieldLabel.password" var="password" />
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						<input type="password" class="form-control" id="password"
+							name="password" placeholder="${password}" autofocus />
+					</div>
+					<form:errors path="password" cssClass="form-text text-muted" />
 				</div>
-			</div>
-			<!--
-			<div class="form-group">
-				<spring:message code="fieldLabel.confirmPassword" var="password" />
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-					<spring:bind path="user.password">
-						<input type="password" class="form-control"
-							name="${status.expression}" value="${status.value}"
-							placeholder="${password}" autofocus />
-					</spring:bind>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+						<input type="email" class="form-control" id="email" name="email"
+							placeholder="hello@example.com" />
+					</div>
+					<form:errors path="email" cssClass="form-text text-muted" />
 				</div>
-			</div>
-			 -->
-			<div class="form-group">
-				<spring:message code="fieldLabel.email" var="email" />
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-					<spring:bind path="member.email">
-						<input type="email" value="${status.value}" class="form-control"
-							name="${status.expression}" placeholder="hello@example.com" />
-					</spring:bind>
+				<div class="form-group">
+					<spring:message code="fieldLabel.firstName" var="firstName" />
+					<input type="text" class="form-control" id="firstName"
+						name="firstName" placeholder="${firstName}" />
+					<form:errors path="firstName" cssClass="form-text text-muted" />
 				</div>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.firstName" var="firstName" />
-				<spring:bind path="member.firstName">
-					<input type="text" value="${status.value}" class="form-control"
-						name="${status.expression}" placeholder="${firstName}" />
-				</spring:bind>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.lastName" var="lastName" />
-				<spring:bind path="member.lastName">
-					<input type="text" value="${status.value}" class="form-control"
-						name="${status.expression}" placeholder="${lastName}" />
-				</spring:bind>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.dateOfBirth" var="dateOfBirth" />
-				<spring:bind path="member.dob">
-					<input type="date" value="${status.value}" class="form-control"
-						name="${status.expression}" placeholder="${dateOfBirth}" />
-				</spring:bind>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.address" var="address" />
-				<spring:bind path="member.address">
-					<textarea rows="3" class="form-control" name="${status.expression}"
+				<div class="form-group">
+					<spring:message code="fieldLabel.lastName" var="lastName" />
+					<input type="text" class="form-control" id="lastName"
+						name="lastName" placeholder="${lastName}" />
+					<form:errors path="lastName" cssClass="form-text text-muted" />
+				</div>
+				<div class="form-group">
+					<spring:message code="fieldLabel.dateOfBirth" var="dateOfBirth" />
+					<input type="date" class="form-control" id="dob" name="dob"
+						placeholder="${dateOfBirth}" />
+				</div>
+				<div class="form-group">
+					<spring:message code="fieldLabel.address" var="address" />
+					<textarea rows="3" class="form-control" id="address" name="address"
 						placeholder="${address}"></textarea>
-				</spring:bind>
-			</div>
-			<div class="form-group">
-				<spring:message code="fieldLabel.contactNo" var="contactNo" />
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-					<spring:bind path="member.phone">
-						<input type="tel" value="${status.value}" class="form-control"
-							name="${status.expression}" placeholder="${contactNo}" />
-					</spring:bind>
 				</div>
-			</div>
-			<input type="submit" class="btn btn-primary" value="Register" />
-			<a href="${contextPath}/login" class="btn btn-link">I already
-				have an account!</a>
-		</form:form>
+				<div class="form-group">
+					<spring:message code="fieldLabel.contactNo" var="contactNo" />
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+						<input type="tel" class="form-control" id="phone" name="phone"
+							placeholder="${contactNo}" />
+					</div>
+					<form:errors path="phone" cssClass="form-text text-muted" />
+				</div>
+				<div style="text-align: center">
+					<input type="submit" class="btn btn-primary" value="Register" /> <br />
+					<a href="${contextPath}/login" class="btn btn-link">I already
+						have an account!</a>
+				</div>
+			</form:form>
+		</div>
 	</div>
 </body>
