@@ -52,7 +52,7 @@ public class JsonController {
 //		}
 		
 //		return facList;
-		return fService.findAllFacilities();
+		return fService.findAvailableFacility();
 	}
 
 }

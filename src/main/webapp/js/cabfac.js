@@ -43,6 +43,9 @@ $(document).ready(function(){
 							data: 'description'
 						},
 						{
+							data: 'status'
+						},
+						{
 							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
 						},
 						{

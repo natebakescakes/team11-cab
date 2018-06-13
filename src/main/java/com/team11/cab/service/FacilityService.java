@@ -20,4 +20,6 @@ public interface FacilityService {
 	Facility findFacilityById(int facilityId);
 
 	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);
+	
+	ArrayList<Facility> findAvailableFacility();
 }

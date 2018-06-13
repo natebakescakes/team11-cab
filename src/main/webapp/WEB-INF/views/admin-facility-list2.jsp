@@ -28,6 +28,7 @@
 							<th>Facility Type</th>
 							<th>Location</th>
 							<th>Description</th> 
+							<th>Status</th>
 							<th></th>
 							<th></th>
 						</tr>
