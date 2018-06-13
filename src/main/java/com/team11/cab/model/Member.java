@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,8 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -53,7 +55,9 @@ public class Member {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 	
-	@OneToMany(targetEntity=Booking.class, mappedBy="member", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@Transient
+	@JsonIgnore
+	@OneToMany(targetEntity=Booking.class, mappedBy="member", fetch=FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 	
 	public Member() {}

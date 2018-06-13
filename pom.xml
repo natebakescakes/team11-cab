@@ -10,6 +10,8 @@
 	<packaging>war</packaging>
 	<name>Team 11 Club Application for Booking</name>
 	<description>Club Application for Booking using Spring MVC, JPA and Hibernate</description>
+	
+	
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
@@ -31,6 +33,8 @@
 		<!-- Additional Test Tools -->
 		<dbunit.version>2.5.0</dbunit.version>
 		<spring-test-dbunit.version>1.2.1</spring-test-dbunit.version>
+		<!-- Jackson -->
+		<jackson.version>2.8.7</jackson.version>
 
 	</properties>
 	<!-- Spring -->
@@ -159,6 +163,20 @@
 			<artifactId>sitemesh</artifactId>
 			<version>${sitemesh.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		
 
 	</dependencies>
 	<build>
