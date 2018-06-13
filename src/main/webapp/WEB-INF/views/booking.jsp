@@ -57,23 +57,14 @@
 </form:form>
 </div>
 
-<!-- Generate tables for each room -->
-<c:forEach var="room" items="${rooms}">
-	<h4>${room.facilityName}</h4>
+<!-- Generate tables for each facility -->
+<c:forEach var="facility" items="${facilities}">
+	<h4>${facility.facilityName}</h4>
 	<div class="container booking-grid">
-		<div class="row" data-value="${room.facilityId}">
-			<div class="col-sm-2">9AM</div>
-			<div class="col-sm-2">10AM</div>
-			<div class="col-sm-2">11AM</div>
-			<div class="col-sm-2">12PM</div>
-			<div class="col-sm-2">1PM</div>
-			<div class="col-sm-2">2PM</div>
-			<div class="col-sm-2">3PM</div>
-			<div class="col-sm-2">4PM</div>
-			<div class="col-sm-2">5PM</div>
-			<div class="col-sm-2">6PM</div>
-			<div class="col-sm-2">7PM</div>
-			<div class="col-sm-2">8PM</div>
+		<div class="row" data-value="${facility.facilityId}">
+			<c:forEach var="slot" items="${facilites.schedule}">
+				<div class="col-sm-2">${slot.slotName}</div>
+			</c:forEach>
 		</div>
 	</div>
 </c:forEach>

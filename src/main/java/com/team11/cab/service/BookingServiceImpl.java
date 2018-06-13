@@ -1,20 +1,26 @@
 package com.team11.cab.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team11.cab.model.Booking;
+import com.team11.cab.model.Slot;
 import com.team11.cab.repository.BookingRepository;
 
 
 @Service
 public class BookingServiceImpl implements BookingService {
-
+	@Autowired
+	private FacilityService facilityService;
 	@Resource
 	private BookingRepository bookingRepository;
 	
@@ -61,5 +67,33 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Booking findBookingByID(int id) {
 		return bookingRepository.findOne(id);
+	}
+	
+	@Override
+	public ArrayList<Slot> makeFacilityDaySchedule(int facilityId, LocalDate date) {
+		
+		ArrayList<Slot> day = new ArrayList<Slot>();
+		// do 12 times
+		LocalTime openingHr = LocalTime.of(9, 0);
+		
+		for (int i = 0; i < 12; i++) {
+			// create a booking object
+			Booking b = new Booking();
+			LocalDateTime start = LocalDateTime.of(date, openingHr.plusHours(i));
+			b.setStartDateTime(start);
+			LocalDateTime end = LocalDateTime.of(date, openingHr.plusHours(i + 1));
+			b.setStartDateTime(end);
+			b.setFacility(facilityService.findFacilityById(facilityId));
+
+			// check if that booking is valid
+			boolean isValid = !isBookingValid(b);
+			// get what should be displayed in the box
+			String slotName = start.format(DateTimeFormatter.ofPattern("HHa"));
+			// create a slot
+			Slot s = new Slot(slotName, isValid);
+			// add it the ArrayList<Slot>
+			day.add(s);
+		}
+		return day;
 	}
 }

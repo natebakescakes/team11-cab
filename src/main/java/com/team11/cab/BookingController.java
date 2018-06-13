@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
+import com.team11.cab.model.Slot;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeSchedule;
 import com.team11.cab.service.FacilityTypeService;
 import com.team11.cab.service.MemberService;
 
@@ -107,14 +111,20 @@ public class BookingController {
 		
 		// Display "Choose Room" dropdown by Facility Type
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
-		ArrayList<Facility> rooms = facilityService.findFacilitiesByFacilityType(typeId);
+		ArrayList<Facility> facilities = facilityService.findFacilitiesByFacilityType(typeId);
 		
+		ArrayList<FacilityTypeSchedule> schedule;
 		
+		for (Facility facility : facilities) {
+			String facilityName = facility.getFacilityName();
+			ArrayList<Slot> schedule = bookingService.makeFacilityDaySchedule(facilityId, date);
+			schedule.add(new FacilityTypeSchedule(facilityName, facilityId, schedule));
+		}
 		
 		mav.addObject("typeId", typeId);
 		mav.addObject("ftypes", ftypes);
 		mav.addObject("date", request.getParameter("date"));
-		mav.addObject("rooms", rooms);
+		mav.addObject("facilities", facilities);
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
 		
