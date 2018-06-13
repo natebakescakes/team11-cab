@@ -64,4 +64,9 @@ public class FacilityServiceImpl implements FacilityService {
 		editFacility(f);
 
 	}
+	@Override
+	public ArrayList<Facility> findAvaibleFacility() {
+		ArrayList<Facility> f= facilityRepository.findAvaibleFacility();
+		return f;
+	}
 }

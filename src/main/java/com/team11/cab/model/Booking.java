@@ -56,20 +56,20 @@ public class Booking {
 		this.transDate = transDate;
 	}
 
-	public LocalDateTime getStartDate() {
+	public LocalDateTime getStartDateTime() {
 		return startDateTime;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
-		this.startDateTime = startDate;
+	public void setStartDateTime(LocalDateTime startDateTime) {
+		this.startDateTime = startDateTime;
 	}
 
-	public LocalDateTime getEndDate() {
+	public LocalDateTime getEndDateTime() {
 		return endDateTime;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
-		this.endDateTime = endDate;
+	public void setEndDateTime(LocalDateTime endDateTime) {
+		this.endDateTime = endDateTime;
 	}
 
 	public Facility getFacility() {

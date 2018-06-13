@@ -31,6 +31,15 @@ public class Facility {
 	private String facilityName;
 	private String location;
 	private String description;
+	private int status;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	// @Transient
 	// private int facTypeId;
