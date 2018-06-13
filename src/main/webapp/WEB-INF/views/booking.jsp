@@ -1,47 +1,59 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <h3>Make Booking</h3>
 
-<ul>
-	<li>${ftype}</li>
-	<li>${date}</li>
-	<li>${room}</li>
-	<li>${stime}</li>
-	<li>${endtime}</li>
-</ul>
+<c:if test="${bookingSuccess}">
+	<div class="alert alert-success">
+		Booking Successful!
+	</div>
+</c:if>
 
-<form action="" method="POST">
+<div class="form-group">
+<form:form action="" method="POST">
+
 	<label>Choose Facility Type</label>
-	<select name="ftype">
-		<option value="first">First Value</option>
-		<option value="second" selected>Second Value</option>
-		<option value="third">Third Value</option>
+	<select name="typeId" class="form-control">
+		<option value="-1" selected disabled hidden>- Select a Facility Type -</option>
+		<c:forEach var="facilityType" items="${ftypes}">
+			<option value="${facilityType.typeId}"
+				${facilityType.typeId == typeId ? 'selected="selected"' : ''}>
+				${facilityType.typeName}</option>
+		</c:forEach>
 	</select>
 	
+	<input type="submit" name="refresh" value="Refresh">
+	<input type="submit" name="submit" value="Submit">
+	
+	<br>
 	<label>Date</label>
-	<input name="date" type="datetime-local">
+<%-- 	<input name="date" type="date" value="${date}" class="form-control"> --%>
+	
+    <input id="datepicker" name="date" type="text" class="form-control" value="${date}">
 
 	<br>
 	
 	<label>Choose Room</label>
-	<select name="room">
-		<c:forEach var="facility" items="${facilityList}">
-			<option value="${facility.facilityId}">${facility.facilityName}</option>
+	<select name="room" class="form-control">
+		<c:forEach var="room" items="${rooms}">
+			<option value="${room.facilityId}">${room.facilityName}</option>
 		</c:forEach>
 	</select>
 	
 	<label>Start Time</label>
-	<input name="stime" id="starttime" type="datetime-local">
+	<input name="stime" id="starttime" type="time" step=3600 value="${stime}">
 
 	<label>End Time</label>
-	<input name="endtime" id="endtime" type="datetime-local">
+	<input name="endtime" id="endtime" type="time" step=3600 value="${endtime}">
 
-	<br> <input type="submit" value="Book Now"> <br>
+</form:form>
+</div>
 
-	<!-- Generate tables for each room -->
-	<label>Function Room 1</label>
+<!-- Generate tables for each room -->
+<c:forEach var="room" items="${rooms}">
+	<label>${room.facilityName}</label>
 	<table>
 		<tr>
 			<td>9AM</td>
@@ -60,4 +72,10 @@
 			<td>8PM</td>
 		</tr>
 	</table>
-</form>
+</c:forEach>
+
+<script>
+	$('#datepicker').datepicker({
+		format : "dd/mm/yyyy"
+	});
+</script>
