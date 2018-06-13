@@ -28,4 +28,10 @@ public class FacilityServiceImpl implements FacilityService {
 		return f;
 	}
 
+	@Override
+	public Facility findFacilityById(int facilityId) {
+		Facility f = facilityrepository.findOne(facilityId);
+		return f;
+	}
+
 }
