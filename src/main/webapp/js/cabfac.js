@@ -73,12 +73,31 @@ $(document)
 									function(e) {
 										var data = datatbl.row(
 												$(this).parents('tr')).data();
+										var counter = 0;
 										// alert(JSON.stringify(data));
 
 										$($(this).parents('tr'))
 												.find("td")
 												.each(
 														function() {
+															counter++;
+															if (counter < 3) {
+																return;
+															}
+															// if(this.hasClass("sorting_1")){
+															// return true;
+															// }
+															if ($(this)
+																	.children()
+																	.hasClass(
+																			"checkbox")) {
+																($(this)
+																		.find("input"))
+																		.prop(
+																				"disabled",
+																				false);
+
+															}
 															if (!$(this)
 																	.children()
 																	.hasClass(
