@@ -25,29 +25,30 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${contextPath}/home">Home</a></li>
 				<li><a href="${contextPath}/facilities">Facilities</a></li>
+				<li><a href="#">My Bookings</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="isAnonymous()">
 					<li><a href="${contextPath}/login">Login/Sign Up</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<sec:authorize access="hasRole('ADMIN')">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"><i class="fa fa-gear"></i> Manage <i class="fa fa-caret-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="${contextPath}/admin/bookings/">Bookings</a></li>
+								<li><a href="${contextPath}/admin/facilities/">Facilities</a></li>
+								<li><a href="${contextPath}/admin/members/">Members</a></li>
+							</ul></li>
+					</sec:authorize>
+					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"><i class="fa fa-user"></i> <sec:authentication
 								property="principal.username" /> <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">My Bookings</a></li>
-							<li><a href="#">Edit Profile</a></li>
+							<li><a href="${contextPath}/user/profile">Edit Profile</a></li>
 							<li role="separator" class="divider"></li>
-							<sec:authorize access="hasRole('ADMIN')">
-								<li><a href="${contextPath}/admin/bookings/">Manage
-										Bookings</a></li>
-								<li><a href="${contextPath}/admin/facilities/">Manage
-										Facilities</a></li>
-								<li><a href="${contextPath}/admin/members/">Manage
-										Members</a></li>
-								<li role="separator" class="divider"></li>
-							</sec:authorize>
 							<li><form class="form-group" action="${contextPath}/logout"
 									method="POST">
 									<button class="form-control btn-link" type="submit">
