@@ -20,14 +20,21 @@
 	<div class="col-sm-7">
 	<div class="panel panel-default" id="SearchBox">
 	<div class="panel panel-body">
+		<h3>Make your booking here</h3>
+			
 		<form:form action="booking" method="POST">
-			<h3>Make your booking here</h3>
-
-			<label>Choose Facility Type</label>
+		<label>Choose Facility Type</label>
+		<div class="row">
+		<br>
+		<br>
+		</div>
+		<div class="row">
+			<div class="col-sm-1">
 			<br>
-			<a class="prev"><i class="fa fa-chevron-circle-left" style="font-size:24px"></i></a>
-			<a class="next" style="float: right"><i class="fa fa-chevron-circle-right" style="font-size:24px"></i></a>
-			<div class="thing" id="wrapper">
+		<a class="prev"><i class="fa fa-chevron-circle-left" style="font-size:24px"></i></a>
+		</div>
+		<div class="col-sm-10">
+				<div class="thing" id="wrapper">
 			<c:forEach var="facilityType" items="${fTypeList}">
 					<div align="center">
 						<label>
@@ -43,28 +50,58 @@
 				</c:forEach>
 
 			</div>
+		</div>
+		<div class="col-sm-1">
+		<br>
+		<a class="next"><i class="fa fa-chevron-circle-right" style="font-size:24px"></i></a>
+		</div>
+	
+		<br>
+		</div>
+		<div class="row">
+				<div class="col-sm-2">
+					<label>Date: </label>
+				</div>
+				<div class="col-sm-10">
+				<input name="date" type="date">
+				</div>
 			
 			<br>
-
-			<label>Date</label>
-			<input name="date" type="date">
-
+		</div>
+		<div class="row">
+				<div class="col-sm-2">
+						<label>Start Time: </label>
+				</div>
+				<div class="col-sm-10">
+				<input name="stime" id="starttime" type="time">
+				</div>
+			
 			<br>
-
-			<label>Start Time</label>
-			<input name="stime" id="starttime" type="time">
+		</div>
+		
+	<div class="row">
+				<div class="col-sm-2">
+						<label>End Time: </label>
+				</div>
+				<div class="col-sm-10">
+				<input name="endtime" id="endtime" type="time">
+				</div>
+			
 			<br>
-			<label>End Time</label>
-			<input name="endtime" id="endtime" type="time">
-			<br>
-			<input type="Submit" value="Search">
+		</div>
+			
+		
+			
+			<input type="Submit" class="btn btn-default" value="Search">
+			
 		</form:form>
+		
 			</div>
 		</div>
 		</div>
 		
 			<div class="col-sm-5">
-	<div class="panel panel-default" id="BookingID-Searchbox" style="width:50%">
+	<div class="panel panel-default" id="BookingID-Searchbox" style="width:100%">
 		<div class="panel panel-body" align="left">
 			<form:form action="${pageContext.request.contextPath}/bookingdetails"
 				method="POST">
