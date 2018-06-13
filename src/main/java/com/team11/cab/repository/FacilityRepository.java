@@ -11,7 +11,7 @@ import com.team11.cab.model.Facility;
 public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 
 	ArrayList<Facility> findFacilityByFacilityType(int facilityTypeId);
-	
-	@Query(value = "SELECT f FROM Facility f WHERE f.status= 1") 
-	 ArrayList<Facility> findAvailableFacility();
+
+	@Query(value = "SELECT f FROM Facility f WHERE f.status= 1")
+	ArrayList<Facility> findAvailableFacility();
 }

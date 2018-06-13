@@ -1,0 +1,14 @@
+.booking-grid > .row > div {
+	height: 50px;
+	background-color: #C1C1C1;
+	border: 1px solid black;
+	padding: 10px 15px;
+}
+
+.booking-grid > .row > div.selected {
+	background-color: #73AAD8; 
+}
+
+.booking-grid > .row > div.booked {
+	background-color: #999999; 
+}

@@ -86,7 +86,7 @@ public class Member implements Serializable {
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
 
-	@JsonIgnore
+	
 	private boolean enabled;
 
 	@JsonIgnore
