@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 
 	@Resource
 	private MemberRepository memberRepository;
-	
+
 	@Resource
 	private AuthorityRepository authorityRepository;
 
@@ -52,13 +52,13 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public void saveMember(Member member) {
 		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		member.setEnabled(true);
-		
+
 		Authority authority = new Authority();
 		authority.setMember(member);
 		authority.setAuthority("ROLE_USER");
-		
+
 		member.setAuthorities(new HashSet<Authority>(Arrays.asList(authority)));
-		
+
 		memberRepository.save(member);
 	}
 
@@ -83,6 +83,17 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	private UserDetails buildUserForAuthentication(Member member, List<GrantedAuthority> authorities) {
 		return new org.springframework.security.core.userdetails.User(member.getEmail(), member.getPassword(),
 				member.isEnabled(), true, true, true, authorities);
+	}
+
+	@Override
+	@Transactional
+	public void updateMember(Member m) {
+		memberRepository.saveAndFlush(m);
+	}
+
+	@Override
+	public Member findMemberById(int id) {
+		return memberRepository.findOne(id);
 	}
 
 }

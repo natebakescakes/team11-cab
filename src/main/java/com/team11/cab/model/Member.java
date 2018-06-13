@@ -24,6 +24,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "user")
 public class Member implements Serializable {
@@ -67,6 +69,8 @@ public class Member implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 
+	// @Transient
+	@JsonIgnore
 	@OneToMany(targetEntity = Booking.class, mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 
