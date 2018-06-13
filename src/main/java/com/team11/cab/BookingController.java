@@ -200,7 +200,7 @@ public class BookingController {
 	@RequestMapping(value = "/typeid={typeid}", method = RequestMethod.GET)
 	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) 
 	{
-		ModelAndView mav = new ModelAndView("booking");
+		ModelAndView mav = new ModelAndView("booking-chosen");
 		
 		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
 		
@@ -221,7 +221,7 @@ public class BookingController {
 	@RequestMapping(value = "tid={tid}/fid={fid}", method = RequestMethod.GET)
 	public ModelAndView Booking_FacilityChosen(@PathVariable  String fid ,@PathVariable String tid ) 
 	{
-		ModelAndView mav = new ModelAndView("booking");
+		ModelAndView mav = new ModelAndView("booking-chosen");
 		
 		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
 		
