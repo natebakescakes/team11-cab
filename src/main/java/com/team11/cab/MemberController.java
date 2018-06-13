@@ -29,8 +29,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String memberUpdate(@RequestBody Member m) {
-		//System.out.println("Before update"+m.getFirstName());
-		m.show();
 		mService.editMember(m);
 		return "view-members";
 }
@@ -39,7 +37,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody String memberDelete(@RequestBody Member m) {
-		//System.out.println("Before update"+m.getFirstName());
+		
 		mService.deleteMember(m);
 		return "view-members";
 		

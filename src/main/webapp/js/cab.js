@@ -63,7 +63,7 @@ $(document).ready(function(){
 	    	 var counter = 0;
 	         $($(this).parents('tr')).find("td").each(function(){
         		 counter++;
-	        	 if(counter == 1){
+	        	 if(counter < 3){
 	        		 return;
 	        	 }
 //	        	 if(this.hasClass("sorting_1")){
@@ -90,7 +90,7 @@ $(document).ready(function(){
 //	        		 return true;
 //	        	 }
         		 counter++;
-	        	 if(counter == 1){
+	        	 if(counter < 3){
 	        		 return;
 	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
@@ -115,7 +115,7 @@ $(document).ready(function(){
 
 	         
 	         $.ajax({
-	             url: window.contextRoot + "/member/update",
+	             url: window.contextRoot + "/admin/members/update",
 	             type: "POST",
 	             data: JSON.stringify(memberdata),
 	             contentType: "application/json",
@@ -131,13 +131,13 @@ $(document).ready(function(){
 	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
 	         var del = datatbl.row( $(this).parents('tr') ).data();
 	         $.ajax({
-	             url: window.contextRoot + "/member/delete",
+	             url: window.contextRoot + "/admin/members/delete",
 	             type: "POST",
 	             data: JSON.stringify(del),
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (result) {
-	            	 //alert("Member has been deleted");
+	            	 alert("Member has been deleted");
 	    	         datatbl.ajax.reload();
 	 
 	             }
