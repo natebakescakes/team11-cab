@@ -20,7 +20,6 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findAllFacilities() {
 		ArrayList<Facility> l = (ArrayList<Facility>) facilityRepository.findAll();
 		return l;
-
 	}
 
 	@Override

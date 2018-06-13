@@ -39,7 +39,7 @@ public class BookingController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "/booking", method = RequestMethod.POST, params = { "refresh" })
+	@RequestMapping(value = "/booking", method = { RequestMethod.POST, RequestMethod.GET })
 
 	public ModelAndView refreshPage(HttpServletRequest request) {
 
@@ -92,8 +92,7 @@ public class BookingController {
 		int facilityId;
 		
 		// Convert POST attributes to the LocalDateTime objects
-		LocalDate date = LocalDate.parse(request.getParameter("date"),
-		DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		LocalTime startTime = LocalTime.parse(request.getParameter("stime"), DateTimeFormatter.ofPattern("h:mm a"));
 		LocalTime endTime = LocalTime.parse(request.getParameter("endtime"), DateTimeFormatter.ofPattern("h:mm a"));
 		
@@ -126,8 +125,6 @@ public class BookingController {
 //		b.setEndDate(LocalDateTime.of(2018, 6, 12, 10, 0));
 //		b.setUser(memberService.findMemberById(1));
 		
-		LocalDate date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
 		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("ftypes", ftypes);
@@ -239,41 +236,41 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/booking", method = RequestMethod.GET)
-	public ModelAndView bookingPage(HttpServletRequest request) {
-
-		// // Tests for Booking
-		// LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
-		// LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
-		//
-		// LocalDateTime start2 = LocalDateTime.of(2018, 6, 12, 10, 0);
-		// LocalDateTime end2 = LocalDateTime.of(2018, 6, 12, 12, 0);
-		//
-		// System.out.println("--TEST 1--");
-		// System.out.println(bookingService.isBookingValid(start1, end1, start2,
-		// end2));
-		//
-		// end1 = LocalDateTime.of(2018, 6, 12, 10, 0);
-		//
-		// System.out.println("--TEST 2--");
-		// System.out.println(bookingService.isBookingValid(start1, end1, start2,
-		// end2));
-		//
-		// end1 = LocalDateTime.of(2018, 6, 12, 11, 0);
-		//
-		// System.out.println("--TEST 3--");
-		// System.out.println(bookingService.isBookingValid(start1, end1, start2,
-		// end2));
-
-		ModelAndView mav = new ModelAndView("booking");
-
-		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-
-		mav.addObject("ftypes", ftypes);
-		mav.addObject("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-
-		return mav;
-	}
+//	@RequestMapping(value = "/booking", method = RequestMethod.GET)
+//	public ModelAndView bookingPage(HttpServletRequest request) {
+//
+//		 // Tests for Booking
+//		 LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
+//		 LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
+//		
+//		 LocalDateTime start2 = LocalDateTime.of(2018, 6, 12, 10, 0);
+//		 LocalDateTime end2 = LocalDateTime.of(2018, 6, 12, 12, 0);
+//		
+//		 System.out.println("--TEST 1--");
+//		 System.out.println(bookingService.isBookingValid(start1, end1, start2,
+//		 end2));
+//		
+//		 end1 = LocalDateTime.of(2018, 6, 12, 10, 0);
+//		
+//		 System.out.println("--TEST 2--");
+//		 System.out.println(bookingService.isBookingValid(start1, end1, start2,
+//		 end2));
+//		
+//		 end1 = LocalDateTime.of(2018, 6, 12, 11, 0);
+//		
+//		 System.out.println("--TEST 3--");
+//		 System.out.println(bookingService.isBookingValid(start1, end1, start2,
+//		 end2));
+//
+//		ModelAndView mav = new ModelAndView("booking");
+//
+//		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
+//
+//		mav.addObject("ftypes", ftypes);
+//		mav.addObject("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/booking/typeid={typeid}", method = RequestMethod.GET)
 	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) {
