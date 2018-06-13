@@ -35,8 +35,8 @@
 
 	<br>
 	
-	<label>Choose Room</label>
-	<select name="room" class="form-control">
+	<label>Choose Facility</label>
+	<select id="choose-room" name="room" class="form-control">
 		<c:forEach var="room" items="${rooms}">
 			<option value="${room.facilityId}">${room.facilityName}</option>
 		</c:forEach>
@@ -53,25 +53,23 @@
 
 <!-- Generate tables for each room -->
 <c:forEach var="room" items="${rooms}">
-	<label>${room.facilityName}</label>
-	<table>
-		<tr>
-			<td>9AM</td>
-			<td>10AM</td>
-			<td>11AM</td>
-			<td>12PM</td>
-			<td>1PM</td>
-			<td>2PM</td>
-		</tr>
-		<tr>
-			<td>3PM</td>
-			<td>4PM</td>
-			<td>5PM</td>
-			<td>6PM</td>
-			<td>7PM</td>
-			<td>8PM</td>
-		</tr>
-	</table>
+	<h4>${room.facilityName}</h4>
+	<div class="container booking-grid">
+		<div class="row" data-value="${room.facilityId}">
+			<div class="col-sm-2">9AM</div>
+			<div class="col-sm-2">10AM</div>
+			<div class="col-sm-2">11AM</div>
+			<div class="col-sm-2">12PM</div>
+			<div class="col-sm-2">1PM</div>
+			<div class="col-sm-2">2PM</div>
+			<div class="col-sm-2">3PM</div>
+			<div class="col-sm-2">4PM</div>
+			<div class="col-sm-2">5PM</div>
+			<div class="col-sm-2">6PM</div>
+			<div class="col-sm-2">7PM</div>
+			<div class="col-sm-2">8PM</div>
+		</div>
+	</div>
 </c:forEach>
 
 <script>
@@ -79,3 +77,7 @@
 		format : "dd/mm/yyyy"
 	});
 </script>
+<script type="text/javascript"
+	src="<c:url value="/js/booking.js" />">
+</script>
+

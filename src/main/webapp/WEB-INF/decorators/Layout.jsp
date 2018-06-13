@@ -26,19 +26,26 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/dataTables.bootstrap.css" />" />
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/app.css" />" />
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"/></script>
+
 
 <script>
 window.contextRoot='${contextRoot}';
