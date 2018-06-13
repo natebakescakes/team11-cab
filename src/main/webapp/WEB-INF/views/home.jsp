@@ -80,7 +80,7 @@
 							<label>Date: </label>
 						</div>
 						<div class="col-sm-10">
-							<input name="date" type="date">
+							<input name="date" type="date" style="text-align:center">
 						</div>
 
 						<br>
