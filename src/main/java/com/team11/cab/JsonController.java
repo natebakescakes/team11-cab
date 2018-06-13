@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team11.cab.model.Booking;
 import com.team11.cab.model.Member;
+import com.team11.cab.service.BookingService;
 import com.team11.cab.service.MemberService;
 
 
@@ -28,4 +30,14 @@ public class JsonController {
 		return mService.findAllMember();
 	}
 
+	@Autowired
+	private BookingService bService;
+		
+		
+	@RequestMapping(value = "/jsonbookinglist")
+	@ResponseBody
+	public ArrayList<Booking> jsonBookings() 
+	{
+		return bService.findAllBookings();
+	}
 }

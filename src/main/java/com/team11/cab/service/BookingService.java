@@ -9,4 +9,7 @@ public interface BookingService {
 	ArrayList<Booking> findAllBookings();
 	boolean validateBookings(int id);
 	Booking findBookingByID(int id);
+	Booking createBooking(Booking booking);
+	Booking changeBooking(Booking booking);
+	void removeBooking(Booking booking);
 }

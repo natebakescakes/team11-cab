@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.team11.cab.model.Booking;
 import com.team11.cab.repository.BookingRepository;
 
-
 @Service
 public class BookingServiceImpl implements BookingService {
 
@@ -39,6 +38,23 @@ public class BookingServiceImpl implements BookingService {
 		return bookingRepository.findOne(id);
 	}
 	
+	@Override
+	@Transactional
+	public Booking createBooking(Booking booking) {
+		return bookingRepository.saveAndFlush(booking);
+	}
+
 	
+	@Override
+	@Transactional
+	public Booking changeBooking(Booking booking) {
+		return bookingRepository.saveAndFlush(booking);
+	}
+
+	@Override
+	@Transactional
+	public void removeBooking(Booking booking) {
+		bookingRepository.delete(booking);
+	}
 
 }

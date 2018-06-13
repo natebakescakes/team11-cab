@@ -9,33 +9,47 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-/**
- * Department class
- *
- * @version $Revision: 1.0
- */
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "booking")
 public class Booking {
 	@Id
 	@Column(name = "BookingId")
 	private int bookingId;
-	@Column(name = "TransDate")
+	
+	@Column(name="TransDate", columnDefinition="DATE")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date transDate;
+	
 	@Column(name = "FacilityId")
 	private int facilityId;
+	
 	@Column(name = "UserId")
 	private int userid;
-	@Column(name = "StartDate")
+	
+	@Column(name="StartDate", columnDefinition="DATE")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date startDate;
-	@Column(name = "EndDate")
+	
+	@Column(name="EndDate", columnDefinition="DATE")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date endDate;
-
+	
+	@JsonIgnore
 	@OneToOne 
 	@JoinColumn(name = "facilityId")
 	private Facility facility;
-
+	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private Member member;

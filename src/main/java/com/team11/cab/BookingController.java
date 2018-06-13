@@ -55,13 +55,12 @@ public class BookingController {
 
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView bookingListPage() {
-		ModelAndView mav = new ModelAndView("booking-list");
-		ArrayList<Booking> bookingList = bService.findAllBookings();
-
-		mav.addObject("bookingList", bookingList);
-		return mav;
+	public String bookingsList()
+	{
+		return "booking-list";
 	}
+	
+	
 }
