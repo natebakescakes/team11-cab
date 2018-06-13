@@ -46,6 +46,27 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	}
 
 	@Override
+	@Transactional
+	public void editMember(Member m) {
+		Member memberFromDb = findMemberByUsername(m.getUsername());
+		
+		memberFromDb.setEmail(m.getEmail());
+		memberFromDb.setFirstName(m.getFirstName());
+		memberFromDb.setLastName(m.getLastName());
+		memberFromDb.setDob(m.getDob());
+		memberFromDb.setAddress(m.getAddress());
+		memberFromDb.setPhone(m.getPhone());
+		memberFromDb.setEnabled(m.isEnabled());
+		
+		memberRepository.saveAndFlush(memberFromDb);
+	}
+	
+//	@Override
+//	@Transactional
+//	public void deleteMember(Member m) {
+//		memberRepository.delete(m);
+//	}
+	
 	public Member findMemberByUsername(String username) {
 		return memberRepository.findByUsername(username);
 	}
@@ -106,5 +127,6 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public Member findMemberById(int id) {
 		return memberRepository.findOne(id);
 	}
+
 
 }
