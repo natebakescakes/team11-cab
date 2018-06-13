@@ -39,7 +39,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="${contextPath}/admin/bookings/">Bookings</a></li>
 								<li><a href="${contextPath}/admin/facilities/">Facilities</a></li>
-								<li><a href="${contextPath}/admin/members/">Members</a></li>
+								<li><a href="${contextPath}/admin/members/list">Members</a></li>
 							</ul></li>
 					</sec:authorize>
 					<li class="dropdown"><a class="dropdown-toggle"

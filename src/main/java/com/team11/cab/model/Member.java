@@ -39,6 +39,7 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserId")
 	private int userid;
+	
 
 	@Basic(optional = false)
 	@Column(name = "FirstName")
@@ -74,7 +75,8 @@ public class Member implements Serializable {
 	@OneToMany(targetEntity = Booking.class, mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 
-	@JsonIgnore
+	
+	@Column(name="username")
 	@Length(min = 5, message = "*Your username must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your username")
 	private String username;
@@ -94,9 +96,9 @@ public class Member implements Serializable {
 	public Member() {
 	}
 
-	public Member(int userid, String firstName, String lastName, String email, String address, String phone, Date dob
-	// ,ArrayList<Booking> bookings
-	) {
+	public Member(int userid, String username, String firstName, String lastName, String email, String address, String phone, Date dob
+			//,ArrayList<Booking> bookings
+			) {
 		super();
 		this.userid = userid;
 		this.firstName = firstName;
@@ -206,6 +208,13 @@ public class Member implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public void show() {
+		System.out.println(String.format(
+				"Member [userid=%s, firstName=%s, lastName=%s, email=%s, address=%s, phone=%s, dob=%s, bookings=%s, username=%s, password=%s, enabled=%s, authorities=%s]",
+				userid, firstName, lastName, email, address, phone, dob, bookings, username, password, enabled,
+				authorities));
 	}
 
 }
