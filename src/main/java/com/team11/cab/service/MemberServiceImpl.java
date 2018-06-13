@@ -30,6 +30,12 @@ public class MemberServiceImpl implements MemberService {
 		memberrepository.saveAndFlush(m);
 	}
 	
+	@Override
+	@Transactional
+	public void deleteMember(Member m) {
+		memberrepository.delete(m);
+	}
+	
 	
 	
 }

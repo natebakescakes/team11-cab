@@ -7,4 +7,5 @@ public interface MemberService {
 
 	ArrayList<Member> findAllMember();
 	void updateMember(Member m);
+	void deleteMember(Member m);
 }

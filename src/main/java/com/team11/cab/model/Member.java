@@ -32,6 +32,18 @@ public class Member {
 	private int userid;
 	
 	@Basic(optional=false)
+	@Column(name="username")
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Basic(optional=false)
 	@Column(name="FirstName")
 	private String firstName;
 	
@@ -62,7 +74,7 @@ public class Member {
 	
 	public Member() {}
 
-	public Member(int userid, String firstName, String lastName, String email, String address, String phone, Date dob
+	public Member(int userid, String username, String firstName, String lastName, String email, String address, String phone, Date dob
 			//,ArrayList<Booking> bookings
 			) {
 		super();

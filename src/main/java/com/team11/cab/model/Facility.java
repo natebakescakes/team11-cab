@@ -32,7 +32,7 @@ public class Facility {
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
 	
-	@OneToMany(targetEntity=Booking.class, mappedBy="facility", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Booking.class, mappedBy="facility", fetch=FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 	
 	public Facility() {
