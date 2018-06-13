@@ -49,15 +49,17 @@
 	crossorigin="anonymous"></script>
 
 <!-- Slick Slider -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick-theme.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick.css" />
-	<script type="text/javascript"
-		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript"
-		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
-		
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/slick/slick.css" />
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
+
 <!-- data Tables -->
 		<script type="text/javascript"
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
@@ -74,7 +76,7 @@
 	href="<c:url value="/css/dataTables.bootstrap.css" />" />
 
 <script>
-window.contextRoot='${contextRoot}';
+	window.contextRoot = '${contextRoot}';
 </script>
 <dec:head />
 </head>

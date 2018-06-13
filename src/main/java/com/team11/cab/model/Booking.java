@@ -35,7 +35,7 @@ public class Booking {
 	@OneToOne
 	@JoinColumn(name = "UserId")
 	private Member member;
-	
+
 	public Booking() {
 		super();
 	}
