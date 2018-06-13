@@ -12,14 +12,14 @@ import com.team11.cab.service.MemberService;
 
 
 @Controller
-@RequestMapping(value = "/json/showmember")
+@RequestMapping(value = "/json")
 public class JsonController {
 
 	@Autowired
 	private MemberService mService;
 	
 	
-	@RequestMapping(value = "/jsonlist")
+	@RequestMapping(value = "/showmember")
 	@ResponseBody
 	public ArrayList<Member> jsonMembers() 
 	{
