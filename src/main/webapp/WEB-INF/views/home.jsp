@@ -25,8 +25,11 @@
 
 	<div class="col-sm-7">
 		<div class="panel panel-default" id="SearchBox">
+			<div class="panel panel-heading">
+			<h4>Make your booking here:</h4>
+			</div>
 			<div class="panel panel-body">
-				<h3>Make your booking here</h3>
+				
 
 				<form:form action="booking" class="form-group" method="POST">
 					<label>Choose Facility Type</label>
