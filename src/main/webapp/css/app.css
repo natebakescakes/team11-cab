@@ -5,6 +5,10 @@
 	padding: 10px 15px;
 }
 
-.booking-grid > .row > div.selected{
+.booking-grid > .row > div.selected {
 	background-color: #73AAD8; 
+}
+
+.booking-grid > .row > div.booked {
+	background-color: #999999; 
 }

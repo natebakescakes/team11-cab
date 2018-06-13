@@ -42,9 +42,9 @@
 	<br>
 	
 	<label>Choose Facility</label>
-	<select id="choose-room" name="room" class="form-control">
-		<c:forEach var="room" items="${rooms}">
-			<option value="${room.facilityId}">${room.facilityName}</option>
+	<select id="choose-room" name="facility" class="form-control">
+		<c:forEach var="facility" items="${facilities}">
+			<option value="${facility.facilityId}">${facility.facilityName}</option>
 		</c:forEach>
 	</select>
 	
@@ -58,12 +58,12 @@
 </div>
 
 <!-- Generate tables for each facility -->
-<c:forEach var="facility" items="${facilities}">
-	<h4>${facility.facilityName}</h4>
+<c:forEach var="facilitySchedule" items="${facilitySchedules}">
+	<h4>${facilitySchedule.facilityName}</h4>
 	<div class="container booking-grid">
-		<div class="row" data-value="${facility.facilityId}">
-			<c:forEach var="slot" items="${facilites.schedule}">
-				<div class="col-sm-2">${slot.slotName}</div>
+		<div class="row" data-value="${facilitySchedule.facilityId}">
+			<c:forEach var="schedule" items="${facilitySchedule.schedule}">
+				<div class="col-sm-2 ${schedule.booked ? 'booked' : ''}">${schedule.slotName}</div>
 			</c:forEach>
 		</div>
 	</div>

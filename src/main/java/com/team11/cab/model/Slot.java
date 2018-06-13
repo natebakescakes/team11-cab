@@ -1,7 +1,5 @@
 package com.team11.cab.model;
 
-import java.time.LocalDateTime;
-
 public class Slot {
 	private String slotName;
 	private Boolean booked;

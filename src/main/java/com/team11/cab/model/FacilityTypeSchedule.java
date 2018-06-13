@@ -1,8 +1,6 @@
-package com.team11.cab.service;
+package com.team11.cab.model;
 
 import java.util.ArrayList;
-
-import com.team11.cab.model.Slot;
 
 public class FacilityTypeSchedule {
 	private String facilityName;

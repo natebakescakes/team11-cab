@@ -82,13 +82,13 @@ public class BookingServiceImpl implements BookingService {
 			LocalDateTime start = LocalDateTime.of(date, openingHr.plusHours(i));
 			b.setStartDateTime(start);
 			LocalDateTime end = LocalDateTime.of(date, openingHr.plusHours(i + 1));
-			b.setStartDateTime(end);
+			b.setEndDateTime(end);
 			b.setFacility(facilityService.findFacilityById(facilityId));
 
 			// check if that booking is valid
 			boolean isValid = !isBookingValid(b);
 			// get what should be displayed in the box
-			String slotName = start.format(DateTimeFormatter.ofPattern("HHa"));
+			String slotName = start.format(DateTimeFormatter.ofPattern("ha"));
 			// create a slot
 			Slot s = new Slot(slotName, isValid);
 			// add it the ArrayList<Slot>
