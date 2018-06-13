@@ -27,13 +27,13 @@
 			
 			<tr class="listRecord">	
 			
-			<td height="50px" valign="middle" colspan="4"><a href="${pageContext.request.contextPath}/booking"> ${type.typeName}</a> </td>
+			<td height="50px" valign="middle" colspan="4"><a href="${pageContext.request.contextPath}/booking/typeid=${type.typeId}"> ${type.typeName}</a> </td>
 			   
 			</tr>
 	     
 	        <tr>	      
         	<c:forEach var="facility" items="${type.facilities}">
-            <td> <a href="${pageContext.request.contextPath}/booking"> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg" 
+            <td> <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg" 
             width="100" height="100" alt="" align="middle"> </a>
 					<br/>
                   ${facility.facilityName}  
