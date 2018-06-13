@@ -22,7 +22,7 @@ hs_err_pid*
 
 # Eclipse settings
 
-.settings/
-bin/
-target/
+.settings/**
+bin/**
+target/**
 .DS_Store

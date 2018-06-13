@@ -29,7 +29,8 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMember(Member m) {
 		memberrepository.saveAndFlush(m);
 	}
-	
-	
-	
+	public Member findMemberById(int id) {
+		return memberrepository.findOne(id);
+	}
+
 }
