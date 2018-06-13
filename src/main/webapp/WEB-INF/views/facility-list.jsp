@@ -17,21 +17,27 @@
 <body>
 	<c:forEach var="type" items="${typeList}">
 		<div class="row">
-			<h2>${type.typeName}</h2>
+
+			<h2><a href="${pageContext.request.contextPath}/booking/typeid=${type.typeId}">${type.typeName}</a></h2>
+
 			<p>${type.description}</p>
 		</div>
 		<div class="row">
 			<c:forEach var="facility" items="${type.facilities}">
 				<div class="col-xs-6 col-sm-4 col-md-3">
 					<div class="thumbnail">
+
+					 <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}">
 						<img
 							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
 							height="500" class="img-thumbnail">
+							</a>
+
 						<div class="caption" style="text-align: center">
 							<h3>${facility.facilityName}</h3>
 							<p>${facility.description}</p>
 							<p>
-								<a href="${pageContext.request.contextPath}/booking"
+								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
 									class="btn btn-primary" role="button"><i
 									class="fa fa-bookmark-o"></i> Book Now</a>
 							</p>
