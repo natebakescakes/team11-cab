@@ -25,10 +25,9 @@ public class BookingController {
 	private BookingService bService;
 	@Autowired
 	private FacilityService facilityService;
+	
 	@Autowired
-	private FacilityTypeService typeService;
-	
-	
+	private FacilityTypeService typeService; 
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
@@ -36,13 +35,15 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("booking");
 
 		// System.out.println(request.getParameter("ftype"));
-
+		//Validate that end time must be later than start time
+		
+		
 		mav.addObject("ftype", request.getParameter("ftype"));
 		mav.addObject("date", request.getParameter("date"));
 		mav.addObject("room", request.getParameter("room"));
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
-
+		
 		return mav;
 	}
 
@@ -53,26 +54,20 @@ public class BookingController {
 		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
 		ArrayList<Facility> fList2 = facilityService.findFacilitiesByFacilityType(1);
 		
+		ArrayList<FacilityType> typeList=typeService.findAllFacilityTypes();
+		
 		System.out.println("--TEST--");
 		for (Facility facility : fList2) {
 			System.out.println(facility.getFacilityName());
 		}
 
 		mav.addObject("facilityList", facilityList);
+		
+		mav.addObject("typeList", typeList);
 
 		return mav;
 	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView bookingListPage() {
-		ModelAndView mav = new ModelAndView("booking-list");
-		ArrayList<Booking> bookingList = bService.findAllBookings();
-
-		mav.addObject("bookingList", bookingList);
-		return mav;
-	}
-	
-	
+		
 	@RequestMapping(value = "/typeid={typeid}", method = RequestMethod.GET)
 	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) 
 	{
@@ -126,6 +121,13 @@ public class BookingController {
 	
 	
 	
-	
-	
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView bookingListPage() {
+		ModelAndView mav = new ModelAndView("booking-list");
+		ArrayList<Booking> bookingList = bService.findAllBookings();
+
+		mav.addObject("bookingList", bookingList);
+		return mav;
+	}
 }
