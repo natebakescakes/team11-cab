@@ -1,5 +1,7 @@
 package com.team11.cab;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
@@ -30,13 +33,17 @@ public class BookingController {
 	private FacilityTypeService typeService; 
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ModelAndView bookingPostPage(HttpServletRequest request) {
+	public ModelAndView bookingPostPage(HttpServletRequest request, RedirectAttributes redir) {
 
 		ModelAndView mav = new ModelAndView("booking");
 
 		// System.out.println(request.getParameter("ftype"));
 		//Validate that end time must be later than start time
-		
+		if(!checkEndTime(request.getParameter("stime"),request.getParameter("endtime")))
+		{
+			 mav.setViewName("redirect:home");
+			 redir.addFlashAttribute("TimeErrorMessage","Booking not found");
+		}
 		
 		mav.addObject("ftype", request.getParameter("ftype"));
 		mav.addObject("date", request.getParameter("date"));
@@ -120,7 +127,6 @@ public class BookingController {
 	}
 	
 	
-	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView bookingListPage() {
@@ -129,5 +135,15 @@ public class BookingController {
 
 		mav.addObject("bookingList", bookingList);
 		return mav;
+	}
+	
+	public boolean checkEndTime(String start, String end)
+	{
+		LocalTime startTime = LocalTime.parse(start, DateTimeFormatter.ofPattern("hh:mm a"));
+		LocalTime endTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("hh:mm a"));
+		if(endTime.isAfter(startTime)) return true;
+		else return false;
+
+            
 	}
 }
