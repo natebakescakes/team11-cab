@@ -35,13 +35,15 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("booking");
 
 		// System.out.println(request.getParameter("ftype"));
-
+		//Validate that end time must be later than start time
+		
+		
 		mav.addObject("ftype", request.getParameter("ftype"));
 		mav.addObject("date", request.getParameter("date"));
 		mav.addObject("room", request.getParameter("room"));
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
-
+		
 		return mav;
 	}
 
