@@ -12,8 +12,11 @@
 <%@ include file="Header.jsp"%>
 <!-- <c:url value="/css/simple.css" var="ss" /> 
 <link rel="stylesheet" type="text/css" href="${ss}" /> -->
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> refs/remotes/origin/booking-page
 <!--  Bootstrap -->
 
 <link rel="stylesheet"
@@ -24,31 +27,35 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
-	
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 <!-- DatePicker -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
-	
-<!-- TimePicker -->
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/dataTables.bootstrap.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/app.css" />" />
 
-
-
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+	
+<!-- Timepicker -->
+<script
+		src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	
 <!-- Slick Slider -->
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/slick/slick-theme.css" />
 <link rel="stylesheet" type="text/css"
@@ -65,7 +72,19 @@
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
+=======
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
+<!-- data Tables -->
+<script type="text/javascript" src="<c:url value="/js/jquery.dataTables.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"/></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/jquery.form-validator.min.js"/></script>
+
+>>>>>>> refs/remotes/origin/booking-page
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+<<<<<<< HEAD
 
 
 
@@ -74,6 +93,9 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/css/dataTables.bootstrap.css" />" />
+=======
+<link rel="stylesheet" type="text/css"href="<c:url value="/css/dataTables.bootstrap.css" />" />
+>>>>>>> refs/remotes/origin/booking-page
 
 <script>
 	window.contextRoot = '${contextRoot}';
