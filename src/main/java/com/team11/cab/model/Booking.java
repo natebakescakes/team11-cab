@@ -34,14 +34,16 @@ public class Booking {
 	@Column(name = "UserId")
 	private int userid;
 	
-	@Column(name="StartDate", columnDefinition="DATE")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name="StartDate")
+	//, columnDefinition="DATE")
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date startDate;
 	
-	@Column(name="EndDate", columnDefinition="DATE")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name="EndDate")
+	//, columnDefinition="DATE")
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date endDate;
 	
 	@JsonIgnore

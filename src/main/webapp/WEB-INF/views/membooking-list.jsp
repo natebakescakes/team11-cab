@@ -7,16 +7,14 @@
 <title>Insert title here</title>
 </head>
 	<body>
-		<h3>Bookings Page </h3>
+		<h4>Member ID:</h4>
+		${booking.userId}
+		<h3>List of Bookings</h3>
 	
-	<%--<a href="${pageContext.request.contextPath}/booking/create">Add New Booking</a>
-	 <td><input type="submit" value="Add New Booking" class="btn btn-primary"/></td>--%>
-	<input type=submit onClick="${pageContext.request.contextPath}/booking/create" value="Add New Booking"/>
-	<a href="${pageContext.request.contextPath}/booking/edit">Maintenance Booking</a>
+	
 	<div class="container">
 		<div class="row" style="max-width:100%">
 			<div class="centered" style="align:center; width:80%"  >
-			<div id="MyEdit"></div>
 				<table id="bTable" style="width:100%" class="table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -27,17 +25,18 @@
 							<th>Start Time</th> 
 							<th>End Time</th>
 							<th>Edit</th> 
-							<th>Delete</th> 
+							<th>Delete</th>
+							<th></th>
+							<th></th>
 						</tr>
 
 					</thead>
 				</table>
-
 			</div>
-
 		</div>
 	</div>
-
+	
+<button >back</button>
 
 </body>
 </html>

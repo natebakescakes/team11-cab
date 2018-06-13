@@ -46,7 +46,9 @@ $(document).ready(function(){
 		
     		var b=window.contextRoot + '/json/showmember/jsonbookinglist';
 	    	var $bookingtable=$('#bTable');
-	    	
+	    //	var time = startDate.getHours() + ":" + startDate.getMinutes() + ":" + startDate.getSeconds();
+
+	    	    	
 	    	 			var datatbl1 = $bookingtable.DataTable(
 	    					{
 	    						ajax: {
@@ -67,13 +69,13 @@ $(document).ready(function(){
 	    								data: 'endDate'
 	    							},
 	    							{
-	    								data: 'startDate'
+	    								data:'startDate'
 	    							},
 	    							{
 	    								data: 'endDate'
 	    							},
 	    							{
-	    								defaultContent: "<button class='td-button btn-edit'>Edit</button>"
+	    								defaultContent: "<button class='td-button btn-edit'>Edit</button>" 							
 	    							},
 	    							{
 	    								defaultContent: "<button class='td-button btn-delete'>Delete</button>"
@@ -81,5 +83,4 @@ $(document).ready(function(){
 	    						]
 	    						
 	    					});
-
 });
