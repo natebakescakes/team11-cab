@@ -13,6 +13,5 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 	Booking findBookingByID(@Param("id") int id);
 	
 	@Query("SELECT c from Booking c where c.member.username=:username")
-	List<Booking> findMyBookingsbyusername(@Param("id")String username);
-	
+	List<Booking> findMyBookingsbyusername(@Param("username")String username);
 }

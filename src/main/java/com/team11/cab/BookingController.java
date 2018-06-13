@@ -27,7 +27,6 @@ import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 import com.team11.cab.service.MemberService;
 
-@RequestMapping(value = "/booking")
 @Controller
 public class BookingController {
 	@Autowired
@@ -39,7 +38,7 @@ public class BookingController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "", method = RequestMethod.POST, params = { "refresh" })
+	@RequestMapping(value = "/booking", method = RequestMethod.POST, params = { "refresh" })
 	public ModelAndView refreshPage(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("booking");
@@ -78,7 +77,7 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.POST, params = { "submit" })
+	@RequestMapping(value = "/booking", method = RequestMethod.POST, params = { "submit" })
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
 
 		// Render view
@@ -155,7 +154,7 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	public ModelAndView bookingPage(HttpServletRequest request) {
 
 		// // Tests for Booking
@@ -191,16 +190,7 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView bookingListPage() {
-		ModelAndView mav = new ModelAndView("booking-list");
-		ArrayList<Booking> bookingList = bookingService.findAllBookings();
-
-		mav.addObject("bookingList", bookingList);
-		return mav;
-	}
-
-	@RequestMapping(value = "/typeid={typeid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/booking/typeid={typeid}", method = RequestMethod.GET)
 	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) {
 		ModelAndView mav = new ModelAndView("booking-chosen");
 
@@ -220,7 +210,7 @@ public class BookingController {
 
 	}
 
-	@RequestMapping(value = "tid={tid}/fid={fid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/booking/tid={tid}/fid={fid}", method = RequestMethod.GET)
 	public ModelAndView Booking_FacilityChosen(@PathVariable String fid, @PathVariable String tid) {
 		ModelAndView mav = new ModelAndView("booking-chosen");
 
@@ -244,26 +234,21 @@ public class BookingController {
 
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/booking", method = RequestMethod.GET)
 	public String bookingsList() {
 		return "booking-list";
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/booking/update", method = RequestMethod.POST)
 	public String memberUpdate(@RequestBody Booking b) {
 		bookingService.changeBooking(b);
 		return "booking-list";
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/booking/delete", method = RequestMethod.POST)
 	public @ResponseBody String bookingDelete(@RequestBody Booking b) {
 		bookingService.removeBooking(b);
 		return "booking-list";
 
-	}
-
-	@RequestMapping(value = "/mlist", method = RequestMethod.GET)
-	public String membermybookingsList() {
-		return "membooking-list";
 	}
 }

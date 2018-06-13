@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	   		var b=window.contextRoot + '/json/booking';
+	   		var b=window.contextRoot + '/json/showbooking';
 	   		
 	   		var token = $('#_csrf').attr('content');
 	   	    var header = $('#_csrf_header').attr('content');

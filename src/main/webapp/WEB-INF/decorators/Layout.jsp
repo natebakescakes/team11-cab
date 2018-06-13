@@ -21,6 +21,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"href="<c:url value="/css/dataTables.bootstrap.css" />" />
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -62,7 +63,6 @@
 <script type="text/javascript" src="<c:url value="/js/cabbooking.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cabmybooking.js" />"></script>
 
-<link rel="stylesheet" type="text/css"href="<c:url value="/css/dataTables.bootstrap.css" />" />
 
 <script>
 window.contextRoot='${contextRoot}';
