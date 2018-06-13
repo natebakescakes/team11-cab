@@ -9,6 +9,9 @@
 <head>
   
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -23,7 +26,8 @@
 				<table id="myTable" style="width:100%" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th >ID</th>
+							<th>Username</th>
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Email</th>

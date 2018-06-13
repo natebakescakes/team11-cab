@@ -2,10 +2,15 @@
 $(document).ready(function(){
 	
 	var u=window.contextRoot + '/json/showmember';
-//	
-//	$.getJSON(u, function(data) {         
-//	    alert(JSON.stringify(data));
-//	});
+	
+    var token = $('#_csrf').attr('content');
+    var header = $('#_csrf_header').attr('content');
+    
+	$.ajaxSetup({
+	    beforeSend: function(xhr) {
+	        xhr.setRequestHeader('X-CSRF-TOKEN', token);
+	    }
+	});
 	
 	
 		var $table=$('#myTable');
@@ -20,6 +25,9 @@ $(document).ready(function(){
 					columns: [
 						{
 							data: 'userid'
+						},
+						{
+							data: 'username'
 						},
 						{
 							data: 'firstName'
@@ -50,12 +58,17 @@ $(document).ready(function(){
 				});
 		
 
-	//https://stackoverflow.com/questions/31327933/how-add-more-then-one-button-in-each-row-in-jquery-datatables-and-how-to-apply-e
 	     $('#myTable tbody').on('click', '.btn-edit', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
-
+	    	 var counter = 0;
 	         $($(this).parents('tr')).find("td").each(function(){
+        		 counter++;
+	        	 if(counter < 3){
+	        		 return;
+	        	 }
+//	        	 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        	        var text = $(this).text();
@@ -71,8 +84,15 @@ $(document).ready(function(){
 	     
 	     $('#myTable tbody').on('click', '.btn-save', function (e) {
     		 var parenttr = $(this).parents('tr');
-
+	    	 var counter = 0;
 	    	 $($(this).parents('tr')).find("td").each(function(){
+//	    		 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
+        		 counter++;
+	        	 if(counter < 3){
+	        		 return;
+	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        		 	var text = $(this).find("input").val();
@@ -92,25 +112,42 @@ $(document).ready(function(){
 	        	});
 	    	 
 	         var memberdata = datatbl.row( parenttr ).data();
-	         alert(JSON.stringify(memberdata));
+
 	         
 	         $.ajax({
-	             url: '/member/update',
-	             type: 'POST',
-	             dataType: 'json',
+	             url: window.contextRoot + "/admin/members/update",
+	             type: "POST",
 	             data: JSON.stringify(memberdata),
+	             contentType: "application/json",
 	             cache: true,
-	             success: function (data) {
-	            	 alert("HII");
+	             success: function (result) {
+	            	 alert("Member has been updated");
+
 	             }
 	           });
 	      	    
 	      } );    
 	         
 	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
-	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
-	      } );	  
+	         var del = datatbl.row( $(this).parents('tr') ).data();
+	         $.ajax({
+	             url: window.contextRoot + "/admin/members/delete",
+	             type: "POST",
+	             data: JSON.stringify(del),
+	             contentType: "application/json",
+	             cache: true,
+	             success: function (result) {
+	            	 alert("Member has been deleted");
+	    	         datatbl.ajax.reload();
+	 
+	             }
+	         
+	        
+	           });
+	         
+	      } );	
+	     
+	     
 	     
 	     
 //			$('.edit').each(function () {

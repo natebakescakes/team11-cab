@@ -1,7 +1,6 @@
 package com.team11.cab.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -15,11 +14,11 @@ import com.team11.cab.repository.FacilityRepository;
 public class FacilityServiceImpl implements FacilityService {
 
 	@Resource
-	private FacilityRepository facilityrepository;
+	private FacilityRepository facilityRepository;
 
 	@Override
 	public ArrayList<Facility> findAllFacilities() {
-		ArrayList<Facility> l = (ArrayList<Facility>) facilityrepository.findAll();
+		ArrayList<Facility> l = (ArrayList<Facility>) facilityRepository.findAll();
 		return l;
 
 	}
@@ -27,24 +26,36 @@ public class FacilityServiceImpl implements FacilityService {
 	@Override
 	@Transactional
 	public Facility createFacility(Facility fac) {
-		return facilityrepository.saveAndFlush(fac);
+		return facilityRepository.saveAndFlush(fac);
 	}
 
 	@Override
 	@Transactional
 	public Facility findFacility(int facId) {
-		return facilityrepository.findOne(facId);
+		return facilityRepository.findOne(facId);
 	}
 
 	@Override
 	@Transactional
 	public Facility editFacility(Facility fac) {
-		return facilityrepository.saveAndFlush(fac);
+		return facilityRepository.saveAndFlush(fac);
 	}
 
 	@Override
 	public void deleteFacility(Facility fac) {
-		facilityrepository.delete(fac);
+		facilityRepository.delete(fac);
 
+	}
+
+	@Override
+	public ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId) {
+		ArrayList<Facility> f = facilityRepository.findFacilityByFacilityType(facilityTypeId);
+		return f;
+	}
+
+	@Override
+	public Facility findFacilityById(int facilityId) {
+		Facility f = facilityRepository.findOne(facilityId);
+		return f;
 	}
 }

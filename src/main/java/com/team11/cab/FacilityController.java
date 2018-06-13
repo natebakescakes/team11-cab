@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,7 @@ import com.team11.cab.service.FacilityTypeService;
 //import edu.iss.cats.model.Employee;
 
 @Controller
-@RequestMapping(value = "/facility")
+@RequestMapping(value = "/facilities")
 public class FacilityController {
 
 	@Autowired
@@ -33,7 +32,7 @@ public class FacilityController {
 	@Autowired
 	private FacilityTypeService facilityTypeService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
 		// List<Facility> facilityList =
@@ -115,10 +114,10 @@ public class FacilityController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String facilityList() {
-		
+
 		return "admin-facility-list2";
 	}
 
