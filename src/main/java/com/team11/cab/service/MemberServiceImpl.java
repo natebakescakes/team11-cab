@@ -24,4 +24,12 @@ public class MemberServiceImpl implements MemberService {
 		return members;
 	}
 
+	@Override
+	@Transactional
+	public void updateMember(Member m) {
+		memberrepository.saveAndFlush(m);
+	}
+	
+	
+	
 }

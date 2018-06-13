@@ -1,19 +1,26 @@
 package com.team11.cab.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="user")
@@ -48,8 +55,10 @@ public class Member {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dob;
 	
-//	@OneToMany(targetEntity=Booking.class, mappedBy="user")
-//	private ArrayList<Booking> bookings=new ArrayList<Booking>();
+	//@Transient
+	@JsonIgnore
+	@OneToMany(targetEntity=Booking.class, mappedBy="member", fetch=FetchType.EAGER)
+	private List<Booking> bookings = new ArrayList<Booking>();
 	
 	public Member() {}
 
@@ -115,13 +124,13 @@ public class Member {
 		this.dob = dob;
 	}
 
-//	public ArrayList<Booking> getBookings() {
-//		return bookings;
-//	}
-//
-//	public void setBookings(ArrayList<Booking> bookings) {
-//		this.bookings = bookings;
-//	}
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(ArrayList<Booking> bookings) {
+		this.bookings = bookings;
+	}
 
 	public int getUserid() {
 		return userid;

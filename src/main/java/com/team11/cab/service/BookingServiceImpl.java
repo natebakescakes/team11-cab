@@ -25,4 +25,20 @@ public class BookingServiceImpl implements BookingService {
 		return bookinglist;
 	}
 
+	@Override
+	public boolean validateBookings(int id) {
+
+		
+		if(bookingRepository.findOne(id)!= null) return true;
+		else return false;
+		
+	}
+
+	@Override
+	public Booking findBookingByID(int id) {
+		return bookingRepository.findOne(id);
+	}
+	
+	
+
 }

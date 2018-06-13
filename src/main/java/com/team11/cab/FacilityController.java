@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
