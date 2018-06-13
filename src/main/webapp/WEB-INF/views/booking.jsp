@@ -43,10 +43,10 @@
 	</select>
 	
 	<label>Start Time</label>
-	<input name="stime" id="starttime" type="time" step=3600 value="${stime}">
+	<input name="stime" id="starttime"  step=3600 value="${stime}">
 
 	<label>End Time</label>
-	<input name="endtime" id="endtime" type="time" step=3600 value="${endtime}">
+	<input name="endtime" id="endtime" step=3600 value="${endtime}">
 
 </form:form>
 </div>

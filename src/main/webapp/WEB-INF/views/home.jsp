@@ -7,8 +7,6 @@
 <head>
 <title>Club Application for Booking</title>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick-theme.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/slick/slick.css" />
 
 </head>
 <body>
@@ -42,8 +40,8 @@
 							src="${pageContext.request.contextPath}/image/FacilityTypeIcons/${facilityType.typeId}.png"
 							alt="slider-image"> ${facilityType.typeName}
 							<br>
-							<input type="radio" name="ftype"
-							value="${facilityType.typeId}" id="${facilityType.typeId}">
+							<input type="radio" name="typeId"
+							value="${facilityType.typeId}" id="typeId">
 						</label>
 
 					</div>
@@ -73,7 +71,7 @@
 						<label>Start Time: </label>
 				</div>
 				<div class="col-sm-10">
-				<input name="stime" id="starttime" type="time">
+				<input class="timepicker" name="stime" id="starttime">
 				</div>
 			
 			<br>
@@ -84,7 +82,7 @@
 						<label>End Time: </label>
 				</div>
 				<div class="col-sm-10">
-				<input name="endtime" id="endtime" type="time">
+				<input class ="timepicker" name="endtime" id="endtime">
 				</div>
 			
 			<br>
@@ -122,19 +120,10 @@
 
 	</div>
 </div>
-		
+
 </div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.thing').slick({
-				infinite : true,
-				slidesToShow : 3,
-				prevArrow: $('.prev'),
-			    nextArrow: $('.next'),
-				
-			});
-		});
-		
-	
-	</script>
+
+
+<script src="${pageContext.request.contextPath}/js/home.js"></script>
+
 </body>
