@@ -6,14 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
+import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeService;
 
 @RequestMapping(value = "/booking")
 @Controller
@@ -22,6 +25,10 @@ public class BookingController {
 	private BookingService bService;
 	@Autowired
 	private FacilityService facilityService;
+	@Autowired
+	private FacilityTypeService typeService;
+	
+	
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ModelAndView bookingPostPage(HttpServletRequest request) {
@@ -64,4 +71,61 @@ public class BookingController {
 		mav.addObject("bookingList", bookingList);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/typeid={typeid}", method = RequestMethod.GET)
+	public ModelAndView Booking_TypeChosen(@PathVariable String typeid) 
+	{
+		ModelAndView mav = new ModelAndView("booking");
+		
+		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
+		
+		ArrayList<FacilityType> typeList=typeService.findAllFacilityTypes();
+		
+		mav.addObject("facilityList", facilityList);
+		
+		mav.addObject("typeList", typeList);
+		
+		int TypeId=Integer.valueOf(typeid);
+		
+		mav.addObject("typeidchosen", TypeId);
+		
+		return mav;
+		
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "tid={tid}/fid={fid}", method = RequestMethod.GET)
+	public ModelAndView Booking_FacilityChosen(@PathVariable  String fid ,@PathVariable String tid ) 
+	{
+		ModelAndView mav = new ModelAndView("booking");
+		
+		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
+		
+		ArrayList<FacilityType> typeList=typeService.findAllFacilityTypes();
+		
+		mav.addObject("facilityList", facilityList);
+		
+		mav.addObject("typeList", typeList);
+				
+         int fId=Integer.valueOf(fid);
+		
+		mav.addObject("fidchosen", fId);
+		
+		  int tId=Integer.valueOf(tid);
+			
+			mav.addObject("typeidchosen", tId);
+		
+		
+		
+		return mav;
+		
+	}
+	
+	
+	
+	
+	
 }

@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<meta charset="utf-8" >
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
-<meta name="viewport" content= "width=device-width,initial-scale=1" >
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Facility Page</title>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -15,37 +15,34 @@
 
 </head>
 <body>
-<div class="table-responsive">
-<h3>Function Room Booking</h3>
-<table  class="table table-hover" style="cellspacing: 5; cellpadding: 2; border: 1;">
-<thead>
-			
-</thead>
-		<tbody>
-		 
-			<c:forEach var="type" items="${typeList}">		
-			
-			<tr class="listRecord">	
-			
-			<td height="50px" valign="middle" colspan="4"><a href="${pageContext.request.contextPath}/booking"> ${type.typeName}</a> </td>
-			   
-			</tr>
-	     
-	        <tr>	      
-        	<c:forEach var="facility" items="${type.facilities}">
-            <td> <a href="${pageContext.request.contextPath}/booking"> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg" 
-            width="100" height="100" alt="" align="middle"> </a>
-					<br/>
-                  ${facility.facilityName}  
-           </td>		
-             </c:forEach>           
-        	</tr>
-        	
+	<c:forEach var="type" items="${typeList}">
+		<div class="row">
+			<h2><a href="${pageContext.request.contextPath}/booking/typeid=${type.typeId}">${type.typeName}</a></h2>
+			<p>${type.description}</p>
+		</div>
+		<div class="row">
+			<c:forEach var="facility" items="${type.facilities}">
+				<div class="col-xs-6 col-sm-4 col-md-3">
+					<div class="thumbnail">
+					 <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}">
+						<img
+							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
+							height="500" class="img-thumbnail">
+							</a>
+						<div class="caption" style="text-align: center">
+							<h3>${facility.facilityName}</h3>
+							<p>${facility.description}</p>
+							<p>
+								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
+									class="btn btn-primary" role="button"><i
+									class="fa fa-bookmark-o"></i> Book Now</a>
+							</p>
+						</div>
+					</div>
+				</div>
 			</c:forEach>
-			
-		</tbody>
-	</table>
-	</div>
-	</body>
-	
-	</html>
+		</div>
+	</c:forEach>
+</body>
+
+</html>
