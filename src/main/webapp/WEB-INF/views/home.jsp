@@ -10,10 +10,17 @@
 
 </head>
 <body>
+	<div style="max-width: 300px; margin: auto">
+		<c:if test="${param.loginSuccess ne null}">
+			<div class="row">
+				<div class="alert alert-success" role="alert">Login
+					Successful!</div>
+			</div>
+		</c:if>
+	</div>
 
 	<h1>Hello World</h1>
 	<br>
-	<div class="container">
 
 	<div class="col-sm-7">
 	<div class="panel panel-default" id="SearchBox">
@@ -121,7 +128,6 @@
 	</div>
 </div>
 
-</div>
 
 
 <script src="${pageContext.request.contextPath}/js/home.js"></script>

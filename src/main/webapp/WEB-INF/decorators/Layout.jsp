@@ -4,8 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
-<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
+
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
