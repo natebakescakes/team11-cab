@@ -8,7 +8,7 @@
 <a href="${pageContext.request.contextPath}/facility/admin/create">Add
 	Facility</a>
 <c:if test="${fn:length(facilityList) gt 0}">
-	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+	<table style="width:100%" class="table table-striped table-bordered">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.facilityId" /></th>

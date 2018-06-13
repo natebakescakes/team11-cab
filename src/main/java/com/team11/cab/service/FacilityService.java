@@ -6,7 +6,7 @@ import java.util.List;
 import com.team11.cab.model.Facility;
 
 public interface FacilityService {
-	List<Facility> findAllFacilities();
+	ArrayList<Facility> findAllFacilities();
 
 	Facility createFacility(Facility fac);
 

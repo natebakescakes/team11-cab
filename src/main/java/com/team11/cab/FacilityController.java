@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
@@ -46,7 +47,7 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/list2", method = RequestMethod.GET)
 	public ModelAndView facilityListAdminPage() {
 		ModelAndView mav = new ModelAndView("admin-facility-list");
 		List<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
@@ -113,6 +114,12 @@ public class FacilityController {
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
+	public String facilityList() {
+		
+		return "admin-facility-list2";
 	}
 
 }

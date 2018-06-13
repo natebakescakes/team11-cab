@@ -35,6 +35,7 @@
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/cabfac.js" />"></script>
 
 <script>
 window.contextRoot='${contextRoot}';

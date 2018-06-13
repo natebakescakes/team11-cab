@@ -23,8 +23,6 @@ public class Booking {
 	private int bookingId;
 	@Column(name = "TransDate")
 	private Date transDate;
-	@Column(name = "FacilityId")
-	private int facilityId;
 	@Column(name = "UserId")
 	private int userid;
 	@Column(name = "StartDate")
@@ -32,8 +30,8 @@ public class Booking {
 	@Column(name = "EndDate")
 	private Date endDate;
 
-	@OneToOne 
-	@JoinColumn(name = "facilityId")
+	@OneToOne
+	@JoinColumn(name = "FacilityId")
 	private Facility facility;
 
 	@OneToOne
@@ -54,14 +52,6 @@ public class Booking {
 
 	public void setTransDate(Date transDate) {
 		this.transDate = transDate;
-	}
-
-	public int getFacilityId() {
-		return facilityId;
-	}
-
-	public void setFacilityId(int facilityId) {
-		this.facilityId = facilityId;
 	}
 
 	public int getUserId() {

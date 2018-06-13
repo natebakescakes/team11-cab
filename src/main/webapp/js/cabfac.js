@@ -1,43 +1,37 @@
 //var editor;
 $(document).ready(function(){
 	
-	var u=window.contextRoot + '/json/showmember';
+	var v=window.contextRoot + '/json/showfacility';
 //	
 //	$.getJSON(u, function(data) {         
 //	    alert(JSON.stringify(data));
 //	});
 	
 	
-		var $table=$('#myTable');
+		var $table=$('#myFacTable');
 		//editor= $table.Editor();
 		
 		var datatbl = $table.DataTable(
 				{
 					ajax: {
-						url: u,
+						url: v,
 						dataSrc: ''
 					},
 					columns: [
 						{
-							data: 'userid'
+							data: 'facilityId'
 						},
 						{
-							data: 'firstName'
+							data: 'facilityName'
 						},
 						{
-							data: 'lastName'
+							data: 'facilityType'
 						},
 						{
-							data: 'email'
+							data: 'location'
 						},
 						{
-							data: 'address'
-						},
-						{
-							data: 'phone'
-						},
-						{
-							data: 'dob'
+							data: 'description'
 						},
 						{
 							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
@@ -51,7 +45,7 @@ $(document).ready(function(){
 		
 
 	//https://stackoverflow.com/questions/31327933/how-add-more-then-one-button-in-each-row-in-jquery-datatables-and-how-to-apply-e
-	     $('#myTable tbody').on('click', '.btn-edit', function (e) {
+	     $('#myFacTable tbody').on('click', '.btn-edit', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
 	    	 alert(JSON.stringify(data));
 
@@ -69,7 +63,7 @@ $(document).ready(function(){
 	      
 	      } );
 	     
-	     $('#myTable tbody').on('click', '.btn-save', function (e) {
+	     $('#myFacTable tbody').on('click', '.btn-save', function (e) {
     		 var parenttr = $(this).parents('tr');
 
 	    	 $($(this).parents('tr')).find("td").each(function(){
@@ -91,11 +85,11 @@ $(document).ready(function(){
 	        	 
 	        	});
 	    	 
-	         var memberdata = datatbl.row( parenttr ).data();
-	         alert(JSON.stringify(memberdata));
+	         var facilitydata = datatbl.row( parenttr ).data();
+	         alert(JSON.stringify(facilitydata));
 	         
 	         $.ajax({
-	             url: '/member/update',
+	             url: '/facility/update',
 	             type: 'POST',
 	             dataType: 'json',
 	             data: JSON.stringify(memberdata),
@@ -107,7 +101,7 @@ $(document).ready(function(){
 	      	    
 	      } );    
 	         
-	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
+	     $('#myFacTable tbody').on('click', '.btn-delete', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
 	    	 alert(JSON.stringify(data));
 	      } );	  

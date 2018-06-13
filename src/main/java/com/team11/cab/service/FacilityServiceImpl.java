@@ -18,8 +18,8 @@ public class FacilityServiceImpl implements FacilityService {
 	private FacilityRepository facilityrepository;
 
 	@Override
-	public List<Facility> findAllFacilities() {
-		List<Facility> l = (ArrayList<Facility>) facilityrepository.findAll();
+	public ArrayList<Facility> findAllFacilities() {
+		ArrayList<Facility> l = (ArrayList<Facility>) facilityrepository.findAll();
 		return l;
 
 	}
