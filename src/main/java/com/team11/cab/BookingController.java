@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -80,8 +81,8 @@ public class BookingController {
 
 		Booking b = new Booking();
 		b.setFacility(facilityService.findFacilityById(facilityId));
-		b.setStartDate(startDateTime);
-		b.setEndDate(endDateTime);
+		b.setStartDateTime(startDateTime);
+		b.setEndDateTime(endDateTime);
 		b.setMember(memberService.findMemberById(userId));
 
 		bookingService.makeBooking(b);
@@ -154,8 +155,9 @@ public class BookingController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String bookingsList() {
+	public String bookingsList() 
+	{
+		
 		return "booking-list";
 	}
-
 }

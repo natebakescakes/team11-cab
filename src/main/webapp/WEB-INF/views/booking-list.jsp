@@ -9,10 +9,8 @@
 	<body>
 		<h3>Bookings Page </h3>
 	
-	<%--<a href="${pageContext.request.contextPath}/booking/create">Add New Booking</a>
-	 <td><input type="submit" value="Add New Booking" class="btn btn-primary"/></td>--%>
-	<input type=submit onClick="${pageContext.request.contextPath}/booking/create" value="Add New Booking"/>
-	<a href="${pageContext.request.contextPath}/booking/edit">Maintenance Booking</a>
+	<a href="${pageContext.request.contextPath}/booking" class="btn btn-primary">Add New Booking</a>
+	<a href="${pageContext.request.contextPath}/booking" class="btn btn-primary">Maintenance Booking</a>
 	<div class="container">
 		<div class="row" style="max-width:100%">
 			<div class="centered" style="align:center; width:80%"  >

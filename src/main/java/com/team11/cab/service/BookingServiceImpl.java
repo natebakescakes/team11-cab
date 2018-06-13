@@ -48,25 +48,25 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking findBookingByID(int id) {
-		return bookingRepository.findOne(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	@Transactional
 	public Booking createBooking(Booking booking) {
-		return bookingRepository.saveAndFlush(booking);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	@Transactional
 	public Booking changeBooking(Booking booking) {
-		return bookingRepository.saveAndFlush(booking);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	@Transactional
 	public void removeBooking(Booking booking) {
-		bookingRepository.delete(booking);
+		// TODO Auto-generated method stub
+		
 	}
-
 }
