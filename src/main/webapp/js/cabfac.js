@@ -7,6 +7,15 @@ $(document).ready(function(){
 //	    alert(JSON.stringify(data));
 //	});
 	
+	var token = $('#_csrf').attr('content');
+	var header = $('#_csrf_header').attr('content');
+	
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader('X-CSRF-TOKEN', token);
+		}
+	})
+	
 	
 		var $table=$('#myFacTable');
 		//editor= $table.Editor();
@@ -25,7 +34,7 @@ $(document).ready(function(){
 							data: 'facilityName'
 						},
 						{
-							data: 'facilityTypeName'
+							data: 'facilityType.typeName'
 						},
 						{
 							data: 'location'
@@ -47,7 +56,7 @@ $(document).ready(function(){
 	//https://stackoverflow.com/questions/31327933/how-add-more-then-one-button-in-each-row-in-jquery-datatables-and-how-to-apply-e
 	     $('#myFacTable tbody').on('click', '.btn-edit', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
+//	    	 alert(JSON.stringify(data));
 
 	         $($(this).parents('tr')).find("td").each(function(){
 	        	 if (!$(this).children().hasClass("td-button"))
@@ -86,13 +95,13 @@ $(document).ready(function(){
 	        	});
 	    	 
 	         var facilitydata = datatbl.row( parenttr ).data();
-	         alert(JSON.stringify(facilitydata));
+//	         alert(JSON.stringify(facilitydata));
 	         
 	         $.ajax({
-	             url: '/facility/update',
+	             url: window.contextRoot + "/admin/facilities/update",
 	             type: 'POST',
-	             dataType: 'json',
 	             data: JSON.stringify(facilitydata),
+	             contentType: "application/json",
 	             cache: true,
 	             success: function (data) {
 	            	 alert("HII");
@@ -103,7 +112,7 @@ $(document).ready(function(){
 	         
 	     $('#myFacTable tbody').on('click', '.btn-delete', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
+//	    	 alert(JSON.stringify(data));
 	      } );	  
 	     
 	     

@@ -58,4 +58,10 @@ public class FacilityServiceImpl implements FacilityService {
 		Facility f = facilityRepository.findOne(facilityId);
 		return f;
 	}
+
+	@Override
+	public void updateFacility(Facility f) {
+		editFacility(f);
+
+	}
 }

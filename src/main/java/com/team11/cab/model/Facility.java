@@ -2,7 +2,6 @@ package com.team11.cab.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,14 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /* facility class */
 
 @Entity
 @Table(name = "facility")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "facilityId")
 public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +34,7 @@ public class Facility {
 
 	// @Transient
 	// private int facTypeId;
-	@JsonIgnore
+	// @JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
@@ -95,18 +96,5 @@ public class Facility {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	@JsonGetter
-	public String getFacilityTypeName() {
-		return this.facilityType.getTypeName();
-	}
-
-	// public int getFacTypeId() {
-	// return facTypeId;
-	// }
-	//
-	// public void setFacTypeId(int facTypeId) {
-	// this.facTypeId = facTypeId;
-	// }
 
 }
