@@ -15,22 +15,25 @@
 	<h1>Hello World</h1>
 	<br>
 
-	<div class="BookingID-Searchbox">
-		<form:form action="${pageContext.request.contextPath}/bookingdetails"
-			method="POST">
+	<div class="panel panel-default" id="BookingID-Searchbox">
+		<div class="panel panel-body">
+			<form:form action="${pageContext.request.contextPath}/bookingdetails"
+				method="POST">
 	
-	Already have a booking?
-	<br>
-	Key in your Booking ID here:
-	<br>
-			<font color='red'>${ErrorMessage}</font>
-			<br>
-			<input name="booking_id" type="text">
-			<button type="submit">
-				<i class="fa fa-search"></i>
-			</button>
+					Already have a booking?
+					<br>
+					Key in your Booking ID here:
+					<br>
+				<font color='red'>${ErrorMessage}</font>
+				<br>
+				<input name="booking_id" type="text">
+				<button type="submit">
+					<i class="fa fa-search"></i>
+				</button>
 
-		</form:form>
+			</form:form>
+		</div>
+
 	</div>
 
 
@@ -40,23 +43,24 @@
 
 			<label>Choose Facility Type</label>
 			<div class="thing" id="wrapper">
-				
-					<c:forEach var="facilityType" items="${fTypeList}">
-						<div>
-							<label>
-						  <input type="radio" name="ftype" value="${facilityType.typeId}" id="${facilityType.typeId}">				
-							<img src="${pageContext.request.contextPath}/image/FacilityTypeIcons/${facilityType.typeId}.png" alt="slider-image">
-							${facilityType.typeName}
-							</label>
-							
-						</div>
-					</c:forEach>
-			
+
+				<c:forEach var="facilityType" items="${fTypeList}">
+					<div>
+						<label> <input type="radio" name="ftype"
+							value="${facilityType.typeId}" id="${facilityType.typeId}">
+							<img
+							src="${pageContext.request.contextPath}/image/FacilityTypeIcons/${facilityType.typeId}.png"
+							alt="slider-image"> ${facilityType.typeName}
+						</label>
+
+					</div>
+				</c:forEach>
+
 
 			</div>
-		
+
 			<br>
-			
+
 			<label>Date</label>
 			<input name="date" type="date">
 
@@ -73,16 +77,15 @@
 	</div>
 
 
-	
+
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.thing').slick({
 				infinite : true,
 				slidesToShow : 4,
-				
+
 			});
 		});
-		
 	</script>
 </body>
