@@ -1,5 +1,6 @@
 package com.team11.cab.service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -88,7 +90,16 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	@Override
 	@Transactional
 	public void updateMember(Member m) {
-		memberRepository.saveAndFlush(m);
+		Principal principal = SecurityContextHolder.getContext().getAuthentication();
+		Member memberFromDb = findMemberByUsername(principal.getName());
+		memberFromDb.setEmail(m.getEmail());
+		memberFromDb.setFirstName(m.getFirstName());
+		memberFromDb.setLastName(m.getLastName());
+		memberFromDb.setDob(m.getDob());
+		memberFromDb.setAddress(m.getAddress());
+		memberFromDb.setPhone(m.getPhone());
+		
+		memberRepository.saveAndFlush(memberFromDb);
 	}
 
 	@Override

@@ -45,12 +45,4 @@ public class MemberController {
 		return "view-members";
 	}
 
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String memberProfile(Model model, Authentication authentication) {
-
-		model.addAttribute("member", mService.findMemberByUsername(authentication.getName()));
-
-		return "member-profile";
-	}
-
 }

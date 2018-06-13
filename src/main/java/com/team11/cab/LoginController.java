@@ -60,13 +60,10 @@ public class LoginController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			System.out.println("HAS ERRORS");
-			System.out.println(bindingResult.toString());
 			modelAndView.setViewName("register");
 		} else {
-			System.out.println("APPARENTLY SAVING");
 			memberService.saveMember(member);
-			modelAndView.addObject("successMessage", "User has been registered successfully");
+			modelAndView.addObject("successMessage", "You have successfully registered!");
 			modelAndView.setViewName("login");
 
 		}
