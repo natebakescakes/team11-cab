@@ -149,7 +149,7 @@ $(document).ready(function(){
 	        
 	    	 
 	         var memberdata = datatbl.row( parenttr ).data();
-	         alert(JSON.stringify(memberdata));
+	        // alert(JSON.stringify(memberdata));
 
 	         
 	         $.ajax({
@@ -159,33 +159,33 @@ $(document).ready(function(){
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (result) {
-	            	 alert("Member has been updated");
+	            	 //alert("Member has been updated");
 
 	             }
 	           });
 	      	    
 	      } );    
 	         
-	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
-	         var del = datatbl.row( $(this).parents('tr') ).data();
-	         $.ajax({
-	             url: window.contextRoot + "/admin/members/delete",
-	             type: "POST",
-	             data: JSON.stringify(del),
-	             contentType: "application/json",
-	             cache: true,
-	             success: function (result) {
-	            	 alert("Member has been deleted");
-	    	         datatbl.ajax.reload();
-	 
-	             }
-	         
-	        
-	           });
-	         
-	      } );	
-	     
-	     
+//	     $('#myTable tbody').on('click', '.btn-delete', function (e) {
+//	         var del = datatbl.row( $(this).parents('tr') ).data();
+//	         $.ajax({
+//	             url: window.contextRoot + "/admin/members/delete",
+//	             type: "POST",
+//	             data: JSON.stringify(del),
+//	             contentType: "application/json",
+//	             cache: true,
+//	             success: function (result) {
+//	            	 alert("Member has been deleted");
+//	    	         datatbl.ajax.reload();
+//	 
+//	             }
+//	         
+//	        
+//	           });
+//	         
+//	      } );	
+//	     
+//	     
 	     
 	     
 //			$('.edit').each(function () {
