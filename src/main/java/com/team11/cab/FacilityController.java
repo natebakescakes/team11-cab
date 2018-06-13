@@ -21,7 +21,7 @@ import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 
-import edu.iss.cats.model.Employee;
+//import edu.iss.cats.model.Employee;
 
 @Controller
 @RequestMapping(value = "/facility")
