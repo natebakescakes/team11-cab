@@ -16,7 +16,8 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${contextPath}/home">Club Application for Booking</a>
+			<a class="navbar-brand" href="${contextPath}/home">Club
+				Application for Booking</a>
 		</div>
 
 		<div class="collapse navbar-collapse"
@@ -38,6 +39,15 @@
 							<li><a href="#">My Bookings</a></li>
 							<li><a href="#">Edit Profile</a></li>
 							<li role="separator" class="divider"></li>
+							<sec:authorize access="hasRole('ADMIN')">
+								<li><a href="${contextPath}/admin/bookings/">Manage
+										Bookings</a></li>
+								<li><a href="${contextPath}/admin/facilities/">Manage
+										Facilities</a></li>
+								<li><a href="${contextPath}/admin/members/">Manage
+										Members</a></li>
+								<li role="separator" class="divider"></li>
+							</sec:authorize>
 							<li><form class="form-group" action="${contextPath}/logout"
 									method="POST">
 									<button class="form-control btn-link" type="submit">
