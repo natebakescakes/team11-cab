@@ -79,7 +79,8 @@
 							<label>Date: </label>
 						</div>
 						<div class="col-sm-10">
-							<input name="date" type="date">
+							<input name="date" class="form-control datepicker"
+							autocomplete="off">
 						</div>
 
 						<br>
@@ -94,7 +95,8 @@
 							<label>Start Time: </label>
 						</div>
 						<div class="col-sm-10">
-							<input class="timepicker" name="stime" id="starttime">
+							<input class="form-control timepicker" name="stime" id="starttime"
+							autocomplete="off">
 						
 						</div>
 
@@ -106,7 +108,8 @@
 							<label>End Time: </label>
 						</div>
 						<div class="col-sm-10">
-							<input class="timepicker" name="endtime" id="endtime">
+							<input class="form-control timepicker" name="endtime" id="endtime"
+							autocomplete="off">
 						</div>
 
 						<br>

@@ -17,9 +17,8 @@ public class BookingDetailsController {
 	private BookingService bService;
 	
 	
-@RequestMapping(value="/bookingdetails", method=RequestMethod.POST)
+@RequestMapping(value="/bookingdetails", method={ RequestMethod.POST, RequestMethod.GET } )
 	public ModelAndView searchBooking(@RequestParam String booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
-		
 		
 	    //validate booking exists
 		if(booking_id.isEmpty())
@@ -32,12 +31,8 @@ public class BookingDetailsController {
 		if(!bService.validateBookings(id))
 		{
 			 modelAndView.setViewName("redirect:home");
-			 redir.addFlashAttribute("ErrorMessage","Booking not found");
-			
-			    
-			  
+			 redir.addFlashAttribute("ErrorMessage","Booking not found");	  
 		}
-		//else throw error and redirect user back to homepage
 		else
 		{	
 			modelAndView.setViewName("booking-details");

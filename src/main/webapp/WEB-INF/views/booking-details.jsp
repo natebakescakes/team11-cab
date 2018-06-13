@@ -24,6 +24,7 @@
 <div class="panel panel-default" id="panel" style="padding-left: 20px">
 
 <h3> Booking ID:${booking.bookingId}</h3>
+
 	<div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-8">
@@ -52,8 +53,8 @@ Facility Name : ${booking.facility.facilityName }
 <br>
 <br>
 <!-- convert LocalDateTime to date-time -->
-<fmt:parseDate value="${booking.startDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
-<fmt:parseDate value="${booking.endDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEndDateTime" type="both" />
+<fmt:parseDate value="${booking.startDateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
+<fmt:parseDate value="${booking.endDateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEndDateTime" type="both" />
 <div class="row" >
 		<div class="col-sm-4">
 		Start Date : <fmt:formatDate pattern = "d MMM yyyy"  value = "${parsedStartDateTime}" />

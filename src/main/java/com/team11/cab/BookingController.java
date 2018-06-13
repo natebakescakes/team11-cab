@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
@@ -42,23 +43,23 @@ public class BookingController {
 		
 		ModelAndView mav = new ModelAndView("booking");
 		
-		// Convert POST attributes to the LocalDateTime objects
-		LocalDate date = LocalDate.parse(request.getParameter("date"),
-		DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		
 		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("ftypes", ftypes);
 		
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
-		if (request.getParameter("typeId") != null) {
+		if ((request.getParameter("typeId") != null) && (request.getParameter("date") != "")) {
 			String typeId = request.getParameter("typeId");
+			mav.addObject("typeId", typeId);
 			int typeIdNum = Integer.parseInt(typeId);
 			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
 			mav.addObject("facilities", facilities);
-			mav.addObject("typeId", typeId);
 			
+			LocalDate date = LocalDate.parse(request.getParameter("date"),
+					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			mav.addObject("date", request.getParameter("date"));
+
 			// Display schedule for all (relevant) Facilities
 			ArrayList<FacilityTypeSchedule> allFacilitySchedules = new ArrayList<FacilityTypeSchedule>();
 			
@@ -70,7 +71,6 @@ public class BookingController {
 			mav.addObject("facilitySchedules", allFacilitySchedules);
 		}
 		
-		mav.addObject("date", request.getParameter("date"));
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
 
@@ -78,7 +78,7 @@ public class BookingController {
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.POST, params={"submit"})
-	public ModelAndView bookingPostPage(HttpServletRequest request) {
+	public ModelAndView bookingPostPage(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
 		
 		// Render view
 		ModelAndView mav = new ModelAndView("booking");
@@ -90,8 +90,8 @@ public class BookingController {
 		// Convert POST attributes to the LocalDateTime objects
 		LocalDate date = LocalDate.parse(request.getParameter("date"),
 				DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		LocalTime startTime = LocalTime.parse(request.getParameter("stime"), DateTimeFormatter.ofPattern("HH:mm"));
-		LocalTime endTime = LocalTime.parse(request.getParameter("endtime"), DateTimeFormatter.ofPattern("HH:mm"));
+		LocalTime startTime = LocalTime.parse(request.getParameter("stime"), DateTimeFormatter.ofPattern("h:mm a"));
+		LocalTime endTime = LocalTime.parse(request.getParameter("endtime"), DateTimeFormatter.ofPattern("h:mm a"));
 		
 		LocalDateTime startDateTime = LocalDateTime.of(date, startTime);
 		LocalDateTime endDateTime = LocalDateTime.of(date, endTime);
@@ -149,10 +149,16 @@ public class BookingController {
 		if (bookingSuccess == false) {
 			mav.addObject("stime", request.getParameter("stime"));
 			mav.addObject("endtime", request.getParameter("endtime"));
+			mav.addObject("bookingSuccess", bookingSuccess);
+			return mav;
+		} else {
+			modelAndView.setViewName("redirect:/bookingdetails");
+			redir.addAttribute("booking_id", "20");
+			return modelAndView;
 		}
-		mav.addObject("bookingSuccess", bookingSuccess);
+		
 
-		return mav;
+		
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -181,10 +187,12 @@ public class BookingController {
 		ModelAndView mav = new ModelAndView("booking");
 
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-
 		mav.addObject("ftypes", ftypes);
+		
 		mav.addObject("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-
+		
+		boolean hideFacility = true;
+		mav.addObject("hideFacility", hideFacility);
 		return mav;
 	}
 
@@ -192,7 +200,6 @@ public class BookingController {
 	public ModelAndView bookingListPage() {
 		ModelAndView mav = new ModelAndView("booking-list");
 		ArrayList<Booking> bookingList = bookingService.findAllBookings();
-
 		mav.addObject("bookingList", bookingList);
 		return mav;
 	}

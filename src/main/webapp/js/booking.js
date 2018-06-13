@@ -1,5 +1,9 @@
 $( document ).ready(function() {
 	
+	/*
+	 * For Table manipulation
+	 */
+	
 	// on box click
 		// 1) DONE: un-highlight all other boxes
 		// 2) DONE: apply class .selected on clicked box
@@ -9,18 +13,18 @@ $( document ).ready(function() {
 	
 	var box = $(".booking-grid>.row>div:not(.booked)")
 	var times = {
-		"9AM" 	: "09:00",
-		"10AM" 	: "10:00",
-		"11AM" 	: "11:00",
-		"12PM" 	: "12:00",
-		"1PM" 	: "13:00",
-		"2PM" 	: "14:00",
-		"3PM" 	: "15:00",
-		"4PM" 	: "16:00",
-		"5PM" 	: "17:00",
-		"6PM" 	: "18:00",
-		"7PM" 	: "19:00",
-		"8PM" 	: "20:00"
+		"9AM" 	: "9:00 AM",
+		"10AM" 	: "10:00 AM",
+		"11AM" 	: "11:00 AM",
+		"12PM" 	: "12:00 PM",
+		"1PM" 	: "1:00 PM",
+		"2PM" 	: "2:00 PM",
+		"3PM" 	: "3:00 PM",
+		"4PM" 	: "4:00 PM",
+		"5PM" 	: "5:00 PM",
+		"6PM" 	: "6:00 PM",
+		"7PM" 	: "7:00 PM",
+		"8PM" 	: "8:00 PM"
 	}
 	
 	box.click(function(e) {
@@ -41,10 +45,38 @@ $( document ).ready(function() {
 	    $("#starttime").val(time);
 	    
 	    // 5
-	    var d = new Date.parseExact($("#starttime").val(), "HH:mm");
+	    var d = new Date.parseExact($("#starttime").val(), "h:mm tt");
 	    d = d.add({ hours: 1 });
-	    d = d.toString("HH:mm");
+	    d = d.toString("h:mm tt");
 	    
 	    $("#endtime").val(d);
 	})
+	
+	/* 
+	 * for Form Validator
+	 */
+	$.validate();
+	
+	/* 
+	 * for timepicker
+	 */
+	$('.timepicker').timepicker({
+	    timeFormat: 'h:mm p',
+	    interval: 60,
+	    minTime: '9',
+	    maxTime: '9:00pm',
+	    defaultTime: '9',
+	    startTime: '9:00am',
+	    dynamic: true,
+	    dropdown: true,
+	    scrollbar: true
+	});
+	
+	/* 
+	 * for datepicker
+	 */
+	$('.datepicker').datepicker({
+		todayHighlight: true,
+		format: 'dd/mm/yyyy'
+	});
 });
