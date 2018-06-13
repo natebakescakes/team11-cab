@@ -9,7 +9,9 @@ public interface MemberService {
 	ArrayList<Member> findAllMember();
 
 	void updateMember(Member m);
-	
+	void editMember(Member m);
+	//void deleteMember(Member m);
+
 	public Member findMemberById(int id);
 
 	public Member findMemberByUsername(String username);

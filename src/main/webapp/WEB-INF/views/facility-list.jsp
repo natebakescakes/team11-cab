@@ -1,11 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
-<meta charset="utf-8" >
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
-<meta name="viewport" content= "width=device-width,initial-scale=1" >
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Facility Page</title>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -15,37 +17,53 @@
 
 </head>
 <body>
-<div class="table-responsive">
-<h3>Function Room Booking</h3>
-<table  class="table table-hover" style="cellspacing: 5; cellpadding: 2; border: 1;">
-<thead>
-			
-</thead>
-		<tbody>
-		 
-			<c:forEach var="type" items="${typeList}">		
-			
-			<tr class="listRecord">	
-			
-			<td height="50px" valign="middle" colspan="4"><a href="${pageContext.request.contextPath}/booking"> ${type.typeName}</a> </td>
-			   
-			</tr>
-	     
-	        <tr>	      
-        	<c:forEach var="facility" items="${type.facilities}">
-            <td> <a href="${pageContext.request.contextPath}/booking"> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg" 
-            width="100" height="100" alt="" align="middle"> </a>
-					<br/>
-                  ${facility.facilityName}  
-           </td>		
-             </c:forEach>           
-        	</tr>
-        	
+	<c:forEach var="type" items="${typeList}">
+		<div class="row">
+
+			<h2><a href="${pageContext.request.contextPath}/booking/typeid=${type.typeId}">${type.typeName}</a></h2>
+
+			<p>${type.description}</p>
+		</div>
+		<div class="row">
+			<c:forEach var="facility" items="${type.facilities}">
+				<div class="col-xs-6 col-sm-4 col-md-3">
+					<div class="thumbnail">
+                        <c:if test="${facility.status!=0}">
+					 <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}">
+						<img
+							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
+							height="500" class="img-thumbnail">
+							</a>
+							</c:if>
+							
+							<c:if test="${facility.status!=1}">			
+					
+						<img
+							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
+							height="500" class="img-thumbnail">
+							</c:if>
+							
+
+						<div class="caption" style="text-align: center">
+							<h3>${facility.facilityName}</h3>
+							<p>${facility.description}</p>
+							<p>
+							<c:if test="${facility.status!=0}">
+								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
+									class="btn btn-primary" role="button"><i
+									class="fa fa-bookmark-o"></i> Book Now</a>
+									</c:if>
+									
+									<c:if test="${facility.status!=1}">
+								<i	class="fa fa-bookmark-o"></i> Not Available Now
+									</c:if>
+							</p>
+						</div>
+					</div>
+				</div>
 			</c:forEach>
-			
-		</tbody>
-	</table>
-	</div>
-	</body>
-	
-	</html>
+		</div>
+	</c:forEach>
+</body>
+
+</html>

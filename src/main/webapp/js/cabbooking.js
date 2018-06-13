@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-	   		var b=window.contextRoot + '/json/showmember/jsonbookinglist';
+	   		var b=window.contextRoot + '/json/booking';
 	   		
 	   		var token = $('#_csrf').attr('content');
 	   	    var header = $('#_csrf_header').attr('content');
@@ -83,7 +83,7 @@ $(document).ready(function(){
 
 	    	 		         
 	    	 		         $.ajax({
-	    	 		             url: window.contextRoot + "/booking/update",
+	    	 		             url: window.contextRoot + "admin/booking/update",
 	    	 		             type: "POST",
 	    	 		             data: JSON.stringify(bookingdata),
 	    	 		             contentType: "application/json",
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	    	 		     $('#bTable tbody').on('click', '.btn-delete', function (e) {
 	    	 		         var del = datatbl1.row( $(this).parents('tr') ).data();
 	    	 		         $.ajax({
-	    	 		             url: window.contextRoot + "/booking/delete",
+	    	 		             url: window.contextRoot + "admin/booking/delete",
 	    	 		             type: "POST",
 	    	 		             data: JSON.stringify(del),
 	    	 		             contentType: "application/json",

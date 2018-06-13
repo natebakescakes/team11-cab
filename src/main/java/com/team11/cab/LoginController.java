@@ -1,5 +1,6 @@
 package com.team11.cab;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,9 +33,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-
-		return "login";
+	public String login(Principal principal) {
+		
+		return principal == null ?  "login" : "redirect:/home"; 
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -60,13 +61,10 @@ public class LoginController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			System.out.println("HAS ERRORS");
-			System.out.println(bindingResult.toString());
 			modelAndView.setViewName("register");
 		} else {
-			System.out.println("APPARENTLY SAVING");
 			memberService.saveMember(member);
-			modelAndView.addObject("successMessage", "User has been registered successfully");
+			modelAndView.addObject("successMessage", "You have successfully registered!");
 			modelAndView.setViewName("login");
 
 		}

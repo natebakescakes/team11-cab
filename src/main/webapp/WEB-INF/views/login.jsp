@@ -21,8 +21,7 @@
 			</c:if>
 			<c:if test="${successMessage != null}">
 				<div class="row">
-					<div class="alert alert-success" role="alert">You have
-						successfully registered!</div>
+					<div class="alert alert-success" role="alert">${successMessage}</div>
 				</div>
 			</c:if>
 		</div>

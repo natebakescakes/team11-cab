@@ -3,7 +3,6 @@ package com.team11.cab.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,30 +14,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /* facility class */
 
 @Entity
 @Table(name = "facility")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "facilityId")
 public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "FacilityId")
 	private int facilityId;
-	@Column(name = "FacilityName")
 	private String facilityName;
-	@Column(name = "Location")
 	private String location;
-	@Column(name = "Description")
 	private String description;
-	
+	private int status;
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	// @Transient
+	// private int facTypeId;
+	// @JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
-	
-	@OneToMany(targetEntity=Booking.class, mappedBy="facility", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+
+	@JsonIgnore
+	@OneToMany(targetEntity = Booking.class, mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
-	
+
 	public Facility() {
 		super();
 	}
@@ -92,5 +105,5 @@ public class Facility {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
 }
