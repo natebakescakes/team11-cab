@@ -36,6 +36,8 @@ public class Booking {
 	@Column(name = "EndDate")
 	//@JsonFormat(pattern = "dd::MM::yyyy")
 	private LocalDateTime endDateTime;
+	
+	private String status;
 
 	@JsonIgnore
 	@OneToOne
@@ -50,54 +52,58 @@ public class Booking {
 	public Booking() {
 		super();
 	}
-	
+
 	public int getBookingId() {
 		return bookingId;
 	}
 
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
+	@JsonGetter
+	public String getEndDateDate() 
+	{
+		String result;
+		if((endDateTime.getMonth().getValue()<10) && (endDateTime.getDayOfMonth()<10))
+			result=String.valueOf(endDateTime.getYear())+"-0"+String.valueOf(endDateTime.getMonth().getValue())+"-0"	+ String.valueOf(startDateTime.getDayOfMonth());
+		else if(endDateTime.getMonth().getValue()<10)
+			result=String.valueOf(endDateTime.getYear())+"-0"+String.valueOf(endDateTime.getMonth().getValue())+"-"	+ String.valueOf(startDateTime.getDayOfMonth());
+		else if(endDateTime.getDayOfMonth()<10)
+			result=String.valueOf(endDateTime.getYear())+"-"+String.valueOf(endDateTime.getMonth().getValue())+"-0"	+ String.valueOf(startDateTime.getDayOfMonth());
+		else
+			result=String.valueOf(endDateTime.getYear())+"-"+String.valueOf(endDateTime.getMonth().getValue())+"-"	+ String.valueOf(startDateTime.getDayOfMonth());
+		return result;
 	}
-
-	public LocalDateTime getTransDate() {
-		return transDate;
-	}
-
-	public void setTransDate(LocalDateTime transDate) {
-		this.transDate = transDate;
-	}
-
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
-	}
-
-	public void setStartDateTime(LocalDateTime startDateTime) {
-		this.startDateTime = startDateTime;
-	}
-
+	
 	public LocalDateTime getEndDateTime() {
 		return endDateTime;
 	}
 
-	public void setEndDateTime(LocalDateTime endDateTime) {
-		this.endDateTime = endDateTime;
+	@JsonGetter
+	public String getEndTime() 
+	{
+		String result;
+		if(endDateTime.getMinute()<10)
+			result=String.valueOf(endDateTime.getHour())+":0"+String.valueOf(endDateTime.getMinute());
+		else
+			result=String.valueOf(endDateTime.getHour())+":"+String.valueOf(endDateTime.getMinute());
+		return result;
 	}
 
 	public Facility getFacility() {
 		return facility;
 	}
 
-	public void setFacility(Facility facility) {
-		this.facility = facility;
+	@JsonGetter
+	public String getfacilityName() 
+	{	
+		return facility.getFacilityName();
 	}
 
 	public Member getMember() {
 		return member;
 	}
 
-	public void setMember(Member member) {
-		
-		this.member = member;
+	public int getmemberId() 
+	{	
+		return member.getUserid();
 	}
 
 	@JsonGetter
@@ -114,22 +120,11 @@ public class Booking {
 			result=String.valueOf(startDateTime.getYear())+"-"+String.valueOf(startDateTime.getMonth().getValue())+"-"	+ String.valueOf(startDateTime.getDayOfMonth());
 		return result;
 	}
-	
-	@JsonGetter
-	public String getEndDateDate() 
-	{
-		String result;
-		if((endDateTime.getMonth().getValue()<10) && (endDateTime.getDayOfMonth()<10))
-			result=String.valueOf(endDateTime.getYear())+"-0"+String.valueOf(endDateTime.getMonth().getValue())+"-0"	+ String.valueOf(startDateTime.getDayOfMonth());
-		else if(endDateTime.getMonth().getValue()<10)
-			result=String.valueOf(endDateTime.getYear())+"-0"+String.valueOf(endDateTime.getMonth().getValue())+"-"	+ String.valueOf(startDateTime.getDayOfMonth());
-		else if(endDateTime.getDayOfMonth()<10)
-			result=String.valueOf(endDateTime.getYear())+"-"+String.valueOf(endDateTime.getMonth().getValue())+"-0"	+ String.valueOf(startDateTime.getDayOfMonth());
-		else
-			result=String.valueOf(endDateTime.getYear())+"-"+String.valueOf(endDateTime.getMonth().getValue())+"-"	+ String.valueOf(startDateTime.getDayOfMonth());
-		return result;
+
+	public LocalDateTime getStartDateTime() {
+		return startDateTime;
 	}
-	
+
 	@JsonGetter
 	public String getStartTime() 
 	{
@@ -140,27 +135,42 @@ public class Booking {
 			result=String.valueOf(startDateTime.getHour())+":"+String.valueOf(startDateTime.getMinute());
 		return result;
 	}
-	
-	@JsonGetter
-	public String getEndTime() 
-	{
-		String result;
-		if(endDateTime.getMinute()<10)
-			result=String.valueOf(endDateTime.getHour())+":0"+String.valueOf(endDateTime.getMinute());
-		else
-			result=String.valueOf(endDateTime.getHour())+":"+String.valueOf(endDateTime.getMinute());
-		return result;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public LocalDateTime getTransDate() {
+		return transDate;
+	}
+
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public void setEndDateTime(LocalDateTime endDateTime) {
+		this.endDateTime = endDateTime;
 	}
 	
-	@JsonGetter
-	public String getfacilityName() 
-	{	
-		return facility.getFacilityName();
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 	
-	public int getmemberId() 
-	{	
-		return member.getUserid();
+	public void setMember(Member member) {
+		
+		this.member = member;
+	}
+	
+	public void setStartDateTime(LocalDateTime startDateTime) {
+		this.startDateTime = startDateTime;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public void setTransDate(LocalDateTime transDate) {
+		this.transDate = transDate;
 	}
 	
 }

@@ -23,11 +23,13 @@ $(document).ready(function(){
 	    							{	data: 'bookingId'	},
 	    							{	data: 'facilityName'	},
   									{	data: 'startDateDate'	},
+  									{	data: 'startTime'	},
 	    							{	data: 'endDateDate'		},
-	    							{	data: 'startTime'	},
 	    							{	data: 'endTime'		},
-	    							{	defaultContent: "<button class='td-button btn-edit'>Edit</button>"    	},
-	    							{	defaultContent: "<button class='td-button btn-delete'>Delete</button>" 	}
+	    							{   data: 'status'      },
+	    							{	defaultContent: "<button class='btn btn-table btn-primary'>Book</button>"    	},
+	    							{	defaultContent: "<button class='btn btn-table btn-alert'>Cancel</button>" 	},
+	    							{	defaultContent: "<button class='btn btn-table btn-warning'>Maintenance</button>" 	}
 	    							]
 						
 	    					});
