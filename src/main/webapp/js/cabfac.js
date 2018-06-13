@@ -25,7 +25,7 @@ $(document).ready(function(){
 							data: 'facilityName'
 						},
 						{
-							data: 'facilityType'
+							data: 'facilityTypeName'
 						},
 						{
 							data: 'location'
@@ -92,7 +92,7 @@ $(document).ready(function(){
 	             url: '/facility/update',
 	             type: 'POST',
 	             dataType: 'json',
-	             data: JSON.stringify(memberdata),
+	             data: JSON.stringify(facilitydata),
 	             cache: true,
 	             success: function (data) {
 	            	 alert("HII");
