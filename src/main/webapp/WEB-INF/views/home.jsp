@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>     
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,34 +12,45 @@
 <title>Club Application for Booking</title>
 </head>
 <body>
+	<div style="max-width: 300px; margin: auto">
+		<c:if test="${param.loginSuccess ne null}">
+			<div class="row">
+				<div class="alert alert-success" role="alert">Login
+					Successful!</div>
+			</div>
+		</c:if>
+	</div>
 
-<h1>Hello World </h1>
-<br>
+	<h1>Hello World</h1>
+	<br>
 
-<div class="BookingID-Searchbox">
-	<form:form action ="${pageContext.request.contextPath}/bookingdetails" method ="POST">
+	<div class="BookingID-Searchbox">
+		<form:form action="${pageContext.request.contextPath}/bookingdetails"
+			method="POST">
 	
 	Already have a booking?
 	<br>
 	Key in your Booking ID here:
 	<br>
- 	<font color='red'>${ErrorMessage}</font>
-	<br>
-	<input name="booking_id" type="text">
-	<button type="submit"><i class="fa fa-search"></i></button>
-	
-	</form:form>
-</div>
+			<font color='red'>${ErrorMessage}</font>
+			<br>
+			<input name="booking_id" type="text">
+			<button type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+
+		</form:form>
+	</div>
 
 
-<div class="SearchBox">
-<form:form action = "booking" method= "POST">
-<h3>Make your booking here</h3>
+	<div class="SearchBox">
+		<form:form action="booking" method="POST">
+			<h3>Make your booking here</h3>
 
 Choose A Facility Type:
 
 
-</form:form> 
-</div>
+</form:form>
+	</div>
 </body>
 </html>
