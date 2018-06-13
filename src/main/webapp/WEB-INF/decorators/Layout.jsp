@@ -38,6 +38,16 @@
 		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
+		
+		<script type="text/javascript"
+	src="<c:url value="/js/jquery.dataTables.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+
+<script>
+window.contextRoot='${contextRoot}';
+</script>
 <dec:head />
 </head>
 <body>
