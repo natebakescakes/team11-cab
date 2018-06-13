@@ -14,10 +14,15 @@
 
 <form action="" method="POST">
 	<label>Choose Facility Type</label>
-	<select name="ftype">
-		<option value="first">First Value</option>
-		<option value="second" selected>Second Value</option>
-		<option value="third">Third Value</option>
+	
+
+	
+	<select name="type">
+		<c:forEach var="type" items="${typeList}">
+			<option value="${type.typeId}"<c:if test="${type.typeId eq typeidchosen}">selected="selected"</c:if> >		
+			${type.typeName} 
+			</option>
+		</c:forEach>
 	</select>
 	
 	<label>Date</label>
@@ -28,7 +33,8 @@
 	<label>Choose Room</label>
 	<select name="room">
 		<c:forEach var="facility" items="${facilityList}">
-			<option value="${facility.facilityId}">${facility.facilityName}</option>
+			<option value="${facility.facilityId}" <c:if test="${facility.facilityId eq fidchosen}">selected="selected"</c:if> >
+			${facility.facilityName}</option>
 		</c:forEach>
 	</select>
 	

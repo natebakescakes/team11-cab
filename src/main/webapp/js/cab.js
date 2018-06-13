@@ -1,7 +1,7 @@
 //var editor;
 $(document).ready(function(){
 	
-	var u=window.contextRoot + '/json/showmember/jsonlist';
+	var u=window.contextRoot + '/json/showmember';
 	
     var token = $('#_csrf').attr('content');
     var header = $('#_csrf_header').attr('content');
@@ -121,7 +121,7 @@ $(document).ready(function(){
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (result) {
-	            	 //alert("Member has been updated");
+	            	 alert("Member has been updated");
 
 	             }
 	           });

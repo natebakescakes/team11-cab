@@ -1,5 +1,6 @@
 package com.team11.cab.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -21,11 +22,20 @@ public class BookingServiceImpl implements BookingService {
 	@Transactional
 	public ArrayList<Booking> findAllBookings() {
 		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.findAll();
-		
 		return bookinglist;
 	}
 
 	@Override
+	public boolean isBookingValid(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
+		 return !((start1.isBefore(end2)) && (start2.isBefore(end1))) ? true : false;
+	}
+
+	@Override
+	@Transactional
+	public Booking makeBooking(Booking newBooking) {
+		Booking result = bookingRepository.save(newBooking);
+		return result;
+	}
 	public boolean validateBookings(int id) {
 
 		
@@ -38,7 +48,4 @@ public class BookingServiceImpl implements BookingService {
 	public Booking findBookingByID(int id) {
 		return bookingRepository.findOne(id);
 	}
-	
-	
-
 }
