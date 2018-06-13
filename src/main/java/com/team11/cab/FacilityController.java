@@ -14,7 +14,7 @@ import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 
 @Controller
-@RequestMapping(value="/facility")
+@RequestMapping(value="/facilities")
 public class FacilityController {
 	
 	@Autowired
@@ -23,7 +23,7 @@ public class FacilityController {
 	@Autowired
 	private FacilityTypeService facilityTypeService;
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
 	//	List<Facility> facilityList = (ArrayList<Facility>)facilityService.findAllFacilities();

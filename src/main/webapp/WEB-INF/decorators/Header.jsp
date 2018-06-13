@@ -16,7 +16,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Club Application for Booking</a>
+			<a class="navbar-brand" href="${contextPath}/home">Club Application for Booking</a>
 		</div>
 
 		<div class="collapse navbar-collapse"
