@@ -32,11 +32,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css">
 	
 <!-- TimePicker -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/css/dataTables.bootstrap.css" />" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>	
-	
+
+
+
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -64,7 +62,8 @@
 <script type="text/javascript"
 	src="<c:url value="/js/dataTables.bootstrap.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
-
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/dataTables.bootstrap.css" />" />
 <script>
 window.contextRoot='${contextRoot}';
 </script>
@@ -81,5 +80,6 @@ window.contextRoot='${contextRoot}';
 		<hr>
 		<small> &copy; ISS NUS SA46 Team 11 </small>
 	</div>
+
 </body>
 </html>
