@@ -21,7 +21,7 @@ public class BookingDetailsController {
 	public ModelAndView searchBooking(@RequestParam String booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
 		
 		
-	    //validate booking exists
+	    //validate input not empty
 		if(booking_id.isEmpty())
 		{
 			 modelAndView.setViewName("redirect:home");
@@ -29,6 +29,8 @@ public class BookingDetailsController {
 			 return modelAndView;
 		}
 		int id = Integer.parseInt(booking_id);
+		
+		//validate booking exists
 		if(!bService.validateBookings(id))
 		{
 			 modelAndView.setViewName("redirect:home");
@@ -37,7 +39,7 @@ public class BookingDetailsController {
 			    
 			  
 		}
-		//else throw error and redirect user back to homepage
+		//pass booking object to booking-details view
 		else
 		{	
 			modelAndView.setViewName("booking-details");

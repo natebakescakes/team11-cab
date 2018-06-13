@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
+
 import javax.persistence.Column;
-=======
+
 import javax.persistence.CascadeType;
->>>>>>> refs/remotes/origin/master
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -41,14 +41,14 @@ public class Facility {
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
-<<<<<<< HEAD
+
 	
 	@OneToMany(targetEntity=Booking.class, mappedBy="facility", fetch=FetchType.EAGER)
-=======
+
 
 	@JsonIgnore
 	@OneToMany(targetEntity = Booking.class, mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
->>>>>>> refs/remotes/origin/master
+
 	private List<Booking> bookings = new ArrayList<Booking>();
 
 	public Facility() {

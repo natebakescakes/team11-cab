@@ -25,10 +25,7 @@ public class JsonController {
 //	@Autowired
 //	private FacilityTypeService ftService;
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/master
+
 	@RequestMapping(value = "/showmember")
 	@ResponseBody
 	public ArrayList<Member> jsonMembers() 
