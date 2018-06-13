@@ -41,10 +41,17 @@ public class FacilityServiceImpl implements FacilityService {
 	public Facility editFacility(Facility fac) {
 		return facilityrepository.saveAndFlush(fac);
 	}
+	
 
 	@Override
 	public void deleteFacility(Facility fac) {
 		facilityrepository.delete(fac);
 
 	}
+
+	@Override
+	public void updateFacility(Facility f) {
+		facilityrepository.saveAndFlush(f);
+		
+	}	
 }

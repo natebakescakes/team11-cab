@@ -10,12 +10,12 @@ public interface FacilityService {
 
 	Facility createFacility(Facility fac);
 
-    Facility editFacility(Facility fac);
+	Facility editFacility(Facility fac);
 
 	Facility findFacility(int id);
 
-    void deleteFacility(Facility fac);
+	void deleteFacility(Facility fac);
 
-
+	void updateFacility(Facility f);
 
 }

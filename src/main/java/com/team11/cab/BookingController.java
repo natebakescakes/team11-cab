@@ -39,22 +39,22 @@ public class BookingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView bookingPage() {
-		ModelAndView mav = new ModelAndView("booking");
-
-		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
-		ArrayList<Facility> fList2 = facilityService.findFacilitiesByFacilityType(1);
-		
-		System.out.println("--TEST--");
-		for (Facility facility : fList2) {
-			System.out.println(facility.getFacilityName());
-		}
-
-		mav.addObject("facilityList", facilityList);
-
-		return mav;
-	}
+//	@RequestMapping(value = "", method = RequestMethod.GET)
+//	public ModelAndView bookingPage() {
+////		ModelAndView mav = new ModelAndView("booking");
+////
+////		ArrayList<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
+//////		ArrayList<Facility> fList2 = facilityService.findFacilitiesByFacilityType(1);
+////		
+////		System.out.println("--TEST--");
+////		for (Facility facility : fList2) {
+////			System.out.println(facility.getFacilityName());
+////		}
+////
+////		mav.addObject("facilityList", facilityList);
+//
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView bookingListPage() {

@@ -8,18 +8,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
+//@NamedQuery(name = "FacilityType.findByName", query = "SELECT ft FROM FacilityType ft WHERE ft.typeName = :typeName ")
 @Table(name = "facilitytype")
 public class FacilityType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int typeId;
+	private int typeId;	
 	private String typeName;
 	private String description;
 
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "facilityType")
 	private List<Facility> facilities;
 
