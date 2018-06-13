@@ -30,8 +30,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-<<<<<<< HEAD
-	
+
+<!-- Slick Slider -->
 	<script type="text/javascript"
 		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript"
@@ -39,6 +39,7 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
 		
+<!-- data Tables -->
 		<script type="text/javascript"
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
 <script type="text/javascript"
