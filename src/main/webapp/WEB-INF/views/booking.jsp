@@ -12,7 +12,7 @@
 </c:if>
 <c:if test="${bookingSuccess == false}">
 	<div class="alert alert-danger">
-		There is already a booking at that slot...
+		Invalid booking.
 	</div>
 </c:if>
 
@@ -29,10 +29,10 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
-			<input id="submit" type="submit" name="refresh" value="Load">
+			<input id="submit" type="submit" value="Load">
 			<br>
-			<label class="${hideFacility ? 'hidden' : '' }">Choose Facility</label>
-			<select id="choose-room" name="facility" class="form-control ${hideFacility == true ? 'hidden' : '' }" data-validation="required">
+			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label>
+			<select id="choose-room" name="facility" class="form-control ${showFacility == true ? '' : 'hidden' }" data-validation="required">
 				<c:forEach var="facility" items="${facilities}">
 					<option value="${facility.facilityId}">${facility.facilityName}</option>
 				</c:forEach>

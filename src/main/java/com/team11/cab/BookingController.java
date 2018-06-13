@@ -38,7 +38,7 @@ public class BookingController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping(value = "", method = RequestMethod.POST, params={"refresh"})
+	@RequestMapping(value = "", method ={ RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView refreshPage(HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView("booking");
@@ -49,7 +49,9 @@ public class BookingController {
 		
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
-		if ((request.getParameter("typeId") != null) && (request.getParameter("date") != "")) {
+		if ((request.getParameter("typeId") != null) && (request.getParameter("date") != null)) {
+			boolean showFacility = true;
+			mav.addObject("showFacility", showFacility);
 			String typeId = request.getParameter("typeId");
 			mav.addObject("typeId", typeId);
 			int typeIdNum = Integer.parseInt(typeId);
@@ -101,13 +103,16 @@ public class BookingController {
 		// Make booking
 		Booking b = new Booking();
 		b.setFacility(facilityService.findFacilityById(facilityId));
+		b.setTransDate(LocalDateTime.now());
 		b.setStartDateTime(startDateTime);
 		b.setEndDateTime(endDateTime);
 		b.setMember(memberService.findMemberById(userId));
 		
 		if (bookingService.isBookingValid(b)) {
-			bookingService.makeBooking(b);
-			bookingSuccess = true;
+			Booking newBooking = bookingService.makeBooking(b);
+			modelAndView.setViewName("redirect:/bookingdetails");
+			redir.addAttribute("booking_id", String.valueOf(newBooking.getBookingId()));
+			return modelAndView;
 		} else {
 			bookingSuccess = false;
 		}
@@ -126,6 +131,8 @@ public class BookingController {
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
 		if (request.getParameter("typeId") != null) {
+			boolean showFacility = true;
+			mav.addObject("showFacility", showFacility);
 			String typeId = request.getParameter("typeId");
 			int typeIdNum = Integer.parseInt(typeId);
 			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
@@ -144,57 +151,45 @@ public class BookingController {
 		}
 		
 		mav.addObject("date", request.getParameter("date"));
+		mav.addObject("stime", request.getParameter("stime"));
+		mav.addObject("endtime", request.getParameter("endtime"));
+		mav.addObject("bookingSuccess", bookingSuccess);
 		
-		// pass-through values
-		if (bookingSuccess == false) {
-			mav.addObject("stime", request.getParameter("stime"));
-			mav.addObject("endtime", request.getParameter("endtime"));
-			mav.addObject("bookingSuccess", bookingSuccess);
-			return mav;
-		} else {
-			modelAndView.setViewName("redirect:/bookingdetails");
-			redir.addAttribute("booking_id", "20");
-			return modelAndView;
-		}
-		
-
-		
-	}
-
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView bookingPage(HttpServletRequest request) {
-		
-//		// Tests for Booking		
-//		LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
-//		LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
-//		
-//		LocalDateTime start2 = LocalDateTime.of(2018, 6, 12, 10, 0);
-//		LocalDateTime end2 = LocalDateTime.of(2018, 6, 12, 12, 0);
-//		
-//		System.out.println("--TEST 1--");
-//		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
-//		
-//		end1 = LocalDateTime.of(2018, 6, 12, 10, 0);
-//
-//		System.out.println("--TEST 2--");
-//		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
-//		
-//		end1 = LocalDateTime.of(2018, 6, 12, 11, 0);
-//
-//		System.out.println("--TEST 3--");
-//		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
-				
-		ModelAndView mav = new ModelAndView("booking");
-
-		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
-		mav.addObject("ftypes", ftypes);
-		
-		mav.addObject("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		
-		boolean hideFacility = true;
-		mav.addObject("hideFacility", hideFacility);
 		return mav;
 	}
+
+//	@RequestMapping(value = "", method = RequestMethod.GET)
+//	public ModelAndView bookingPage(HttpServletRequest request) {
+//		
+////		// Tests for Booking		
+////		LocalDateTime start1 = LocalDateTime.of(2018, 6, 12, 8, 0);
+////		LocalDateTime end1 = LocalDateTime.of(2018, 6, 12, 9, 0);
+////		
+////		LocalDateTime start2 = LocalDateTime.of(2018, 6, 12, 10, 0);
+////		LocalDateTime end2 = LocalDateTime.of(2018, 6, 12, 12, 0);
+////		
+////		System.out.println("--TEST 1--");
+////		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
+////		
+////		end1 = LocalDateTime.of(2018, 6, 12, 10, 0);
+////
+////		System.out.println("--TEST 2--");
+////		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
+////		
+////		end1 = LocalDateTime.of(2018, 6, 12, 11, 0);
+////
+////		System.out.println("--TEST 3--");
+////		System.out.println(bookingService.isBookingValid(start1, end1, start2, end2));
+//				
+//		ModelAndView mav = new ModelAndView("booking");
+//
+//		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
+//		mav.addObject("ftypes", ftypes);
+//		
+//		mav.addObject("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//		
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView bookingListPage() {

@@ -37,7 +37,7 @@
 							<h3>${facility.facilityName}</h3>
 							<p>${facility.description}</p>
 							<p>
-								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
+								<a href="${pageContext.request.contextPath}/booking?typeId=${type.typeId}&facility=${facility.facilityId}"
 									class="btn btn-primary" role="button"><i
 									class="fa fa-bookmark-o"></i> Book Now</a>
 							</p>
