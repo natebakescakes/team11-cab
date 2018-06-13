@@ -25,8 +25,8 @@
 		<form:form action="booking" method="POST">
 		<label>Choose Facility Type</label>
 		<div class="row">
-		<br>
-		<br>
+		<br><br>
+		
 		</div>
 		<div class="row">
 			<div class="col-sm-1">
@@ -92,7 +92,7 @@
 			
 		
 			
-			<input type="Submit" class="btn btn-default" value="Search">
+			<input type="Submit" class="btn btn-default" name="refresh" value="Submit">
 			
 		</form:form>
 		
@@ -101,7 +101,7 @@
 		</div>
 		
 			<div class="col-sm-5">
-	<div class="panel panel-default" id="BookingID-Searchbox" style="width:100%">
+	<div class="panel panel-default" id="BookingID-Searchbox" style="width:70%">
 		<div class="panel panel-body" align="left">
 			<form:form action="${pageContext.request.contextPath}/bookingdetails"
 				method="POST">
