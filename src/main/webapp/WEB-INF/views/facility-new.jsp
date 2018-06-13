@@ -5,7 +5,7 @@
 
 <h3>New Facility page</h3>
 <form:form method="POST" modelAttribute="facility"
-	action="${pageContext.request.contextPath}/facility/create.html">
+	action="${pageContext.request.contextPath}/facility/admin/create.html">
 	<table>
 		<tbody>
 			<tr>
@@ -20,8 +20,11 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityType" /></td>
-				<td><form:input path="facilityType" /></td>
-				<td><form:errors path="facilityType" cssStyle="color: red;" /></td>
+				<td><form:select path="facilityType">
+						<form:option value="" label="...." />
+						<form:options items="${typeList}" />
+					</form:select></td>
+
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.location" /></td>

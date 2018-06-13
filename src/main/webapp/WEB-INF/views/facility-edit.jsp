@@ -5,7 +5,7 @@
 
 <h3>Edit Facility page</h3>
 <form:form method="POST" modelAttribute="facility"
-	action="${pageContext.request.contextPath}/facility/edit/${facility.facilityId}.html">
+	action="${pageContext.request.contextPath}/facility/admin/edit/${facility.facilityId}.html">
 	<table>
 		<tbody>
 			<form:hidden path="" />
@@ -21,9 +21,9 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.facilityType" /></td>
-				<td><form:select path="FacilityType">
+				<td><form:select path="facilityType">
 				<form:option value="" label="...." />
-				<form:options items="${typeMap}" />
+				<form:options items="${facTypeList}" />
 				</form:select>
 				</td>
 

@@ -4,6 +4,7 @@
 
 <h3>Function Room Booking</h3>
 <table style="cellspacing: 2; cellpadding: 2; border: 1;">
+
 <thead>
 			
 </thead>
@@ -20,6 +21,7 @@
         	<c:forEach var="facility" items="${type.facilities}">
             <td> <img src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"  
 					width="100" height="100" alt="" align="middle"> 
+					
 					<br/>
                   ${facility.facilityName}  
            </td>		

@@ -58,6 +58,7 @@ public class Facility {
 		return location;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
