@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,13 +23,13 @@ import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
 import com.team11.cab.model.FacilityType;
 import com.team11.cab.model.FacilityTypeSchedule;
+import com.team11.cab.model.Member;
 import com.team11.cab.model.Slot;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 import com.team11.cab.service.MemberService;
 
-@RequestMapping(value = "/booking")
 @Controller
 public class BookingController {
 	@Autowired
@@ -40,7 +41,7 @@ public class BookingController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/booking", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView refreshPage(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("booking");
@@ -81,13 +82,19 @@ public class BookingController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.POST, params={"submit"})
-	public ModelAndView bookingPostPage(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
+	@RequestMapping(value = "/booking", method = RequestMethod.POST, params={"submit"})
+	public ModelAndView bookingPostPage(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView, Authentication authentication) {
 		
 		// Render view
 		ModelAndView mav = new ModelAndView("booking");
 		
-		int userId = 1; // TODO: Change this when you can get userId
+		int userId = 0;
+		if (authentication.isAuthenticated()) {
+			String username = authentication.getName();
+			Member m = memberService.findMemberByUsername(username);
+			userId = m.getUserid();
+		}
+
 		boolean bookingSuccess;
 		int facilityId;
 		
