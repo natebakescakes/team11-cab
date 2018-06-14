@@ -23,9 +23,10 @@ $(document).ready(function(){
 	    							{	data: 'bookingId'	},
 	    							{	data: 'facilityName'	},
   									{	data: 'startDateDate'	},
+  									{	data: 'startTime'	},
 	    							{	data: 'endDateDate'		},
-	    							{	data: 'startTime'	},
 	    							{	data: 'endTime'		},
+	    							{   data: 'status'  },
 	    							{	defaultContent: "<button class='td-button btn-edit'>Edit</button>"    	},
 	    							{	defaultContent: "<button class='td-button btn-delete'>Delete</button>" 	}
 	    							]
