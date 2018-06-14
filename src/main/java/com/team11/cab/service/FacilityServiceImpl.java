@@ -37,6 +37,11 @@ public class FacilityServiceImpl implements FacilityService {
 	@Override
 	@Transactional
 	public Facility editFacility(Facility fac) {
+		System.out.println("status: "+fac.getStatus());
+		System.out.println("id"+fac.getFacilityId());
+		System.out.println("type" +fac.getFacilityType());
+		System.out.println("name "+fac.getFacilityName());
+		System.out.println("desc "+fac.getDescription());
 		return facilityRepository.saveAndFlush(fac);
 	}
 
@@ -63,9 +68,9 @@ public class FacilityServiceImpl implements FacilityService {
 		editFacility(f);
 
 	}
-	@Override
-	public ArrayList<Facility> findAvaibleFacility() {
-		ArrayList<Facility> f= facilityRepository.findAvaibleFacility();
-		return f;
-	}
+	@Override 
+	 public ArrayList<Facility> findAvailableFacility() { 
+	  ArrayList<Facility> f= facilityRepository.findAvailableFacility(); 
+	  return f; 
+	 }
 }

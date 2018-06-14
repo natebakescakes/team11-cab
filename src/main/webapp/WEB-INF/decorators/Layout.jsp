@@ -60,6 +60,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/jquery.form-validator.min.js"/></script>
 
 <script type="text/javascript" src="<c:url value="/js/cab.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/cabfac.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cabbooking.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cabmybooking.js" />"></script>
 
