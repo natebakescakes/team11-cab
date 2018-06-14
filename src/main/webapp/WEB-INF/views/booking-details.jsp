@@ -82,7 +82,15 @@ Facility Name : ${booking.facility.facilityName }
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-sm-8"></div>
+		<div class="col-sm-4">
+			<a href="${pageContext.request.contextPath}/home"
+				class="btn btn-default">Back To Home</a>
+		</div>
 
+
+	</div>
 
 <br><br><br><br>
 <label>For more information please contact system administrator at sysadmin@cab.com.sg</label>
