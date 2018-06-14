@@ -53,7 +53,7 @@ $(document).ready(function(){
 							render: simple_checkbox	
 						},
 						{
-							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
+							defaultContent: "<button class='td-button btn-edit btn btn-table btn-primary'>Edit</button>"
 						}
 					]
 					
@@ -84,7 +84,7 @@ $(document).ready(function(){
 	        	    } 
 	        	 if ($(this).children().hasClass("btn-edit"))
 	        		 {
-	        	       $(this).html ('<button class="td-button btn-save">Submit</button>');
+	        	       $(this).html ('<button class="td-button btn-save btn btn-table btn-primary">Submit</button>');
 	        		 }
 	        	   })
 	      
@@ -134,7 +134,7 @@ $(document).ready(function(){
 		    	 
 	        	 if ($(this).children().hasClass("btn-save"))
 	        		 {
-	        	        $(this).html ('<button class="td-button btn-edit">Edit</button>')
+	        	        $(this).html ('<button class="td-button btn-edit btn btn-table btn-primary">Edit</button>')
 	        		 } 
 	        	 
 	        	 
@@ -150,7 +150,8 @@ $(document).ready(function(){
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (data) {
-	            	 alert("HII");
+//	            	 alert("You have successfully edited the facility!");
+	            	 
 	             }
 	           });
 	      	    
