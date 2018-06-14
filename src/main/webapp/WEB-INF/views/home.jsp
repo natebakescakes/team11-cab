@@ -24,10 +24,13 @@
 
 	<div class="col-sm-7">
 		<div class="panel panel-default" id="SearchBox">
+			<div class="panel panel-heading">
+			<h4>Make your booking here:</h4>
+			</div>
 			<div class="panel panel-body">
-				<h3>Make your booking here</h3>
+				
 
-				<form:form action="booking" method="POST">
+				<form:form action="${pageContext.request.contextPath}/booking" class="form-group" method="POST">
 					<label>Choose Facility Type</label>
 					<div class="row">
 						<br>
@@ -66,7 +69,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 
-							<label><input type="checkbox" name="isMaintenance">For
+							<label><input class="form-control" type="checkbox" name="isMaintenance">For
 							Maintenance</label>
 							<br><br>
 						</div>
@@ -79,8 +82,10 @@
 							<label>Date: </label>
 						</div>
 						<div class="col-sm-10">
-							<input name="date" class="form-control datepicker"
-							autocomplete="off">
+
+							<input name="date" class="form-control" type="date" style="text-align:center">
+							
+
 						</div>
 
 						<br>
@@ -95,6 +100,7 @@
 							<label>Start Time: </label>
 						</div>
 						<div class="col-sm-10">
+
 							<input class="form-control timepicker" name="stime" id="starttime"
 							autocomplete="off">
 						
@@ -108,8 +114,9 @@
 							<label>End Time: </label>
 						</div>
 						<div class="col-sm-10">
-							<input class="form-control timepicker" name="endtime" id="endtime"
-							autocomplete="off">
+
+						<input class="form-control timepicker" name="endtime" id="endtime"autocomplete="off">
+
 						</div>
 
 						<br>
@@ -118,8 +125,8 @@
 
 
 					<input type="Submit" class="btn btn-default" name="refresh"
-						value="Submit">
-
+						value="Submit"> <font color='red'>${TimeErrorMessage}</font>
+	
 				</form:form>
 
 			</div>
@@ -130,27 +137,30 @@
 		<div class="panel panel-default" id="BookingID-Searchbox"
 			style="width: 70%">
 			<div class="panel panel-body" align="left">
-				<form:form
-					action="${pageContext.request.contextPath}/bookingdetails"
-					method="POST">
-	
-					Already have a booking?
+			Already have a booking?
 					<br>
 					Key in your Booking ID here:
 					<br>
+					<div class="form-group">
+							<form:form class="form-inline"
+					action="${pageContext.request.contextPath}/bookingdetails"
+					method="POST">
+	
 					<font color='red'>${ErrorMessage}</font>
 					<br>
-					<input name="booking_id" type="text">
-					<button type="submit">
-						<i class="fa fa-search"></i>
+					<input class="form-control" name="booking_id" type="text">
+					<button class="btn btn-default" type="submit">
+						<i class="fa fa-search " style="font-size:20px;" ></i>
 					</button>
-
+				
 				</form:form>
+					</div>
+			
 			</div>
 
 		</div>
 	</div>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/home.js"></script>
 
 </body>

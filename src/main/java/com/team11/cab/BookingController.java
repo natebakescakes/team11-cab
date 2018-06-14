@@ -63,7 +63,8 @@ public class BookingController {
 			mav.addObject("facilities", facilities);
 			
 			LocalDate date = LocalDate.parse(request.getParameter("date"),
-					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//					DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			mav.addObject("date", request.getParameter("date"));
 
 			// Display schedule for all (relevant) Facilities
@@ -117,6 +118,7 @@ public class BookingController {
 		b.setStartDateTime(startDateTime);
 		b.setEndDateTime(endDateTime);
 		b.setMember(memberService.findMemberById(userId));
+		b.setStatus("booked");
 		
 		if (bookingService.isBookingValid(b)) {
 			Booking newBooking = bookingService.makeBooking(b);
