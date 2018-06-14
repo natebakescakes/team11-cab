@@ -29,7 +29,7 @@
 				<div class="col-xs-6 col-sm-4 col-md-3">
 					<div class="thumbnail">
                         <c:if test="${facility.status!=0}">
-					 <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}">
+					 <a href="${pageContext.request.contextPath}/booking?typeId=${type.typeId}&facility=${facility.facilityId}">
 						<img
 							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
 							height="500" class="img-thumbnail">
