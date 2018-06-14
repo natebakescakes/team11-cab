@@ -13,81 +13,71 @@ $(document).ready(function(){
 	   		
 	    	var $bookingtable=$('#bTable');
     	    	
-	    	 			var datatbl1 = $bookingtable.DataTable(
-	    					{
-	    						ajax: {
-	    							url: b,
-	    							dataSrc: ''
-	    						},
-	    						columns: [
-	    							{	data: 'bookingId'	},
-	    							{	data: 'facilityName'	},
-  									{	data: 'startDateDate'	},
-  									{	data: 'startTime'	},
-	    							{	data: 'endDateDate'		},
-	    							{	data: 'endTime'		},
-	    							{   data: 'status'      },
-	    							{	defaultContent: "<button class='btn btn-table btn-primary'>Book</button>"    	},
-	    							{	defaultContent: "<button class='btn btn-table btn-alert'>Cancel</button>" 	},
-	    							{	defaultContent: "<button class='btn btn-table btn-warning'>Maintenance</button>" 	}
-	    							]
-						
-	    					});
+ 			var datatbl1 = $bookingtable.DataTable(
+				{
+					ajax: {
+						url: b,
+						dataSrc: ''
+					},
+					columns: [
+						{	data: 'bookingId'	},
+						{	data: 'facilityName'	},
+						{	data: 'startDateDate'	},
+						{	data: 'startTime'	},
+						{	data: 'endDateDate'		},
+						{	data: 'endTime'		},
+						{   data: 'status'      },
+						{	defaultContent: "<button class='btn-book btn btn-table btn-primary'>Book</button>"    	},
+						{	defaultContent: "<button class='btn-cancel btn btn-table btn-alert'>Cancel</button>" 	},
+						{	defaultContent: "<button class='btn-main btn btn-table btn-warning'>Maintenance</button>" 	}
+						]
+			
+				});
 	    	 			
-	    	 			 $('#bTable tbody').on('click', '.btn-edit', function (e) {
-	    	 		         var data = datatbl1.row( $(this).parents('tr') ).data();
-	    	 		    	 var counter = 0;
-	    	 		         $($(this).parents('tr')).find("td").each(function(){
-	    	 	        		 counter++;
-	    	 		        	 if(counter == 1){
-	    	 		        		 return;
-	    	 		        	 }
-	    	 		        	 if (!$(this).children().hasClass("td-button"))
-	    	 		        	    {
-	    	 		        	        var text = $(this).text();
-	    	 		        	        $(this).html ('<input type="text" value="' +  text + '">');
-	    	 		        	    } 
-	    	 		        	 if ($(this).children().hasClass("btn-edit"))
-	    	 		        		 {
-	    	 		        	       $(this).html ('<button class="td-button btn-save">Submit</button>');
-	    	 		        		 }
-	    	 		        	   })
-	    	 		      
-	    	 		      } );
-	    	 		     
-	    	 		     $('#bTable tbody').on('click', '.btn-save', function (e) {
-	    	 	    		 var parenttr = $(this).parents('tr');
-	    	 		    	 var counter = 0;
-	    	 		    	 $($(this).parents('tr')).find("td").each(function(){
-	    	 	        		 counter++;
-	    	 		        	 if(counter == 1){
-	    	 		        		 return;
-	    	 		        	 }
-	    	 		        	 if (!$(this).children().hasClass("td-button"))
-	    	 		        	    {
-	    	 		        		 	var text = $(this).find("input").val();
-	    	 		        		 	$(this).text(text);
-	    	 		        		 	var cell = datatbl1.cell( $(this) );
-	    	 		        		 	cell.data( text ).draw();
-	    	 		        	   
-	    	 		        	    } 
-	    	 		
-	    	 			    	 
-	    	 		        	 if ($(this).children().hasClass("btn-save"))
-	    	 		        		 {
-	    	 		        	        $(this).html ('<button class="td-button btn-edit">Edit</button>')
-	    	 		        		 } 
-	    	 		        	 
-	    	 		        	 
-	    	 		        	});
-	    	 		    	 
-	    	 		         var bookingdata = datatbl1.row( parenttr ).data();
-
+	    	 			
+	    	 			$('#bTable tbody').on('click', '.btn-book', function (e) {
+	    	 				
+	    	 			
+	    	 				var parenttr=$(this).parents('tr');
+	    	 				
+	    	 				var id1 = parenttr.children(":first-child").text();
+	    	 				var status = parenttr.children("td:nth-child(7)").text();
+	    	 				parenttr.children("td:nth-child(7)").text("Booked");
+	    	 				
+	    	 				 
+	    	 		         });
 	    	 		         
-	    	 		         $.ajax({
-	    	 		             url: window.contextRoot + "admin/booking/update",
+
+	    	 				
+	    	 				$('#bTable tbody').on('click', '.btn-cancel', function (e) {
+		    	 				
+	    	    	 			
+		    	 				var parenttr=$(this).parents('tr');
+		    	 				
+		    	 				var id2 = parenttr.children(":first-child").text();
+		    	 				var status = parenttr.children("td:nth-child(7)").text();
+		    	 				parenttr.children("td:nth-child(7)").text("Cancelled");
+		    	 				
+		    	 				 
+		    	 		         });
+	    	 				
+	    	 				$('#bTable tbody').on('click', '.btn-main', function (e) {
+		    	 				
+	    	    	 			
+		    	 				var parenttr=$(this).parents('tr');
+		    	 				
+		    	 				var id3 = parenttr.children(":first-child").text();
+		    	 				var status = parenttr.children("td:nth-child(7)").text();
+		    	 				parenttr.children("td:nth-child(7)").text("Maintenance");
+		    	 				
+		    	 				 
+		    	 		         });
+	    	 				
+	    	 				
+	    	 				$.ajax({
+	    	 		             url: window.contextRoot + "admin/booking/booked",
 	    	 		             type: "POST",
-	    	 		             data: JSON.stringify(bookingdata),
+	    	 		             data: id1,
 	    	 		             contentType: "application/json",
 	    	 		             cache: true,
 	    	 		             success: function (result) {
@@ -95,26 +85,10 @@ $(document).ready(function(){
 
 	    	 		             }
 	    	 		           });
-	    	 		      	    
-	    	 		      } );    
-	    	 		         
-	    	 		     $('#bTable tbody').on('click', '.btn-delete', function (e) {
-	    	 		         var del = datatbl1.row( $(this).parents('tr') ).data();
-	    	 		         $.ajax({
-	    	 		             url: window.contextRoot + "admin/booking/delete",
-	    	 		             type: "POST",
-	    	 		             data: JSON.stringify(del),
-	    	 		             contentType: "application/json",
-	    	 		             cache: true,
-	    	 		             success: function (result) {
-	    	 		                    datatbl1.ajax.reload();
-	    	 		 
-	    	 		             }
-	    	 		         
-	    	 		        
-	    	 		           });
-	    	 		         
-	    	 		      });	
+	    	 				
+	    	 				
 });
-
-
+	    	 				
+	    	 			
+	    	 			
+//	    	 			

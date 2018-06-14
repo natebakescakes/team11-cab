@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -239,8 +240,11 @@ public class BookingController {
 		return "booking-list";
 	}
 
-	@RequestMapping(value = "/admin/booking/update", method = RequestMethod.POST)
-	public String memberUpdate(@RequestBody Booking b) {
+	@RequestMapping(value = "/admin/booking/booking", method = RequestMethod.POST)
+	public String memberUpdate(@RequestParam String id) {
+		int ID=Integer.parseInt(id);
+		Booking b=bookingService.findBookingByID(ID);
+		b.setStatus("Booked");
 		bookingService.changeBooking(b);
 		return "booking-list";
 	}
