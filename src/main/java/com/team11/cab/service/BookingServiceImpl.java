@@ -16,38 +16,49 @@ import com.team11.cab.model.Booking;
 import com.team11.cab.model.Slot;
 import com.team11.cab.repository.BookingRepository;
 
-
 @Service
 public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private FacilityService facilityService;
 	@Resource
 	private BookingRepository bookingRepository;
-	
+
 	@Override
 	@Transactional
 	public ArrayList<Booking> findAllBookings() {
-		ArrayList<Booking> bookinglist = (ArrayList<Booking>)bookingRepository.findAll();
+		ArrayList<Booking> bookinglist = (ArrayList<Booking>) bookingRepository.findAll();
+
 		return bookinglist;
 	}
 
 	@Override
+	@Transactional
+	public ArrayList<Booking> findMyBookings(String username) {
+		ArrayList<Booking> bookinglist = new ArrayList<Booking>();
+		bookinglist = (ArrayList<Booking>) bookingRepository.findMyBookingsbyusername(username);
+		return bookinglist;
+	}
+
 	public boolean isBookingValid(Booking newBooking) {
 		ArrayList<Booking> bookings = findAllBookings();
-		// if you find a booking with same facility and it the timings overlap with each other, it's invalid
+		// if you find a booking with same facility and it the timings overlap with each
+		// other, it's invalid
 		for (Booking booking : bookings) {
 			Boolean sameFac = (newBooking.getFacility().getFacilityId() == booking.getFacility().getFacilityId());
 			Boolean overlaps = isOverlap(newBooking.getStartDateTime(), newBooking.getEndDateTime(),
 					booking.getStartDateTime(), booking.getEndDateTime());
-			if (sameFac && overlaps) {
+			Boolean invalidRange = ((newBooking.getStartDateTime().isAfter(newBooking.getEndDateTime())) || 
+					(newBooking.getStartDateTime().equals(newBooking.getEndDateTime())));
+			
+			if ((sameFac && overlaps) || invalidRange) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	private boolean isOverlap(LocalDateTime start1, LocalDateTime end1, LocalDateTime start2, LocalDateTime end2) {
-		 return (start1.isBefore(end2)) && (start2.isBefore(end1));
+		return (start1.isBefore(end2)) && (start2.isBefore(end1));
 	}
 
 	@Override
@@ -56,26 +67,39 @@ public class BookingServiceImpl implements BookingService {
 		Booking result = bookingRepository.save(newBooking);
 		return result;
 	}
+
 	public boolean validateBookings(int id) {
 
-		
-		if(bookingRepository.findOne(id)!= null) return true;
-		else return false;
-		
+		if (bookingRepository.findOne(id) != null)
+			return true;
+		else
+			return false;
+
 	}
 
 	@Override
 	public Booking findBookingByID(int id) {
 		return bookingRepository.findOne(id);
 	}
-	
+
 	@Override
+	@Transactional
+	public Booking changeBooking(Booking b) {
+		bookingRepository.saveAndFlush(b);
+		return b;
+	}
+
+	@Override
+	public void removeBooking(Booking booking) {
+		bookingRepository.delete(booking);
+	}
+
 	public ArrayList<Slot> makeFacilityDaySchedule(int facilityId, LocalDate date) {
-		
+
 		ArrayList<Slot> day = new ArrayList<Slot>();
 		// do 12 times
 		LocalTime openingHr = LocalTime.of(9, 0);
-		
+
 		for (int i = 0; i < 12; i++) {
 			// create a booking object
 			Booking b = new Booking();

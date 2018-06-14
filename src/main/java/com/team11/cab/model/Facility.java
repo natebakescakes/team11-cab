@@ -14,13 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /* facility class */
 
 @Entity
 @Table(name = "facility")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "facilityId")
 public class Facility {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,15 +30,15 @@ public class Facility {
 	private String facilityName;
 	private String location;
 	private String description;
+	private int status;
 
 	// @Transient
 	// private int facTypeId;
-	@JsonIgnore
+	// @JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "FacilityType")
 	private FacilityType facilityType;
 
-	
 	@JsonIgnore
 	@OneToMany(targetEntity = Booking.class, mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
@@ -46,13 +48,14 @@ public class Facility {
 	}
 
 	public Facility(int facilityId, String facilityName, String location, String description,
-			FacilityType facilityType) {
+			FacilityType facilityType, int status) {
 		super();
 		this.facilityId = facilityId;
 		this.facilityName = facilityName;
 		this.location = location;
 		this.description = description;
 		this.facilityType = facilityType;
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -95,17 +98,12 @@ public class Facility {
 		this.location = location;
 	}
 
-	@JsonGetter
-	public String getFacilityTypeName() {
-		return this.facilityType.getTypeName();
+	public int getStatus() {
+		return status;
 	}
 
-	// public int getFacTypeId() {
-	// return facTypeId;
-	// }
-	//
-	// public void setFacTypeId(int facTypeId) {
-	// this.facTypeId = facTypeId;
-	// }
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 }

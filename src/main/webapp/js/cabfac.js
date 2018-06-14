@@ -7,9 +7,23 @@ $(document).ready(function(){
 //	    alert(JSON.stringify(data));
 //	});
 	
+	var token = $('#_csrf').attr('content');
+	var header = $('#_csrf_header').attr('content');
+	
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader('X-CSRF-TOKEN', token);
+		}
+	})
+	
 	
 		var $table=$('#myFacTable');
 		//editor= $table.Editor();
+	
+	var simple_checkbox=function(data,type,full, meta){
+		var checked= (data==true)? "checked" : "";
+		return '<input type="checkbox"  disabled="true" class="checkbox td-button" ' + checked + '/>';
+	}
 		
 		var datatbl = $table.DataTable(
 				{
@@ -25,7 +39,7 @@ $(document).ready(function(){
 							data: 'facilityName'
 						},
 						{
-							data: 'facilityTypeName'
+							data: 'facilityType.typeName'
 						},
 						{
 							data: 'location'
@@ -34,10 +48,12 @@ $(document).ready(function(){
 							data: 'description'
 						},
 						{
-							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
+							data: 'status',
+							//defaultContent: "<input type='checkbox' class='td-button btn-delete'></input>"
+							render: simple_checkbox	
 						},
 						{
-							defaultContent: "<button class='td-button btn-delete'>Delete</button>"
+							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
 						}
 					]
 					
@@ -46,10 +62,21 @@ $(document).ready(function(){
 
 	//https://stackoverflow.com/questions/31327933/how-add-more-then-one-button-in-each-row-in-jquery-datatables-and-how-to-apply-e
 	     $('#myFacTable tbody').on('click', '.btn-edit', function (e) {
-	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
-
+	    	 var data = datatbl.row( $(this).parents('tr') ).data();
+	    	 var counter = 0;
 	         $($(this).parents('tr')).find("td").each(function(){
+        		 counter++;
+	        	 if(counter < 2){
+	        		 return;
+	        	 }
+//	        	 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+	        		( $(this).find("input")).prop("disabled",false);
+	        		 
+	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        	        var text = $(this).text();
@@ -64,9 +91,37 @@ $(document).ready(function(){
 	      } );
 	     
 	     $('#myFacTable tbody').on('click', '.btn-save', function (e) {
-    		 var parenttr = $(this).parents('tr');
-
+	    	 var parenttr = $(this).parents('tr');
+	    	 var counter = 0;
 	    	 $($(this).parents('tr')).find("td").each(function(){
+//	    		 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
+        		 counter++;
+	        	 if(counter < 2){
+	        		 return;
+	        	 }
+	        	 
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+		        		( $(this).find("input")).prop("disabled",true);
+		        		
+		        		if ( ($(this).find("input")).prop('checked')==true)
+		        		{
+				        	 var cell = datatbl.cell( $(this) );
+				        	 
+				        	 cell.data(1).draw();
+		   	        	}
+		        		
+		   	        	 else
+		   	        	 {
+			   	        	 var cell = datatbl.cell( $(this) );
+			   	        	 cell.data(0).draw();
+		   	        	 }
+	        		
+	        	 }
+	        	 
+	        	 
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        		 	var text = $(this).find("input").val();
@@ -74,7 +129,7 @@ $(document).ready(function(){
 	        		 	var cell = datatbl.cell( $(this) );
 	        		 	cell.data( text ).draw();
 	        	   
-	        	    } 
+	        	    }  
 	
 		    	 
 	        	 if ($(this).children().hasClass("btn-save"))
@@ -86,13 +141,13 @@ $(document).ready(function(){
 	        	});
 	    	 
 	         var facilitydata = datatbl.row( parenttr ).data();
-	         alert(JSON.stringify(facilitydata));
+//	         alert(JSON.stringify(facilitydata));
 	         
 	         $.ajax({
-	             url: '/facility/update',
+	             url: window.contextRoot + "/admin/facilities/update",
 	             type: 'POST',
-	             dataType: 'json',
 	             data: JSON.stringify(facilitydata),
+	             contentType: "application/json",
 	             cache: true,
 	             success: function (data) {
 	            	 alert("HII");
@@ -103,7 +158,7 @@ $(document).ready(function(){
 	         
 	     $('#myFacTable tbody').on('click', '.btn-delete', function (e) {
 	         var data = datatbl.row( $(this).parents('tr') ).data();
-	    	 alert(JSON.stringify(data));
+//	    	 alert(JSON.stringify(data));
 	      } );	  
 	     
 	     
@@ -125,3 +180,4 @@ $(document).ready(function(){
 //	    } );
 
 });
+

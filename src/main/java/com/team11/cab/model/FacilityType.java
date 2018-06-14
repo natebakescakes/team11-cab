@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "facilitytype")
 public class FacilityType {
@@ -19,6 +21,7 @@ public class FacilityType {
 	private String typeName;
 	private String description;
 
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "facilityType")
 	private List<Facility> facilities;
 
@@ -33,7 +36,6 @@ public class FacilityType {
 		this.description = description;
 		this.facilities = facilities;
 	}
-
 
 	public int getTypeId() {
 		return typeId;
