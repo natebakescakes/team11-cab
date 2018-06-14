@@ -21,6 +21,5 @@ public interface FacilityService {
 
 	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);
 	
-	
-	ArrayList<Facility> findAvaibleFacility();
+	ArrayList<Facility> findAvailableFacility();
 }

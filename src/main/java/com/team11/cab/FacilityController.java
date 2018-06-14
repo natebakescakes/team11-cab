@@ -38,7 +38,7 @@ public class FacilityController {
 	@RequestMapping(value = "/facilities", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
-		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvaibleFacility();
+		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvailableFacility();
 		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
 		
 		mav.addObject("typeList",typeList);
