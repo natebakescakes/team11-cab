@@ -47,7 +47,10 @@ public class BookingServiceImpl implements BookingService {
 			Boolean sameFac = (newBooking.getFacility().getFacilityId() == booking.getFacility().getFacilityId());
 			Boolean overlaps = isOverlap(newBooking.getStartDateTime(), newBooking.getEndDateTime(),
 					booking.getStartDateTime(), booking.getEndDateTime());
-			if (sameFac && overlaps) {
+			Boolean invalidRange = ((newBooking.getStartDateTime().isAfter(newBooking.getEndDateTime())) || 
+					(newBooking.getStartDateTime().equals(newBooking.getEndDateTime())));
+			
+			if ((sameFac && overlaps) || invalidRange) {
 				return false;
 			}
 		}

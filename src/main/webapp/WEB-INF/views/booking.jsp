@@ -12,7 +12,7 @@
 </c:if>
 <c:if test="${bookingSuccess == false}">
 	<div class="alert alert-danger">
-		There is already a booking at that slot...
+		Invalid booking.
 	</div>
 </c:if>
 
@@ -21,20 +21,18 @@
 	<div class="row">
 		<div class="col-md-5">
 			<label>Choose Facility Type</label>
-			<select name="typeId"
-				class="form-control">
-				<option value="-1" selected disabled hidden>- Select a
-					Facility Type -</option>
+			<select name="typeId" class="form-control" data-validation="required">
+				<option value="-1" selected disabled hidden>- Select a Facility Type -</option>
 				<c:forEach var="facilityType" items="${ftypes}">
 					<option value="${facilityType.typeId}"
 						${facilityType.typeId == typeId ? 'selected="selected"' : ''}>
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
-			<input type="submit" name="refresh" value="Refresh">
+			<input id="submit" type="submit" value="Load">
 			<br>
-			<label>Choose Facility</label>
-			<select id="choose-room" name="facility" class="form-control">
+			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label>
+			<select id="choose-room" name="facility" class="form-control ${showFacility == true ? '' : 'hidden' }" data-validation="required">
 				<c:forEach var="facility" items="${facilities}">
 					<option value="${facility.facilityId}">${facility.facilityName}</option>
 				</c:forEach>
@@ -42,18 +40,23 @@
 		</div>
 		<div class="col-md-5">
 			<label>Date</label> <input id="datepicker" name="date" type="text"
-				class="form-control datepicker" value="${date}">
+				class="form-control datepicker" value="${date}" autocomplete="off" data-validation="required">
 			<label>Start Time</label>
-			<input class="timepicker" name="stime" id="starttime" type="text" step=3600 value="${stime}" autocomplete="off">
+			<input class="timepicker form-control" name="stime" id="starttime" type="text" step=3600 value="${stime}" autocomplete="off" data-validation="required">
 			<label>End Time</label>
-			<input class="timepicker" name="endtime" id="endtime" type="text" step=3600 value="${endtime}" autocomplete="off">
+			<input class="timepicker form-control" name="endtime" id="endtime" type="text" step=3600 value="${endtime}" autocomplete="off" data-validation="required">
 		</div>
 		<div class="col-md-2">
-			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit">
+			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit" ${hideFacility ? 'disabled' : '' }>
 		</div>
 	</div>
 </form:form>
 </div>
+
+<c:if test="${facilitySchedules != null}">
+	<p>Click table below to select.</p>
+</c:if>
+
 
 <!-- Generate tables for each facility -->
 <c:forEach var="facilitySchedule" items="${facilitySchedules}">
@@ -67,18 +70,5 @@
 	</div>
 </c:forEach>
 
-<script>
 
-	$(document).ready(function() {
-		// for timepicker
-		$('input.timepicker').timepicker({});
-		// for datepicker
-		$('.datepicker').datepicker();
-		// for validation
-		$.validate();
-	});
-	
-</script>
-<script type="text/javascript"
-	src="<c:url value="/js/booking.js" />">
-</script>
+<script type="text/javascript" src="<c:url value="/js/booking.js" />"></script>

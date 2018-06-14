@@ -48,15 +48,17 @@
 							<h3>${facility.facilityName}</h3>
 							<p>${facility.description}</p>
 							<p>
-							<c:if test="${facility.status!=0}">
-								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
-									class="btn btn-primary" role="button"><i
-									class="fa fa-bookmark-o"></i> Book Now</a>
-									</c:if>
-									
-									<c:if test="${facility.status!=1}">
-								<i	class="fa fa-bookmark-o"></i> Not Available Now
-									</c:if>
+
+								<c:if test="${facility.status!=0}">
+									<a
+										href="${pageContext.request.contextPath}/booking?typeId=${type.typeId}&facility=${facility.facilityId}"
+										class="btn btn-primary" role="button"><i
+										class="fa fa-bookmark-o"></i> Book Now</a>
+								</c:if>
+
+								<c:if test="${facility.status!=1}">
+									<i class="fa fa-bookmark-o"></i> Not Available Now
+								</c:if>
 							</p>
 						</div>
 					</div>
