@@ -15,7 +15,17 @@ public interface FacilityService {
 
 	void deleteFacility(Facility fac);
 
+<<<<<<< HEAD
 	Facility findFacilityById(int facilityId);
 
 	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);
+=======
+	void updateFacility(Facility f);
+
+	Facility findFacilityById(int facilityId);
+
+	ArrayList<Facility> findFacilitiesByFacilityType(int facilityTypeId);
+	
+	ArrayList<Facility> findAvailableFacility();
+>>>>>>> refs/remotes/origin/master
 }

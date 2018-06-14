@@ -67,7 +67,11 @@ $( document ).ready(function() {
 	    maxTime: '9:00pm',
 	    defaultTime: '9',
 	    startTime: '9:00am',
+<<<<<<< HEAD
 	    dynamic: true,
+=======
+	    dynamic: false,
+>>>>>>> refs/remotes/origin/master
 	    dropdown: true,
 	    scrollbar: true
 	});

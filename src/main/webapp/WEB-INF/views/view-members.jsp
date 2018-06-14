@@ -34,7 +34,7 @@
 							<th>Address</th> 
 							<th>Contact No</th>
 							<th>Date of Birth</th> 
-							<th></th>
+							<th>Active</th>
 							<th></th>
 						</tr>
 

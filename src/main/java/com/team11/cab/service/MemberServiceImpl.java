@@ -56,6 +56,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		memberFromDb.setDob(m.getDob());
 		memberFromDb.setAddress(m.getAddress());
 		memberFromDb.setPhone(m.getPhone());
+<<<<<<< HEAD
 		
 		memberRepository.saveAndFlush(memberFromDb);
 	}
@@ -65,6 +66,18 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public void deleteMember(Member m) {
 		memberRepository.delete(m);
 	}
+=======
+		memberFromDb.setEnabled(m.isEnabled());
+		
+		memberRepository.saveAndFlush(memberFromDb);
+	}
+	
+//	@Override
+//	@Transactional
+//	public void deleteMember(Member m) {
+//		memberRepository.delete(m);
+//	}
+>>>>>>> refs/remotes/origin/master
 	
 	public Member findMemberByUsername(String username) {
 		return memberRepository.findByUsername(username);

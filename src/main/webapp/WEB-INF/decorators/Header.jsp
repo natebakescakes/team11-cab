@@ -25,7 +25,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${contextPath}/home">Home</a></li>
 				<li><a href="${contextPath}/facilities">Facilities</a></li>
-				<li><a href="#">My Bookings</a></li>
+				<li><a href="${contextPath}/user/booking">My Bookings</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="isAnonymous()">
@@ -37,7 +37,7 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false"><i class="fa fa-gear"></i> Manage <i class="fa fa-caret-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="${contextPath}/admin/bookings/">Bookings</a></li>
+								<li><a href="${contextPath}/admin/booking/">Bookings</a></li>
 								<li><a href="${contextPath}/admin/facilities/">Facilities</a></li>
 								<li><a href="${contextPath}/admin/members/list">Members</a></li>
 							</ul></li>

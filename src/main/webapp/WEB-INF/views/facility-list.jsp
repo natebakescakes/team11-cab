@@ -28,20 +28,37 @@
 			<c:forEach var="facility" items="${type.facilities}">
 				<div class="col-xs-6 col-sm-4 col-md-3">
 					<div class="thumbnail">
-
+                        <c:if test="${facility.status!=0}">
 					 <a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}">
 						<img
 							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
 							height="500" class="img-thumbnail">
 							</a>
+							</c:if>
+							
+							<c:if test="${facility.status!=1}">			
+					
+						<img
+							src="${pageContext.request.contextPath}/image/${facility.facilityType.typeId}.jpg"
+							height="500" class="img-thumbnail">
+							</c:if>
+							
 
 						<div class="caption" style="text-align: center">
 							<h3>${facility.facilityName}</h3>
 							<p>${facility.description}</p>
 							<p>
-								<a href="${pageContext.request.contextPath}/booking/tid=${type.typeId}/fid=${facility.facilityId}"
-									class="btn btn-primary" role="button"><i
-									class="fa fa-bookmark-o"></i> Book Now</a>
+
+								<c:if test="${facility.status!=0}">
+									<a
+										href="${pageContext.request.contextPath}/booking?typeId=${type.typeId}&facility=${facility.facilityId}"
+										class="btn btn-primary" role="button"><i
+										class="fa fa-bookmark-o"></i> Book Now</a>
+								</c:if>
+
+								<c:if test="${facility.status!=1}">
+									<i class="fa fa-bookmark-o"></i> Not Available Now
+								</c:if>
 							</p>
 						</div>
 					</div>

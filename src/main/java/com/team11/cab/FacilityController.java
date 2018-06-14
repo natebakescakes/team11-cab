@@ -3,6 +3,10 @@ package com.team11.cab;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpServletRequest;
+>>>>>>> refs/remotes/origin/master
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.RequestBody;
+>>>>>>> refs/remotes/origin/master
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,7 +32,11 @@ import com.team11.cab.service.FacilityTypeService;
 //import edu.iss.cats.model.Employee;
 
 @Controller
+<<<<<<< HEAD
 @RequestMapping(value = "/facilities")
+=======
+
+>>>>>>> refs/remotes/origin/master
 public class FacilityController {
 
 	@Autowired
@@ -32,9 +45,14 @@ public class FacilityController {
 	@Autowired
 	private FacilityTypeService facilityTypeService;
 
+<<<<<<< HEAD
 	@RequestMapping(value = "", method = RequestMethod.GET)
+=======
+	@RequestMapping(value = "/facilities", method = RequestMethod.GET)
+>>>>>>> refs/remotes/origin/master
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
+<<<<<<< HEAD
 		// List<Facility> facilityList =
 		// (ArrayList<Facility>)facilityService.findAllFacilities();
 		List<FacilityType> typeList = (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
@@ -43,6 +61,15 @@ public class FacilityController {
 
 		// mav.addObject("facilityList", facilityList);
 
+=======
+		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvailableFacility();
+		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
+		
+		mav.addObject("typeList",typeList);
+		
+		mav.addObject("facilityList", AvailblefacilityList);
+		
+>>>>>>> refs/remotes/origin/master
 		return mav;
 	}
 
@@ -115,10 +142,28 @@ public class FacilityController {
 		return mav;
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/admin/list", method = RequestMethod.GET)
 	public String facilityList() {
 
 		return "admin-facility-list2";
+=======
+	@RequestMapping(value = "/admin/facilities", method = RequestMethod.GET)
+	public String facilityList() {
+
+		return "admin-facility-list2";
+	}
+
+	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
+	public @ResponseBody String facilityUpdate(@RequestBody Facility f, HttpServletRequest request) {
+
+		System.out.println(f.getFacilityName());
+		facilityService.updateFacility(f);
+
+		return "admin-facility-list2";
+		// mav.setViewName("redirect:/member/list");
+
+>>>>>>> refs/remotes/origin/master
 	}
 
 }

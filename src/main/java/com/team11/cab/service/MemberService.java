@@ -10,7 +10,11 @@ public interface MemberService {
 
 	void updateMember(Member m);
 	void editMember(Member m);
+<<<<<<< HEAD
 	void deleteMember(Member m);
+=======
+	//void deleteMember(Member m);
+>>>>>>> refs/remotes/origin/master
 
 	public Member findMemberById(int id);
 

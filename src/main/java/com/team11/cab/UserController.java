@@ -63,5 +63,10 @@ public class UserController {
 		}
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/booking", method = RequestMethod.GET)
+	public String membermybookingsList() {
+		return "membooking-list";
+	}
 
 }

@@ -1,13 +1,15 @@
 package com.team11.cab;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> refs/remotes/origin/master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team11.cab.model.Member;
 import com.team11.cab.service.MemberService;
@@ -28,6 +30,7 @@ public class MemberController {
 
 
 	
+<<<<<<< HEAD
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public @ResponseBody String memberDelete(@RequestBody Member m) {
 		
@@ -35,6 +38,15 @@ public class MemberController {
 		return "view-members";
 		
 	}
+=======
+//	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+//	public @ResponseBody String memberDelete(@RequestBody Member m) {
+//		
+//		mService.deleteMember(m);
+//		return "view-members";
+//		
+//	}
+>>>>>>> refs/remotes/origin/master
 	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

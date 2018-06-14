@@ -12,7 +12,11 @@
 </c:if>
 <c:if test="${bookingSuccess == false}">
 	<div class="alert alert-danger">
+<<<<<<< HEAD
 		There is already a booking at that slot...
+=======
+		Invalid booking.
+>>>>>>> refs/remotes/origin/master
 	</div>
 </c:if>
 
@@ -29,10 +33,17 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
+<<<<<<< HEAD
 			<input id="submit" type="submit" name="refresh" value="Load">
 			<br>
 			<label class="${hideFacility ? 'hidden' : '' }">Choose Facility</label>
 			<select id="choose-room" name="facility" class="form-control ${hideFacility == true ? 'hidden' : '' }" data-validation="required">
+=======
+			<input id="submit" type="submit" value="Load">
+			<br>
+			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label>
+			<select id="choose-room" name="facility" class="form-control ${showFacility == true ? '' : 'hidden' }" data-validation="required">
+>>>>>>> refs/remotes/origin/master
 				<c:forEach var="facility" items="${facilities}">
 					<option value="${facility.facilityId}">${facility.facilityName}</option>
 				</c:forEach>
@@ -71,4 +82,8 @@
 </c:forEach>
 
 
+<<<<<<< HEAD
 <script type="text/javascript" src="<c:url value="/js/booking.js" />"></script>
+=======
+<script type="text/javascript" src="<c:url value="/js/booking.js" />"></script>
+>>>>>>> refs/remotes/origin/master
