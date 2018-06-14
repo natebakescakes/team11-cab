@@ -19,6 +19,11 @@ $(document).ready(function(){
 	
 		var $table=$('#myFacTable');
 		//editor= $table.Editor();
+	
+	var simple_checkbox=function(data,type,full, meta){
+		var checked= (data==true)? "checked" : "";
+		return '<input type="checkbox"  disabled="true" class="checkbox td-button" ' + checked + '/>';
+	}
 		
 		var datatbl = $table.DataTable(
 				{
@@ -43,10 +48,12 @@ $(document).ready(function(){
 							data: 'description'
 						},
 						{
-							defaultContent: "<button class='td-button btn-edit'>Edit</button>"
+							data: 'status',
+							//defaultContent: "<input type='checkbox' class='td-button btn-delete'></input>"
+							render: simple_checkbox	
 						},
 						{
-							defaultContent: "<button class='td-button btn-delete'>Delete</button>"
+							defaultContent: "<button class='td-button btn-edit btn btn-table btn-primary'>Edit</button>"
 						}
 					]
 					
@@ -55,10 +62,21 @@ $(document).ready(function(){
 
 	//https://stackoverflow.com/questions/31327933/how-add-more-then-one-button-in-each-row-in-jquery-datatables-and-how-to-apply-e
 	     $('#myFacTable tbody').on('click', '.btn-edit', function (e) {
-	         var data = datatbl.row( $(this).parents('tr') ).data();
-//	    	 alert(JSON.stringify(data));
-
+	    	 var data = datatbl.row( $(this).parents('tr') ).data();
+	    	 var counter = 0;
 	         $($(this).parents('tr')).find("td").each(function(){
+        		 counter++;
+	        	 if(counter < 2){
+	        		 return;
+	        	 }
+//	        	 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+	        		( $(this).find("input")).prop("disabled",false);
+	        		 
+	        	 }
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        	        var text = $(this).text();
@@ -66,16 +84,44 @@ $(document).ready(function(){
 	        	    } 
 	        	 if ($(this).children().hasClass("btn-edit"))
 	        		 {
-	        	       $(this).html ('<button class="td-button btn-save">Submit</button>');
+	        	       $(this).html ('<button class="td-button btn-save btn btn-table btn-primary">Submit</button>');
 	        		 }
 	        	   })
 	      
 	      } );
 	     
 	     $('#myFacTable tbody').on('click', '.btn-save', function (e) {
-    		 var parenttr = $(this).parents('tr');
-
+	    	 var parenttr = $(this).parents('tr');
+	    	 var counter = 0;
 	    	 $($(this).parents('tr')).find("td").each(function(){
+//	    		 if(this.hasClass("sorting_1")){
+//	        		 return true;
+//	        	 }
+        		 counter++;
+	        	 if(counter < 2){
+	        		 return;
+	        	 }
+	        	 
+	        	 if ($(this).children().hasClass("checkbox"))
+	        	 {
+		        		( $(this).find("input")).prop("disabled",true);
+		        		
+		        		if ( ($(this).find("input")).prop('checked')==true)
+		        		{
+				        	 var cell = datatbl.cell( $(this) );
+				        	 
+				        	 cell.data(1).draw();
+		   	        	}
+		        		
+		   	        	 else
+		   	        	 {
+			   	        	 var cell = datatbl.cell( $(this) );
+			   	        	 cell.data(0).draw();
+		   	        	 }
+	        		
+	        	 }
+	        	 
+	        	 
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        		 	var text = $(this).find("input").val();
@@ -83,12 +129,12 @@ $(document).ready(function(){
 	        		 	var cell = datatbl.cell( $(this) );
 	        		 	cell.data( text ).draw();
 	        	   
-	        	    } 
+	        	    }  
 	
 		    	 
 	        	 if ($(this).children().hasClass("btn-save"))
 	        		 {
-	        	        $(this).html ('<button class="td-button btn-edit">Edit</button>')
+	        	        $(this).html ('<button class="td-button btn-edit btn btn-table btn-primary">Edit</button>')
 	        		 } 
 	        	 
 	        	 
@@ -104,7 +150,8 @@ $(document).ready(function(){
 	             contentType: "application/json",
 	             cache: true,
 	             success: function (data) {
-	            	 alert("HII");
+//	            	 alert("You have successfully edited the facility!");
+	            	 
 	             }
 	           });
 	      	    
@@ -134,3 +181,4 @@ $(document).ready(function(){
 //	    } );
 
 });
+
