@@ -102,7 +102,7 @@
 						</div>
 						<div class="col-sm-10">
 
-							<input class="form-control timepicker" name="stime" id="starttime"
+							<input class="form-control timepicker" name="stime" id="stime"
 							autocomplete="off">
 						
 						</div>
