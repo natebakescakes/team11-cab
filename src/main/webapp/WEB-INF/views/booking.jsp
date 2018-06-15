@@ -12,12 +12,12 @@
 </c:if>
 <c:if test="${bookingSuccess == false}">
 	<div class="alert alert-danger">
-		Invalid booking.
+		There is already a booking at that slot...
 	</div>
 </c:if>
 
 <div class="form-group">
-<form:form action="" method="POST">
+<form:form action="${pageContext.request.contextPath}/user/booking" method="POST">
 	<div class="row">
 		<div class="col-md-5">
 			<label>Choose Facility Type</label>
@@ -29,10 +29,10 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
-			<input id="submit" type="submit" value="Load">
+			<input id="submit" type="submit" name="refresh" value="Load">
 			<br>
-			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label>
-			<select id="choose-room" name="facility" class="form-control ${showFacility == true ? '' : 'hidden' }" data-validation="required">
+			<label class="${hideFacility ? 'hidden' : '' }">Choose Facility</label>
+			<select id="choose-room" name="facility" class="form-control ${hideFacility == true ? 'hidden' : '' }" data-validation="required">
 				<c:forEach var="facility" items="${facilities}">
 					<option value="${facility.facilityId}">${facility.facilityName}</option>
 				</c:forEach>

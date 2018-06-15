@@ -30,6 +30,7 @@
 			<div class="panel panel-body">
 				
 
+				
 				<form:form action="${pageContext.request.contextPath}/booking" class="form-group" method="POST">
 					<label>Choose Facility Type</label>
 					<div class="row">
@@ -69,8 +70,8 @@
 					<div class="row">
 						<div class="col-sm-6">
 
-							<label><input class="form-control" type="checkbox" name="isMaintenance">For
-							Maintenance</label>
+							<input type="checkbox" name="isMaintenance">For
+							Maintenance
 							<br><br>
 						</div>
 						<div class="col-sm-6"></div>
@@ -101,7 +102,7 @@
 						</div>
 						<div class="col-sm-10">
 
-							<input class="form-control timepicker" name="stime" id="starttime"
+							<input class="form-control timepicker" name="stime" id="stime"
 							autocomplete="off">
 						
 						</div>

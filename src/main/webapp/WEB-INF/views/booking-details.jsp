@@ -11,9 +11,11 @@
 </head>
 <body>
 <!--  put in the include confirm booking logo here -->
-<c:if test="${pageContext.request.contextPath=='/booking'}">
 
-<img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG" />
+
+
+<c:if test="${pageContext.request.method=='GET'}">
+<img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG"/>
 </c:if>
 
 <h2>Booking Details</h2>
@@ -21,13 +23,13 @@
 <p>Check your booking details here</p>
 <br>
 <div class ="container-fluid">
-<div class="panel panel-default" id="panel" style="padding-left: 20px">
+<div class="panel panel-default" id="panel" style="padding-left: 20px; width:80%" >
 
 <h3> Booking ID:${booking.bookingId}</h3>
 
 	<div class="row">
-	<div class="col-sm-4"></div>
-	<div class="col-sm-8">
+	<div class="col-sm-5"></div>
+	<div class="col-sm-7">
 	<fmt:parseDate value="${booking.transDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedtransDateTime" type="both" />
 	Booking Date : <fmt:formatDate pattern = "d MMM yyyy"  value = "${parsedtransDateTime}" />
 	<br>
@@ -38,11 +40,11 @@
 	</div>
 	
 	<div class="row" >
-		<div class="col-sm-4">
+		<div class="col-sm-5">
 		Name :  ${booking.member.firstName} ${booking.member.lastName}
 		
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 		Member ID : ${booking.member.userid}
 		
 		</div>
@@ -56,12 +58,12 @@ Facility Name : ${booking.facility.facilityName }
 <fmt:parseDate value="${booking.startDateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStartDateTime" type="both" />
 <fmt:parseDate value="${booking.endDateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEndDateTime" type="both" />
 <div class="row" >
-		<div class="col-sm-4">
+		<div class="col-sm-5">
 		Start Date : <fmt:formatDate pattern = "d MMM yyyy"  value = "${parsedStartDateTime}" />
 		<br>
 		<br>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 		End Date : <fmt:formatDate pattern = "d MMM yyyy"  value = "${parsedEndDateTime}" />
 		<br>
 	    <br>
@@ -70,27 +72,26 @@ Facility Name : ${booking.facility.facilityName }
 
 
 <div class="row" >
-		<div class="col-sm-4">
+		<div class="col-sm-5">
 		Start Time : <fmt:formatDate pattern = "hh:mm a"  value = "${parsedStartDateTime}" />
 		<br>
 		
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 		End Time : <fmt:formatDate pattern = "hh:mm a" value="${parsedEndDateTime}" />
-		<br>
+		<br><br><br><br>
 		
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-8"></div>
-		<div class="col-sm-4">
-			<a href="${pageContext.request.contextPath}/home"
-				class="btn btn-default">Back To Home</a>
-		</div>
+<div class="row">
+<div class="col-sm-8"></div>
+<div class="col-sm-4">
+<a href="${pageContext.request.contextPath}/home" class="btn btn-default">Back To Home</a>
+</div>
 
 
-	</div>
+</div>
 
 <br><br><br><br>
 <label>For more information please contact system administrator at sysadmin@cab.com.sg</label>

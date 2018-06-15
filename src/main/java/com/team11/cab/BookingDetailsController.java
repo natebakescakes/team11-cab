@@ -20,7 +20,9 @@ public class BookingDetailsController {
 @RequestMapping(value="/bookingdetails", method={ RequestMethod.POST, RequestMethod.GET } )
 	public ModelAndView searchBooking(@RequestParam String booking_id, RedirectAttributes redir, ModelAndView modelAndView) {
 		
-	    //validate booking exists
+		
+	
+	    //validate input not empty
 		if(booking_id.isEmpty())
 		{
 			 modelAndView.setViewName("redirect:home");
@@ -28,11 +30,14 @@ public class BookingDetailsController {
 			 return modelAndView;
 		}
 		int id = Integer.parseInt(booking_id);
+		
+		//validate booking exists
 		if(!bService.validateBookings(id))
 		{
 			 modelAndView.setViewName("redirect:home");
 			 redir.addFlashAttribute("ErrorMessage","Booking not found");	  
 		}
+		//pass booking object to booking-details view
 		else
 		{	
 			modelAndView.setViewName("booking-details");

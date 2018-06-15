@@ -65,7 +65,6 @@ $( document ).ready(function() {
 	    interval: 60,
 	    minTime: '9',
 	    maxTime: '9:00pm',
-	    defaultTime: '9',
 	    startTime: '9:00am',
 	    dynamic: false,
 	    dropdown: true,

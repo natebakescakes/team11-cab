@@ -14,7 +14,7 @@ $(document).ready(function() {
 	    maxTime: '9:00pm',
 	    defaultTime: '9',
 	    startTime: '9:00am',
-	    dynamic: false,
+	    dynamic: true,
 	    dropdown: true,
 	    scrollbar: true
 	});

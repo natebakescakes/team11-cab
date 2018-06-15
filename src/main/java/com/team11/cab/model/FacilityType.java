@@ -37,7 +37,6 @@ public class FacilityType {
 		this.facilities = facilities;
 	}
 
-
 	public int getTypeId() {
 		return typeId;
 	}
