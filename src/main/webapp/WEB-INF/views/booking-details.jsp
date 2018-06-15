@@ -14,8 +14,7 @@
 
 
 
- <c:if test="${pageContext.request.method=='GET'}">
-
+<c:if test="${pageContext.request.method=='GET'}">
 <img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG"/>
 </c:if>
 
