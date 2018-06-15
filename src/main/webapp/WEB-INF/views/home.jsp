@@ -70,8 +70,8 @@
 					<div class="row">
 						<div class="col-sm-6">
 
-							<label><input class="form-control" type="checkbox" name="isMaintenance">For
-							Maintenance</label>
+							<input type="checkbox" name="isMaintenance">For
+							Maintenance
 							<br><br>
 						</div>
 						<div class="col-sm-6"></div>

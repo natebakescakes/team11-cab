@@ -12,9 +12,11 @@
 <body>
 <!--  put in the include confirm booking logo here -->
 
-<c:if test="${param.bookingid}">
 
-<img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG" />
+
+ <c:if test="${pageContext.request.method=='GET'}">
+
+<img src="${pageContext.request.contextPath}/image/bookingcomplete.PNG"/>
 </c:if>
 
 <h2>Booking Details</h2>
