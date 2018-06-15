@@ -31,6 +31,7 @@
 				
 
 				<form:form action="booking" class="form-group" method="POST">
+				<form:form action="${pageContext.request.contextPath}/booking" class="form-group" method="POST">
 					<label>Choose Facility Type</label>
 					<div class="row">
 						<br>
