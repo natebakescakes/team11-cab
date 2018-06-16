@@ -13,6 +13,11 @@
 </head>
 <body>
 	<h3>Manage Facilities</h3>
+	<div class="row">
+		<a href="${pageContext.request.contextPath}/admin/facilities/create" class="btn btn-primary">
+			Add New Facility
+		</a>
+	</div>
 
 	<div class="row">
 		<table id="myFacTable" style="width: 100%"

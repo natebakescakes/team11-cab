@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +49,11 @@ public class FacilityController {
 
 	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.GET)
 	public ModelAndView newFacilityPage() {
-		ModelAndView mav = new ModelAndView("facility-new", "facility", new Facility());
+		ModelAndView mav = new ModelAndView("facility-new");
+		Facility facility = new Facility();
+		mav.addObject("facility", facility);
+		
+		
 		List<FacilityType> facTypeList = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("facTypeList", facTypeList);
 		return mav;
@@ -66,7 +69,7 @@ public class FacilityController {
 		String message = "New facility " + facility.getFacilityId() + " was successfully created.";
 
 		facilityService.createFacility(facility);
-		mav.setViewName("redirect:/facility/admin/list");
+		mav.setViewName("redirect:/admin/facilities");
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
