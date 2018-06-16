@@ -48,15 +48,6 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/list2", method = RequestMethod.GET)
-	public ModelAndView facilityListAdminPage() {
-		ModelAndView mav = new ModelAndView("admin-facility-list");
-		List<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
-		mav.addObject("facilityList", facilityList);
-		return mav;
-
-	}
-
 	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
 	public ModelAndView newFacilityPage() {
 		ModelAndView mav = new ModelAndView("facility-new", "facility", new Facility());

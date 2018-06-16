@@ -291,58 +291,7 @@ public class BookingController {
 	// return mav;
 	// }
 
-	// @RequestMapping(value = "/booking/typeid={typeid}", method =
-	// RequestMethod.GET)
-	// public ModelAndView Booking_TypeChosen(@PathVariable String typeid) {
-	// ModelAndView mav = new ModelAndView("booking-chosen");
-	//
-	// ArrayList<Facility> facilityList = (ArrayList<Facility>)
-	// facilityService.findAllFacilities();
-	//
-	// ArrayList<FacilityType> typeList =
-	// facilityTypeService.findAllFacilityTypes();
-	//
-	// mav.addObject("facilityList", facilityList);
-	//
-	// mav.addObject("typeList", typeList);
-	//
-	// int TypeId = Integer.valueOf(typeid);
-	//
-	// mav.addObject("typeidchosen", TypeId);
-	//
-	// return mav;
-	//
-	// }
-	//
-	// @RequestMapping(value = "/booking/tid={tid}/fid={fid}", method =
-	// RequestMethod.GET)
-	// public ModelAndView Booking_FacilityChosen(@PathVariable String fid,
-	// @PathVariable String tid) {
-	// ModelAndView mav = new ModelAndView("booking-chosen");
-	//
-	// ArrayList<Facility> facilityList = (ArrayList<Facility>)
-	// facilityService.findAllFacilities();
-	//
-	// ArrayList<FacilityType> typeList =
-	// facilityTypeService.findAllFacilityTypes();
-	//
-	// mav.addObject("facilityList", facilityList);
-	//
-	// mav.addObject("typeList", typeList);
-	//
-	// int fId = Integer.valueOf(fid);
-	//
-	// mav.addObject("fidchosen", fId);
-	//
-	// int tId = Integer.valueOf(tid);
-	//
-	// mav.addObject("typeidchosen", tId);
-	//
-	// return mav;
-	//
-	// }
-
-	@RequestMapping(value = "admin/booking", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/booking", method = RequestMethod.GET)
 	public String bookingsList() {
 		return "booking-list";
 	}
@@ -356,7 +305,7 @@ public class BookingController {
 		return "booking-list";
 	}
 
-	@RequestMapping(value = "admin/booking/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/booking/delete", method = RequestMethod.POST)
 	public @ResponseBody String bookingDelete(@RequestBody Booking b) {
 		bookingService.removeBooking(b);
 		return "booking-list";
