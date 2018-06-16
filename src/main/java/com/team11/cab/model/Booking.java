@@ -98,7 +98,8 @@ public class Booking {
 		return member;
 	}
 
-	public int getmemberId() 
+	@JsonGetter
+	public int getMemberId() 
 	{	
 		return member.getUserid();
 	}
