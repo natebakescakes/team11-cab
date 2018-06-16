@@ -9,6 +9,10 @@
 
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <%@ include file="Header.jsp"%>
 <!-- <c:url value="/css/simple.css" var="ss" /> 
 <link rel="stylesheet" type="text/css" href="${ss}" /> -->

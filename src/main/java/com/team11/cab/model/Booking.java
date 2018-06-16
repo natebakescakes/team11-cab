@@ -1,6 +1,9 @@
 package com.team11.cab.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,6 +85,16 @@ public class Booking {
 		else
 			result=String.valueOf(endDateTime.getHour())+":"+String.valueOf(endDateTime.getMinute());
 		return result;
+		
+		
+	}
+	
+	@JsonGetter
+	public String getNowDateTime() {
+		Date dt= new Date();
+		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm ");
+		return dateFormat.format(dt);
+		
 	}
 
 	public Facility getFacility() {
