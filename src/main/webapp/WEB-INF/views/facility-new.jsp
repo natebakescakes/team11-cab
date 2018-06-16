@@ -15,8 +15,8 @@
 				<form:errors path="facilityName" cssClass="form-text text-muted" />
 			</div>
 			<div class="form-group">
-				<form:select cssClass="form-control" path="facilityType">
-					<form:option value="-" label="Facility Type" />
+				<form:select cssClass="form-control" path="facilityType.typeId">
+					<form:option value="0" label="Please select a Facility Type"/>
 					<form:options items="${facTypeList}" itemValue="typeId"
 						itemLabel="typeName" />
 				</form:select>

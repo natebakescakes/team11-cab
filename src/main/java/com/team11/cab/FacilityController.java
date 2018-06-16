@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,13 +38,13 @@ public class FacilityController {
 	@RequestMapping(value = "/facilities", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
-		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvailableFacility();
-		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
-		
-		mav.addObject("typeList",typeList);
-		
+		List<Facility> AvailblefacilityList = (ArrayList<Facility>) facilityService.findAvailableFacility();
+		List<FacilityType> typeList = (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
+
+		mav.addObject("typeList", typeList);
+
 		mav.addObject("facilityList", AvailblefacilityList);
-		
+
 		return mav;
 	}
 
@@ -52,8 +53,7 @@ public class FacilityController {
 		ModelAndView mav = new ModelAndView("facility-new");
 		Facility facility = new Facility();
 		mav.addObject("facility", facility);
-		
-		
+
 		List<FacilityType> facTypeList = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("facTypeList", facTypeList);
 		return mav;
@@ -62,12 +62,25 @@ public class FacilityController {
 	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.POST)
 	public ModelAndView createNewFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
-		if (result.hasErrors())
-			return new ModelAndView("facility-new");
-
 		ModelAndView mav = new ModelAndView();
-		String message = "New facility " + facility.getFacilityId() + " was successfully created.";
 
+		for (Object object : result.getAllErrors()) {
+			if (object instanceof FieldError) {
+				FieldError fieldError = (FieldError) object;
+
+				System.out.println(fieldError.getCode());
+			}
+		}
+
+		if (result.hasErrors()) {
+			mav.setViewName("redirect:/admin/facilities/create");
+			return mav;
+		}
+
+		String message = "Facility was successfully created.";
+
+		facility.setStatus(1);
+		facility.setFacilityType(facilityTypeService.findByTypeId(facility.getFacilityType().getTypeId()));
 		facilityService.createFacility(facility);
 		mav.setViewName("redirect:/admin/facilities");
 

@@ -12,6 +12,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="row">
+		<div style="max-width: 300px; margin: auto">
+			<c:if test="${message != null}">
+				<div class="row">
+					<div class="alert alert-success" role="alert">${message}</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
+
 	<h3>Manage Facilities</h3>
 	<div class="row">
 		<a href="${pageContext.request.contextPath}/admin/facilities/create" class="btn btn-primary">
