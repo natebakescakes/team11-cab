@@ -1,3 +1,4 @@
+
 $( document ).ready(function() {
 	
 	/*
@@ -80,25 +81,42 @@ $( document ).ready(function() {
 	});
 	
 	/*
-	 * for facility combobox
+	 * for choose-facility dropdown list
 	 */
 	$ftype = $("select[name='typeId']");
-
+	$fname = $("select[name='facility']");
 	
+	//get initial dropdown list when booking page loads from homepage
+	$.getJSON(window.contextRoot +"/booking/fnamelist",{typeID:$(this).val()},function(data){
+		$("select[name='facility'] option").remove();
+		
+		var len= data.length;
+		for(var i=0; i<len; i++){
+			$('<option value="' + data[i].facilityId + '">' + data[i].facilityName + '</option>').appendTo($fname);
+           
+        }
+		
+	});
+	
+	//dynamically populate "choose-facility" dropdown when "facility-type" dropdown selection changes
 	$ftype.change(function() {
 		
 		$.getJSON(window.contextRoot +"/booking/fnamelist",{typeID:$(this).val()},function(data){
 			$("select[name='facility'] option").remove();
-			var html='';
+			
 			var len= data.length;
 			for(var i=0; i<len; i++){
-                html += '<option value="' + data[i].facilityId + '">'+data[i].facilityName+'</option>';
-            }
-			$('#choose-room').append(html);
+				$('<option value="' + data[i].facilityId + '">' + data[i].facilityName + '</option>').appendTo($fname);
+	           
+	        }
+			
 		});
-		
 
 		
 	});
 
 });	
+
+
+
+
