@@ -48,7 +48,7 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.GET)
 	public ModelAndView newFacilityPage() {
 		ModelAndView mav = new ModelAndView("facility-new", "facility", new Facility());
 		List<FacilityType> facTypeList = facilityTypeService.findAllFacilityTypes();
@@ -56,7 +56,7 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.POST)
 	public ModelAndView createNewFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors())
@@ -72,46 +72,10 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editFacilityPage(@PathVariable int id) {
-
-		ModelAndView mav = new ModelAndView("facility-edit");
-		Facility facility = facilityService.findFacility(id);
-		mav.addObject("facility", facility);
-		return mav;
-	}
-
-	@RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
-			@PathVariable int id, final RedirectAttributes redirectAttributes) {
-
-		// if (result.hasErrors())
-		// return new ModelAndView("facility-edit");
-
-		ModelAndView mav = new ModelAndView("redirect:/facility/admin/list");
-		String message = "Employee was successfully updated.";
-
-		facilityService.editFacility(facility);
-
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;
-	}
-
-	@RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteFacility(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-		ModelAndView mav = new ModelAndView("redirect:/facility/admin/list");
-		Facility facility = facilityService.findFacility(id);
-		facilityService.deleteFacility(facility);
-		String message = "The facility " + facility.getFacilityId() + " was successfully deleted.";
-
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;
-	}
-
 	@RequestMapping(value = "/admin/facilities", method = RequestMethod.GET)
 	public String facilityList() {
 
-		return "admin-facility-list2";
+		return "admin-facility-list";
 	}
 
 	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
@@ -120,8 +84,7 @@ public class FacilityController {
 		System.out.println(f.getFacilityName());
 		facilityService.updateFacility(f);
 
-		return "admin-facility-list2";
-		// mav.setViewName("redirect:/member/list");
+		return "admin-facility-list";
 
 	}
 
