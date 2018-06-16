@@ -29,13 +29,12 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
+			
 			<input id="submit" type="submit" name="refresh" value="Load">
 			<br>
 			<label class="${hideFacility ? 'hidden' : '' }">Choose Facility</label>
 			<select id="choose-room" name="facility" class="form-control ${hideFacility == true ? 'hidden' : '' }" data-validation="required">
-				<c:forEach var="facility" items="${facilities}">
-					<option value="${facility.facilityId}">${facility.facilityName}</option>
-				</c:forEach>
+				
 			</select>
 		</div>
 		<div class="col-md-5">

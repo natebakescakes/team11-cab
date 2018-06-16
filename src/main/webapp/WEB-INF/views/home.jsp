@@ -6,8 +6,6 @@
 
 <head>
 <title>Club Application for Booking</title>
-
-
 </head>
 <body>
 	<div style="max-width: 300px; margin: auto">
@@ -18,6 +16,7 @@
 			</div>
 		</c:if>
 	</div>
+
 
 	<h1>Welcome to Sembawang Club</h1>
 	<br>
@@ -162,6 +161,6 @@
 		</div>
 	</div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/home.js"></script>
+<script src="${pageContext.request.contextPath}/js/home.js"></script>
 
 </body>

@@ -27,8 +27,7 @@ $(document).ready(function(){
 	    							{	data: 'endDateDate'		},
 	    							{	data: 'endTime'		},
 	    							{   data: 'status'  },
-	    							{	defaultContent: "<button class='td-button btn-edit'>Edit</button>"    	},
-	    							{	defaultContent: "<button class='td-button btn-delete'>Delete</button>" 	}
+	    							{	defaultContent: "<button class='td-button btn-delete btn btn-table btn-alert'>Cancel</button>" 	}
 	    							]
 						
 	    					});

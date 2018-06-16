@@ -78,4 +78,27 @@ $( document ).ready(function() {
 		todayHighlight: true,
 		format: 'dd/mm/yyyy'
 	});
-});
+	
+	/*
+	 * for facility combobox
+	 */
+	$ftype = $("select[name='typeId']");
+
+	
+	$ftype.change(function() {
+		
+		$.getJSON(window.contextRoot +"/booking/fnamelist",{typeID:$(this).val()},function(data){
+			$("select[name='facility'] option").remove();
+			var html='';
+			var len= data.length;
+			for(var i=0; i<len; i++){
+                html += '<option value="' + data[i].facilityId + '">'+data[i].facilityName+'</option>';
+            }
+			$('#choose-room').append(html);
+		});
+		
+
+		
+	});
+
+});	

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,6 +59,8 @@ public class BookingController {
 			mav.addObject("showFacility", showFacility);
 			String typeId = request.getParameter("typeId");
 			mav.addObject("typeId", typeId);
+			
+			//do we still need this if facilities are retrieved by jquery?
 			int typeIdNum = Integer.parseInt(typeId);
 			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
 			mav.addObject("facilities", facilities);
@@ -347,5 +350,12 @@ public class BookingController {
 		bookingService.removeBooking(b);
 		return "booking-list";
 
+	}
+	
+	@RequestMapping(value = "/booking/fnamelist")
+	public @ResponseBody List<Facility> getFacilities(@RequestParam(value="typeID", required=true) String typeId)
+	{
+		int id = Integer.parseInt(typeId);
+		return facilityService.findFacilitiesByFacilityType(id);
 	}
 }
