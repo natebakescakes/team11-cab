@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -27,6 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 @Table(name = "user")
@@ -89,8 +91,11 @@ public class Member implements Serializable {
 	private boolean enabled;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	private Set<Authority> authorities;
+	
+	@Transient
+	private boolean changeAdmin;
 
 	public Member() {
 	}
@@ -210,9 +215,18 @@ public class Member implements Serializable {
 		this.username = username;
 	}
 
-	@JsonGetter
-	public boolean getAdmin() {
+	@JsonGetter("admin")
+	public boolean isAdmin() {
 		return this.authorities.stream().filter(x -> x.getAuthority().equals("ROLE_ADMIN")).count() > 0;
+	}
+	
+	@JsonSetter("admin")
+	public void setAdmin(boolean changeAdmin) {
+		this.changeAdmin = changeAdmin;
+	}
+	
+	public boolean isChangeAdmin() {
+		return changeAdmin;
 	}
 	
 }

@@ -21,7 +21,7 @@ public class Authority {
 
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(insertable=true, name="username", referencedColumnName="username", unique=true)
+	@JoinColumn(insertable=true, updatable=true, name="username", referencedColumnName="username", unique=true)
 	private Member member;
 
 	public String getAuthority() {
