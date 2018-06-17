@@ -85,7 +85,7 @@ $(document).ready(function(){
 	        	 if (!$(this).children().hasClass("td-button"))
 	        	    {
 	        	        var text = $(this).text();
-	        	        $(this).html ('<input type="text" value="' +  text + '">');
+	        	        $(this).html ('<input type="text" size=10 value="' +  text + '">');
 	        	    } 
 	        	 if ($(this).children().hasClass("btn-edit"))
 	        		 {

@@ -19,7 +19,7 @@ $(document).ready(function(){
 				var disable="";
 				if(nowDate>=startDate || full.status=="Cancelled"){ disable="disabled"};
 				var activeBtn="";
-				if(nowDate<startDate || full.status!="Cancelled" ) {activeBtn="btn-danger";}
+				if(disable!="disabled" ) {activeBtn="btn-danger";}
 				return '<input type="button" value="Cancel" class="'+activeBtn+' td-button btn-cancel btn btn-table btn-alert" ' + disable + '/>' ;		
 			}
 
