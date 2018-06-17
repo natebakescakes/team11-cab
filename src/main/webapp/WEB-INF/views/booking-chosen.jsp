@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <h3>Make Booking</h3>
-
+<label>Booking-chosen jsp</label>
 <c:if test="${bookingSuccess}">
 	<div class="alert alert-success">
 		Booking Successful!
