@@ -117,7 +117,7 @@ public class BookingController {
 		b.setStartDateTime(startDateTime);
 		b.setEndDateTime(endDateTime);
 		b.setMember(memberService.findMemberById(userId));
-		b.setStatus("booked");
+		b.setStatus("Booked");
 
 		if (bookingService.isBookingValid(b)) {
 			Booking newBooking = bookingService.makeBooking(b);
@@ -296,19 +296,37 @@ public class BookingController {
 		return "booking-list";
 	}
 
-	@RequestMapping(value = "/admin/booking/booking", method = RequestMethod.POST)
-	public String memberUpdate(@RequestParam String id) {
+	@RequestMapping(value = "/admin/booking/booked", method = RequestMethod.POST)
+	public String memberUpdate(@RequestBody String id) {
+		
 		int ID = Integer.parseInt(id);
+		
 		Booking b = bookingService.findBookingByID(ID);
 		b.setStatus("Booked");
 		bookingService.changeBooking(b);
-		return "booking-list";
+		return "booking-list" ;
 	}
 
-	@RequestMapping(value = "/admin/booking/delete", method = RequestMethod.POST)
-	public @ResponseBody String bookingDelete(@RequestBody Booking b) {
-		bookingService.removeBooking(b);
-		return "booking-list";
-
+	@RequestMapping(value = "/admin/booking/cancelled", method = RequestMethod.POST)
+	public String memberBook(@RequestBody String id) {
+		
+		int ID = Integer.parseInt(id);
+		
+		Booking b = bookingService.findBookingByID(ID);
+		b.setStatus("Cancelled");
+		bookingService.changeBooking(b);
+		return "booking-list" ;
+	}
+	
+	@RequestMapping(value = "/admin/booking/maintenance", method = RequestMethod.POST)
+	public String memberCancel(@RequestBody String id) {
+		
+		int ID = Integer.parseInt(id);
+		System.out.println("GFSXHGXVFJHSXVJSBXHXB ID : "+ID);
+		
+		Booking b = bookingService.findBookingByID(ID);
+		b.setStatus("Maintenance");
+		bookingService.changeBooking(b);
+		return "booking-list" ;
 	}
 }

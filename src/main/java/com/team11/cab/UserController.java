@@ -12,11 +12,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team11.cab.model.Booking;
 import com.team11.cab.model.Member;
+import com.team11.cab.service.BookingService;
 import com.team11.cab.service.MemberService;
 
 @Controller
@@ -25,6 +28,11 @@ public class UserController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private BookingService bookingService;
+	
+	
 
 	@InitBinder
 	public void initBinder(final WebDataBinder binder) {
@@ -69,4 +77,15 @@ public class UserController {
 		return "membooking-list";
 	}
 
+	
+	@RequestMapping(value = "/booking/cancel", method = RequestMethod.POST)
+	public String memberBook(@RequestBody String id) {
+		
+		int ID = Integer.parseInt(id);
+		
+		Booking b = bookingService.findBookingByID(ID);
+		b.setStatus("Cancelled");
+		bookingService.changeBooking(b);
+		return "membooking-list" ;
+	}
 }

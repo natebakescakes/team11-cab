@@ -24,16 +24,6 @@ public class MemberController {
 }
 
 
-	
-//	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-//	public @ResponseBody String memberDelete(@RequestBody Member m) {
-//		
-//		mService.deleteMember(m);
-//		return "view-members";
-//		
-//	}
-	
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String membersList() {
 

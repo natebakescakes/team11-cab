@@ -38,23 +38,7 @@ public class JsonController {
 	@RequestMapping(value = "/showfacility")
 	@ResponseBody
 	public ArrayList<Facility> jsonFacilities() {
-		// ArrayList<Facility> facList = fService.findAllFacilities();
-		// for (Facility facility : facList) {
-		// System.out.println(facility.getFacilityType().getTypeName());
-		// }
-
-		// ArrayList<Facility> facList = fService.findAllFacilities();
-		// ArrayList<FacilityType> facTypeList = ftService.findAllFacilityTypes();
-		// for (Facility facility : facList) {
-		// for (FacilityType facilityType : facTypeList) {
-		// if (facility.getFacilityType().getTypeId()==facilityType.getTypeId()) {
-		// facility.setFacTypeId(facilityType.getTypeId());
-		// break;
-		// }
-		// }
-		// }
-
-		// return facList;
+	
 		return fService.findAllFacilities();
 	}
 
