@@ -32,9 +32,12 @@
 					<form:errors path="lastName" cssClass="form-text text-muted" />
 				</div>
 				<div class="form-group">
-					<spring:message code="fieldLabel.dateOfBirth" var="dateOfBirth" />
-					<input type="date" class="form-control" id="dob" name="dob"
-						placeholder="${dateOfBirth}" value="${member.dob}" />
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+						<spring:message code="fieldLabel.dateOfBirth" var="dateOfBirth" />
+						<input type="date" class="form-control" id="dob" name="dob"
+							placeholder="${dateOfBirth}" value="${member.dob}" />
+					</div>
 				</div>
 				<div class="form-group">
 					<spring:message code="fieldLabel.address" var="address" />
