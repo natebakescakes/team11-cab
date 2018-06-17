@@ -5,19 +5,19 @@
 
 <h3>Make Booking</h3>
 
-<c:if test="${bookingSuccess == true}">
+<c:if test="${param.bookingSuccess == 'true'}">
 	<div class="alert alert-success">
 		Booking Successful!
 	</div>
 </c:if>
-<c:if test="${bookingSuccess == false}">
+<c:if test="${param.bookingSuccess == 'false'}">
 	<div class="alert alert-danger">
 		Invalid booking.
 	</div>
 </c:if>
 
 <div class="form-group">
-<form:form action="${pageContext.request.contextPath}/user/booking" method="POST">
+<form:form action="${pageContext.request.contextPath}/booking" method="POST">
 	<div class="row">
 		<div class="col-md-5">
 			<label>Choose Facility Type</label>
