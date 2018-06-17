@@ -54,8 +54,7 @@
 							<p>${facility.description}</p>
 							<p>
 								<c:if test="${facility.status!=0}">
-									<c:set var="now" value="<%=new java.util.Date()%>" />
-									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" type="date"
+									<fmt:formatDate value="${dateTomorrow}" pattern="yyyy-MM-dd" type="date"
 										var="dateNow" />
 									<form:form action="${pageContext.request.contextPath}/booking"
 										class="form-group" method="POST">
