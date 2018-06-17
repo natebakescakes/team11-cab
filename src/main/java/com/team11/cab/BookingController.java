@@ -74,8 +74,9 @@ public class BookingController {
 			mav.addObject("facilities", facilities);
 			
 			
-			LocalDate date = LocalDate.parse(request.getParameter("date"),			
-			DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			
+//			LocalDate date = LocalDate.parse(request.getParameter("date"),			
+//			DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			mav.addObject("date", request.getParameter("date"));
 			
 			
