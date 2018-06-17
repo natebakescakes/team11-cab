@@ -112,12 +112,6 @@ public class Booking {
 	}
 
 	@JsonGetter
-	public int getMemberId() 
-	{	
-		return member.getUserid();
-	}
-
-	@JsonGetter
 	public String getStartDateDate() 
 	{	
 		String result;

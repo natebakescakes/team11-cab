@@ -83,7 +83,7 @@
 						</div>
 						<div class="col-sm-10">
 
-							<input name="date" class="form-control datepicker" id="datepicker" style="text-align:center">
+							<input name="date" class="form-control datepicker" id="datepicker" style="text-align:center" autocomplete="off">
 							
 
 						</div>
