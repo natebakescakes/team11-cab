@@ -17,7 +17,7 @@
 </c:if>
 
 <div class="form-group">
-<form:form action="" method="POST">
+<form:form action="${pageContext.request.contextPath}/user/booking" method="POST">
 	<div class="row">
 		<div class="col-md-5">
 			<label>Choose Facility Type</label>

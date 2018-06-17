@@ -1,42 +1,49 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<h3>Facility List page</h3>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 
-<a href="${pageContext.request.contextPath}/facility/admin/create">Add
-	Facility</a>
-<c:if test="${fn:length(facilityList) gt 0}">
-	<table style="width:100%" class="table table-striped table-bordered">
-		<thead>
-			<tr class="listHeading">
-				<th><spring:message code="fieldLabel.facilityId" /></th>
-				<th><spring:message code="fieldLabel.facilityName" /></th>
-				<th><spring:message code="fieldLabel.facilityType" /></th>
-				<th><spring:message code="fieldLabel.location" /></th>
-				<th><spring:message code="fieldLabel.description" /></th>
-				<th><spring:message code="caption.edit" /></th>
-				<th><spring:message code="caption.delete" /></th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="facility" items="${facilityList}">
-				<tr class="listRecord">
-					<td>${facility.facilityId}</td>
-					<td>${facility.facilityName}</td>
-					<td>${facility.facilityType.typeName}</td>
-					<td>${facility.location}</td>
-					<td>${facility.description}</td>
-					<td align="center"><a
-						href="${pageContext.request.contextPath}/facility/admin/edit/${facility.facilityId}.html"><spring:message
-								code="caption.edit" /></a></td>
-					<td><a
-						href="${pageContext.request.contextPath}/facility/admin/delete/${facility.facilityId}.html"><spring:message
-								code="caption.delete" /></a></td>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div style="max-width: 300px; margin: auto">
+			<c:if test="${message != null}">
+				<div class="row">
+					<div class="alert alert-success" role="alert">${message}</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
+
+	<h3>Manage Facilities</h3>
+	<div class="row">
+		<a href="${pageContext.request.contextPath}/admin/facilities/create" class="btn btn-primary">
+			Add New Facility
+		</a>
+	</div>
+
+	<div class="row">
+		<table id="myFacTable" style="width: 100%"
+			class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Facility ID</th>
+					<th>Facility Name</th>
+					<th>Facility Type</th>
+					<th>Location</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th>Edit</th>
 				</tr>
-			</c:forEach>
-
-		</tbody>
-	</table>
-</c:if>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

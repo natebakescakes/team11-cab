@@ -21,5 +21,9 @@ public class FacilityTypeServiceImpl implements FacilityTypeService {
 		ArrayList<FacilityType> ft = (ArrayList<FacilityType>) facilityTypeRepository.findAll();
 		return ft;
 	}
+	
+	public FacilityType findByTypeId(int typeId) {
+		return facilityTypeRepository.findOne(typeId);
+	}
 
 }
