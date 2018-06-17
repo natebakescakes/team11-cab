@@ -128,4 +128,17 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		return memberRepository.findOne(id);
 	}
 
+	@Override
+	public void removeAdminRights(Member member) {
+		member.getAuthorities().removeIf(x -> x.getAuthority().equals("ROLE_ADMIN"));
+	}
+
+	@Override
+	public void addAdminRights(Member member) {
+		Authority authority = new Authority();
+		authority.setAuthority("ROLE_ADMIN");
+		authority.setMember(member);
+		member.getAuthorities().add(authority);
+	}
+
 }

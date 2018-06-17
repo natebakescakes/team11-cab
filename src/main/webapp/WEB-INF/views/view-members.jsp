@@ -26,6 +26,7 @@
 					<th>Contact No</th>
 					<th>Date of Birth</th>
 					<th>Active</th>
+					<th>Admin Rights</th>
 					<th></th>
 				</tr>
 			</thead>

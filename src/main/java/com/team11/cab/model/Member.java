@@ -24,7 +24,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "user")
@@ -39,7 +41,6 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UserId")
 	private int userid;
-	
 
 	@Basic(optional = false)
 	@Column(name = "FirstName")
@@ -75,8 +76,7 @@ public class Member implements Serializable {
 	@OneToMany(targetEntity = Booking.class, mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookings = new ArrayList<Booking>();
 
-	
-	@Column(name="username")
+	@Column(name = "username")
 	@Length(min = 5, message = "*Your username must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your username")
 	private String username;
@@ -86,19 +86,19 @@ public class Member implements Serializable {
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
 
-	
 	private boolean enabled;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Authority> authorities;
 
 	public Member() {
 	}
 
-	public Member(int userid, String username, String firstName, String lastName, String email, String address, String phone, Date dob
-			//,ArrayList<Booking> bookings
-			) {
+	public Member(int userid, String username, String firstName, String lastName, String email, String address,
+			String phone, Date dob
+	// ,ArrayList<Booking> bookings
+	) {
 		super();
 		this.userid = userid;
 		this.firstName = firstName;
@@ -210,11 +210,9 @@ public class Member implements Serializable {
 		this.username = username;
 	}
 
-	public void show() {
-		System.out.println(String.format(
-				"Member [userid=%s, firstName=%s, lastName=%s, email=%s, address=%s, phone=%s, dob=%s, bookings=%s, username=%s, password=%s, enabled=%s, authorities=%s]",
-				userid, firstName, lastName, email, address, phone, dob, bookings, username, password, enabled,
-				authorities));
+	@JsonGetter
+	public boolean getAdmin() {
+		return this.authorities.stream().filter(x -> x.getAuthority().equals("ROLE_ADMIN")).count() > 0;
 	}
-
+	
 }
