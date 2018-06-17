@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -90,9 +91,9 @@ public class BookingController {
 
 		return mav;
 	}
-
+	
 	@RequestMapping(value = "/booking", method = RequestMethod.POST, params = { "submit" })
-	public ModelAndView makeBooking(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
+	public ModelAndView validateBooking(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
 
 		int userId = 0;
 		int facilityId;
@@ -118,10 +119,10 @@ public class BookingController {
 
 		// if booking is valid
 		if (bookingService.isBookingValid(b)) {
-			Booking newBooking = bookingService.makeBooking(b);
 			// GET /bookingdetails
-			modelAndView.setViewName("redirect:/bookingdetails");
-			redir.addAttribute("booking_id", String.valueOf(newBooking.getBookingId()));
+			modelAndView.setViewName("redirect:/user/submit");
+			// TODO: send the booking object to /booking details
+			redir.addFlashAttribute("booking", b);
 		} else {
 			// GET /booking with bookingSuccess = false
 			modelAndView.setViewName("redirect:/booking");
@@ -129,6 +130,21 @@ public class BookingController {
 		}
 		// render booking.jsp
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/user/submit", method = RequestMethod.GET)
+	public ModelAndView makeBooking(
+			@ModelAttribute("booking") final Booking booking,
+			RedirectAttributes redir,
+			ModelAndView mav) {
+		// TODO: get the Booking object from previous controller
+
+		// make the booking
+		Booking newBooking = bookingService.makeBooking(booking);
+		// redirect to /bookingdetails
+		redir.addAttribute("booking_id", String.valueOf(newBooking.getBookingId()));
+		mav.setViewName("redirect:/bookingdetails");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/admin/booking", method = RequestMethod.GET)
