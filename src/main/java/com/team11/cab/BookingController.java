@@ -10,10 +10,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -98,7 +97,7 @@ public class BookingController {
 	@RequestMapping(value = "/booking", method = RequestMethod.POST, params = { "submit" })
 	public ModelAndView validateBooking(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
 
-		int userId = 0;
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		int facilityId;
 
 		// Convert POST attributes to the LocalDateTime objects
@@ -117,7 +116,7 @@ public class BookingController {
 		b.setTransDate(LocalDateTime.now());
 		b.setStartDateTime(startDateTime);
 		b.setEndDateTime(endDateTime);
-		b.setMember(memberService.findMemberById(userId));
+		b.setMember(memberService.findMemberByUsername(username));
 		b.setStatus("Booked");
 
 		// if booking is valid
