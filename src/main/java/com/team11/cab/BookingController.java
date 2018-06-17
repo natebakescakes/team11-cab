@@ -86,7 +86,8 @@ public class BookingController {
 			}
 			mav.addObject("facilitySchedules", allFacilitySchedules);
 		}
-
+		
+		// add stime and endtime POST parameters
 		mav.addObject("stime", request.getParameter("stime"));
 		mav.addObject("endtime", request.getParameter("endtime"));
 
@@ -122,12 +123,15 @@ public class BookingController {
 		if (bookingService.isBookingValid(b)) {
 			// GET /bookingdetails
 			modelAndView.setViewName("redirect:/user/submit");
-			// TODO: send the booking object to /booking details
 			redir.addFlashAttribute("booking", b);
 		} else {
 			// GET /booking with bookingSuccess = false
 			modelAndView.setViewName("redirect:/booking");
 			redir.addAttribute("bookingSuccess", false);
+			redir.addAttribute("typeId", request.getParameter("typeId"));
+			redir.addAttribute("date", request.getParameter("date"));
+			redir.addAttribute("stime", request.getParameter("stime"));
+			redir.addAttribute("endtime", request.getParameter("endtime"));
 		}
 		// render booking.jsp
 		return modelAndView;
@@ -138,7 +142,6 @@ public class BookingController {
 			@ModelAttribute("booking") final Booking booking,
 			RedirectAttributes redir,
 			ModelAndView mav) {
-		// TODO: get the Booking object from previous controller
 
 		// make the booking
 		Booking newBooking = bookingService.makeBooking(booking);
