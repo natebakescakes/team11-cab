@@ -44,17 +44,26 @@ public class BookingController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView refreshPage(HttpServletRequest request) {
+	public ModelAndView refreshPage(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
 
 		ModelAndView mav = new ModelAndView("booking");
-
+		
+		//check for inputs valid from homepage
+	
+		
+		
 		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("ftypes", ftypes);
 
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
-		if ((request.getParameter("typeId") != null) && (request.getParameter("date") != null)) {
+		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
+			modelAndView.setViewName("redirect:home");
+			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
+			return modelAndView;
+		}
+		else if ((request.getParameter("typeId") != null) && (request.getParameter("date")!="")) {
 			boolean showFacility = true;
 			mav.addObject("showFacility", showFacility);
 			String typeId = request.getParameter("typeId");
@@ -64,12 +73,13 @@ public class BookingController {
 			int typeIdNum = Integer.parseInt(typeId);
 			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
 			mav.addObject("facilities", facilities);
-
-			LocalDate date = LocalDate.parse(request.getParameter("date"),
-					// DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			
+			LocalDate date = LocalDate.parse(request.getParameter("date"),			
+			DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			mav.addObject("date", request.getParameter("date"));
-
+			
+			
 			// Display schedule for all (relevant) Facilities
 			ArrayList<FacilityTypeSchedule> allFacilitySchedules = new ArrayList<FacilityTypeSchedule>();
 

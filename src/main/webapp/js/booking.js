@@ -77,7 +77,8 @@ $( document ).ready(function() {
 	 */
 	$('.datepicker').datepicker({
 		todayHighlight: true,
-		format: 'dd/mm/yyyy'
+		format: 'dd/mm/yyyy',
+		startDate: "0d"
 	});
 	
 	/*

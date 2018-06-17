@@ -83,7 +83,7 @@
 						</div>
 						<div class="col-sm-10">
 
-							<input name="date" class="form-control" type="date" style="text-align:center">
+							<input name="date" class="form-control datepicker" id="datepicker" style="text-align:center">
 							
 
 						</div>
@@ -125,7 +125,7 @@
 
 
 					<input type="Submit" class="btn btn-default" name="refresh"
-						value="Submit"> <font color='red'>${TimeErrorMessage}</font>
+						value="Search"> <font color='red'>${TimeErrorMessage}</font>
 	
 				</form:form>
 
