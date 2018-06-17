@@ -74,8 +74,9 @@ public class BookingController {
 			mav.addObject("facilities", facilities);
 			
 			
-			LocalDate date = LocalDate.parse(request.getParameter("date"),			
-			DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			
+			LocalDate dateObject = LocalDate.parse(request.getParameter("date"),			
+									DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			mav.addObject("date", request.getParameter("date"));
 			
 			
@@ -84,7 +85,7 @@ public class BookingController {
 
 			for (Facility facility : facilities) {
 				String facilityName = facility.getFacilityName();
-				ArrayList<Slot> schedule = bookingService.makeFacilityDaySchedule(facility.getFacilityId(), date);
+				ArrayList<Slot> schedule = bookingService.makeFacilityDaySchedule(facility.getFacilityId(), dateObject);
 				allFacilitySchedules.add(new FacilityTypeSchedule(facilityName, facility.getFacilityId(), schedule));
 			}
 			mav.addObject("facilitySchedules", allFacilitySchedules);
