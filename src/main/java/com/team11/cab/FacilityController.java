@@ -9,8 +9,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,80 +38,51 @@ public class FacilityController {
 	@RequestMapping(value = "/facilities", method = RequestMethod.GET)
 	public ModelAndView facilityListPage() {
 		ModelAndView mav = new ModelAndView("facility-list");
-		List<Facility> AvailblefacilityList = (ArrayList<Facility>)facilityService.findAvailableFacility();
-		List<FacilityType> typeList= (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
-		
-		mav.addObject("typeList",typeList);
-		
+		List<Facility> AvailblefacilityList = (ArrayList<Facility>) facilityService.findAvailableFacility();
+		List<FacilityType> typeList = (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
+
+		mav.addObject("typeList", typeList);
+
 		mav.addObject("facilityList", AvailblefacilityList);
-		
+
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/list2", method = RequestMethod.GET)
-	public ModelAndView facilityListAdminPage() {
-		ModelAndView mav = new ModelAndView("admin-facility-list");
-		List<Facility> facilityList = (ArrayList<Facility>) facilityService.findAllFacilities();
-		mav.addObject("facilityList", facilityList);
-		return mav;
-
-	}
-
-	@RequestMapping(value = "/admin/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.GET)
 	public ModelAndView newFacilityPage() {
-		ModelAndView mav = new ModelAndView("facility-new", "facility", new Facility());
+		ModelAndView mav = new ModelAndView("facility-new");
+		Facility facility = new Facility();
+		mav.addObject("facility", facility);
+
 		List<FacilityType> facTypeList = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("facTypeList", facTypeList);
 		return mav;
 	}
 
-	@RequestMapping(value = "/admin/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/facilities/create", method = RequestMethod.POST)
 	public ModelAndView createNewFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
-		if (result.hasErrors())
-			return new ModelAndView("facility-new");
-
 		ModelAndView mav = new ModelAndView();
-		String message = "New facility " + facility.getFacilityId() + " was successfully created.";
 
+		for (Object object : result.getAllErrors()) {
+			if (object instanceof FieldError) {
+				FieldError fieldError = (FieldError) object;
+
+				System.out.println(fieldError.getCode());
+			}
+		}
+
+		if (result.hasErrors()) {
+			mav.setViewName("redirect:/admin/facilities/create");
+			return mav;
+		}
+
+		String message = "Facility was successfully created.";
+
+		facility.setStatus(1);
+		facility.setFacilityType(facilityTypeService.findByTypeId(facility.getFacilityType().getTypeId()));
 		facilityService.createFacility(facility);
-		mav.setViewName("redirect:/facility/admin/list");
-
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;
-	}
-
-	@RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editFacilityPage(@PathVariable int id) {
-
-		ModelAndView mav = new ModelAndView("facility-edit");
-		Facility facility = facilityService.findFacility(id);
-		mav.addObject("facility", facility);
-		return mav;
-	}
-
-	@RequestMapping(value = "/admin/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
-			@PathVariable int id, final RedirectAttributes redirectAttributes) {
-
-		// if (result.hasErrors())
-		// return new ModelAndView("facility-edit");
-
-		ModelAndView mav = new ModelAndView("redirect:/facility/admin/list");
-		String message = "Employee was successfully updated.";
-
-		facilityService.editFacility(facility);
-
-		redirectAttributes.addFlashAttribute("message", message);
-		return mav;
-	}
-
-	@RequestMapping(value = "/admin/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteFacility(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-		ModelAndView mav = new ModelAndView("redirect:/facility/admin/list");
-		Facility facility = facilityService.findFacility(id);
-		facilityService.deleteFacility(facility);
-		String message = "The facility " + facility.getFacilityId() + " was successfully deleted.";
+		mav.setViewName("redirect:/admin/facilities");
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
@@ -120,7 +91,7 @@ public class FacilityController {
 	@RequestMapping(value = "/admin/facilities", method = RequestMethod.GET)
 	public String facilityList() {
 
-		return "admin-facility-list2";
+		return "admin-facility-list";
 	}
 
 	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
@@ -129,8 +100,7 @@ public class FacilityController {
 		System.out.println(f.getFacilityName());
 		facilityService.updateFacility(f);
 
-		return "admin-facility-list2";
-		// mav.setViewName("redirect:/member/list");
+		return "admin-facility-list";
 
 	}
 
