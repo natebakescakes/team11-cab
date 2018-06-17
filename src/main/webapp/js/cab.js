@@ -58,6 +58,10 @@ $(document).ready(function(){
 							render: simple_checkbox	
 						},
 						{
+							data: 'admin',
+							render: simple_checkbox
+						},
+						{
 							defaultContent: "<button class='td-button btn-edit btn btn-table btn-primary'>Edit</button>"
 						}
 						

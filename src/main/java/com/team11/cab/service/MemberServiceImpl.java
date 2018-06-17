@@ -57,6 +57,10 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		memberFromDb.setAddress(m.getAddress());
 		memberFromDb.setPhone(m.getPhone());
 		memberFromDb.setEnabled(m.isEnabled());
+		if (m.isChangeAdmin())
+			addAdminRights(memberFromDb);
+		else
+			removeAdminRights(memberFromDb);
 
 		memberRepository.saveAndFlush(memberFromDb);
 	}
@@ -126,6 +130,26 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	@Override
 	public Member findMemberById(int id) {
 		return memberRepository.findOne(id);
+	}
+
+	@Override
+	public void removeAdminRights(Member member) {
+		member.getAuthorities().removeIf(x -> x.getAuthority().equals("ROLE_ADMIN"));
+		System.out.println(member.getAuthorities().size());
+		memberRepository.saveAndFlush(member);
+	}
+
+	@Override
+	public void addAdminRights(Member member) {
+		System.out.println("ADDING ADMIN RIGHTS");
+		if (member.getAuthorities().stream().filter(x -> x.getAuthority().equals("ROLE_ADMIN")).count() > 0)
+			return;
+		Authority authority = new Authority();
+		authority.setAuthority("ROLE_ADMIN");
+		authority.setMember(member);
+		member.getAuthorities().add(authority);
+		
+		memberRepository.saveAndFlush(member);
 	}
 
 }

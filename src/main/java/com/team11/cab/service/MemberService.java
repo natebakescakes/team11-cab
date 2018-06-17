@@ -17,5 +17,9 @@ public interface MemberService {
 	public Member findMemberByUsername(String username);
 
 	public void saveMember(Member member);
+	
+	public void removeAdminRights(Member member);
+	
+	public void addAdminRights(Member member);
 
 }
