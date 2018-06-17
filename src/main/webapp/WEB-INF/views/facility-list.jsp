@@ -54,15 +54,14 @@
 							<p>${facility.description}</p>
 							<p>
 								<c:if test="${facility.status!=0}">
-									<c:set var="now" value="<%=new java.util.Date()%>" />
-									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" type="date"
-										var="dateNow" />
+									<fmt:formatDate value="${dateTomorrow}" pattern="dd/MM/yyyy"
+										type="date" var="dateDisplay" />
 									<form:form action="${pageContext.request.contextPath}/booking"
 										class="form-group" method="POST">
 										<input hidden="true" type="radio" name="typeId"
 											value="${type.typeId}" id="typeId" checked="checked" />
-										<input hidden="true" name="date" type="date"
-											value="${dateNow}" />
+										<input hidden="true" name="date" id="datepicker"
+											value="${dateDisplay}">
 										<input hidden="true" name="stime" id="stime" value="9:00" />
 										<input hidden="true" name="endtime" id="endtime" value="10:00" />
 										<button type="submit" class="btn btn-primary" name="refresh">

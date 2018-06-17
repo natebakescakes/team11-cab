@@ -1,5 +1,6 @@
 package com.team11.cab;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class FacilityController {
 		List<FacilityType> typeList = (ArrayList<FacilityType>) facilityTypeService.findAllFacilityTypes();
 
 		mav.addObject("typeList", typeList);
-
 		mav.addObject("facilityList", AvailblefacilityList);
+		mav.addObject("dateTomorrow", java.sql.Timestamp.valueOf(LocalDateTime.now().plusDays(1)));
 
 		return mav;
 	}
