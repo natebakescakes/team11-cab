@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,30 +43,42 @@ public class BookingController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView refreshPage(HttpServletRequest request) {
+	public ModelAndView refreshPage(HttpServletRequest request, RedirectAttributes redir, ModelAndView modelAndView) {
 
 		ModelAndView mav = new ModelAndView("booking");
-
+		
+		//check for inputs valid from homepage
+	
+		
+		
 		// Display menu of Facility Types
 		ArrayList<FacilityType> ftypes = facilityTypeService.findAllFacilityTypes();
 		mav.addObject("ftypes", ftypes);
 
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
-		if ((request.getParameter("typeId") != null) && (request.getParameter("date") != null)) {
+		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
+			modelAndView.setViewName("redirect:home");
+			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
+			return modelAndView;
+		}
+		else if ((request.getParameter("typeId") != null) && (request.getParameter("date")!="")) {
 			boolean showFacility = true;
 			mav.addObject("showFacility", showFacility);
 			String typeId = request.getParameter("typeId");
 			mav.addObject("typeId", typeId);
+			
+			//do we still need this if facilities are retrieved by jquery?
 			int typeIdNum = Integer.parseInt(typeId);
 			facilities = facilityService.findFacilitiesByFacilityType(typeIdNum);
 			mav.addObject("facilities", facilities);
-
-			LocalDate date = LocalDate.parse(request.getParameter("date"),
-					// DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-					DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			
+			LocalDate date = LocalDate.parse(request.getParameter("date"),			
+			DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			mav.addObject("date", request.getParameter("date"));
-
+			
+			
 			// Display schedule for all (relevant) Facilities
 			ArrayList<FacilityTypeSchedule> allFacilitySchedules = new ArrayList<FacilityTypeSchedule>();
 
@@ -101,7 +113,7 @@ public class BookingController {
 		int facilityId;
 
 		// Convert POST attributes to the LocalDateTime objects
-		LocalDate date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate date = LocalDate.parse(request.getParameter("date"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		LocalTime startTime = LocalTime.parse(request.getParameter("stime"), DateTimeFormatter.ofPattern("h:mm a"));
 		LocalTime endTime = LocalTime.parse(request.getParameter("endtime"), DateTimeFormatter.ofPattern("h:mm a"));
 
@@ -328,5 +340,12 @@ public class BookingController {
 		b.setStatus("Maintenance");
 		bookingService.changeBooking(b);
 		return "booking-list" ;
+	}
+	
+	@RequestMapping(value = "/booking/fnamelist")
+	public @ResponseBody List<Facility> getFacilities(@RequestParam(value="typeID", required=true) String typeId)
+	{
+		int id = Integer.parseInt(typeId);
+		return facilityService.findFacilitiesByFacilityType(id);
 	}
 }
