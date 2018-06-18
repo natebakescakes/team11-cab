@@ -55,11 +55,11 @@ public class BookingController {
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
 		
-//		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
-//			modelAndView.setViewName("redirect:home");
-//			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
-//			return modelAndView;
-//		}
+		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
+			modelAndView.setViewName("redirect:home");
+			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
+			return modelAndView;
+		}
 		
 		if ((request.getParameter("typeId") != null) && (request.getParameter("date")!="")) {
 			boolean showFacility = true;
