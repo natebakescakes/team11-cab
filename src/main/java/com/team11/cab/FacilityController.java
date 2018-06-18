@@ -24,10 +24,7 @@ import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 
-//import edu.iss.cats.model.Employee;
-
 @Controller
-
 public class FacilityController {
 
 	@Autowired
@@ -97,16 +94,20 @@ public class FacilityController {
 
 	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
 	public @ResponseBody String facilityUpdate(@RequestBody Facility f, HttpServletRequest request) {
-
-		System.out.println(f.getFacilityName());
 		facilityService.updateFacility(f);
 
 		return "admin-facility-list";
-
 	}
 	
 	@RequestMapping(value = "/admin/facilities/types", method=RequestMethod.GET)
 	public String facilityTypesList() {
+		return "facility-types-list";
+	}
+	
+	@RequestMapping(value = "/admin/facilities/types/update", method = RequestMethod.POST)
+	public @ResponseBody String facilityTypeUpdate(@RequestBody FacilityType facilityType, HttpServletRequest request) {
+		facilityTypeService.updateFacilityType(facilityType);
+		
 		return "facility-types-list";
 	}
 
