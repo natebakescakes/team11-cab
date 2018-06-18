@@ -90,37 +90,39 @@
 
 						<br>
 					</div>
-					
 
-					<div class="row">
 
-						<br>
-						<div class="col-sm-2">
+<!-- 					<div class="row"> -->
 
-							<label>Start Time: </label>
-						</div>
-						<div class="col-sm-10">
+<!-- 						<br> -->
+<!-- 						<div class="col-sm-2"> -->
 
-							<input class="form-control timepicker" name="stime" id="stime"
-							autocomplete="off">
-						
-						</div>
+<!-- 							<label>Start Time: </label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-10"> -->
 
-						<br><br>
-					</div>
+<!-- 							<input class="form-control timepicker hidden" name="stime" id="stime" -->
+<!-- 								autocomplete="off"> -->
 
-					<div class="row">
-						<div class="col-sm-2">
-							<label>End Time: </label>
-						</div>
-						<div class="col-sm-10">
+<!-- 						</div> -->
 
-						<input class="form-control timepicker" name="endtime" id="endtime"autocomplete="off">
+<!-- 						<br> -->
+<!-- 						<br> -->
+<!-- 					</div> -->
 
-						</div>
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-sm-2"> -->
+<!-- 							<label>End Time: </label> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-sm-10"> -->
 
-						<br>
-					</div>
+<!-- 							<input class="form-control timepicker hidden" name="endtime" -->
+<!-- 								id="endtime" autocomplete="off"> -->
+
+<!-- 						</div> -->
+
+<!-- 						<br> -->
+<!-- 					</div> -->
 
 
 
