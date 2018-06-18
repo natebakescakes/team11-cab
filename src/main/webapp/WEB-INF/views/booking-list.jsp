@@ -10,9 +10,7 @@
 	<h3>Bookings Page</h3>
 	<div class="row">
 		<a href="${pageContext.request.contextPath}/booking"
-			class="btn btn-primary">Add New Booking</a> <a
-			href="${pageContext.request.contextPath}/booking"
-			class="btn btn-primary">Maintenance Booking</a>
+			class="btn btn-primary">Add New Booking</a> 
 	</div>
 	<div class="row">
 		<table id="bTable" style="width: 100%"

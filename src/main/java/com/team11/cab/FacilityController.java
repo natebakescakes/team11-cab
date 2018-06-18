@@ -24,10 +24,7 @@ import com.team11.cab.model.FacilityType;
 import com.team11.cab.service.FacilityService;
 import com.team11.cab.service.FacilityTypeService;
 
-//import edu.iss.cats.model.Employee;
-
 @Controller
-
 public class FacilityController {
 
 	@Autowired
@@ -65,14 +62,6 @@ public class FacilityController {
 			final RedirectAttributes redirectAttributes) {
 		ModelAndView mav = new ModelAndView();
 
-		for (Object object : result.getAllErrors()) {
-			if (object instanceof FieldError) {
-				FieldError fieldError = (FieldError) object;
-
-				System.out.println(fieldError.getCode());
-			}
-		}
-
 		if (result.hasErrors()) {
 			mav.setViewName("redirect:/admin/facilities/create");
 			return mav;
@@ -97,12 +86,50 @@ public class FacilityController {
 
 	@RequestMapping(value = "/admin/facilities/update", method = RequestMethod.POST)
 	public @ResponseBody String facilityUpdate(@RequestBody Facility f, HttpServletRequest request) {
-
-		System.out.println(f.getFacilityName());
 		facilityService.updateFacility(f);
 
 		return "admin-facility-list";
+	}
+	
+	@RequestMapping(value = "/admin/facilities/types", method=RequestMethod.GET)
+	public String facilityTypesList() {
+		return "facility-types-list";
+	}
+	
+	@RequestMapping(value = "/admin/facilities/types/update", method = RequestMethod.POST)
+	public @ResponseBody String facilityTypeUpdate(@RequestBody FacilityType facilityType, HttpServletRequest request) {
+		facilityTypeService.updateFacilityType(facilityType);
+		
+		return "facility-types-list";
+	}
+	
+	@RequestMapping(value = "/admin/facilities/types/create", method = RequestMethod.GET)
+	public ModelAndView newFacilityTypePage() {
+		ModelAndView mav = new ModelAndView("facility-type-new");
+		FacilityType facilityType = new FacilityType();
+		
+		mav.addObject("facilityType", facilityType);
+		
+		return mav;
+	}
 
+	@RequestMapping(value = "/admin/facilities/types/create", method = RequestMethod.POST)
+	public ModelAndView createNewFacilityType(@ModelAttribute @Valid FacilityType facilityType, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+		ModelAndView mav = new ModelAndView();
+
+		if (result.hasErrors()) {
+			mav.setViewName("redirect:/admin/facilities/create");
+			return mav;
+		}
+
+		String message = "Facility Type was successfully created.";
+
+		facilityTypeService.createFacilityType(facilityType);
+		mav.setViewName("redirect:/admin/facilities/types");
+
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
 	}
 
 }

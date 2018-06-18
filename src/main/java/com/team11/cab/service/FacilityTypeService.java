@@ -9,5 +9,9 @@ public interface FacilityTypeService {
 	public ArrayList<FacilityType> findAllFacilityTypes();
 	
 	public FacilityType findByTypeId(int typeId);
+	
+	public FacilityType updateFacilityType(FacilityType facilityType);
+
+	public FacilityType createFacilityType(FacilityType facilityType);
 
 }

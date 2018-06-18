@@ -26,4 +26,14 @@ public class FacilityTypeServiceImpl implements FacilityTypeService {
 		return facilityTypeRepository.findOne(typeId);
 	}
 
+	@Override
+	public FacilityType updateFacilityType(FacilityType facilityType) {
+		return facilityTypeRepository.saveAndFlush(facilityType);
+	}
+
+	@Override
+	public FacilityType createFacilityType(FacilityType facilityType) {
+		return facilityTypeRepository.saveAndFlush(facilityType);
+	}
+
 }

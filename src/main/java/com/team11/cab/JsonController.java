@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team11.cab.model.Booking;
 import com.team11.cab.model.Facility;
+import com.team11.cab.model.FacilityType;
 import com.team11.cab.model.Member;
 import com.team11.cab.service.BookingService;
 import com.team11.cab.service.FacilityService;
+import com.team11.cab.service.FacilityTypeService;
 //import com.team11.cab.service.FacilityTypeService;
 import com.team11.cab.service.MemberService;
 
@@ -24,8 +26,8 @@ public class JsonController {
 	private MemberService mService;
 	@Autowired
 	private FacilityService fService;
-	// @Autowired
-	// private FacilityTypeService ftService;
+	@Autowired
+	private FacilityTypeService ftService;
 	@Autowired
 	private BookingService bService;
 
@@ -54,6 +56,12 @@ public class JsonController {
 		String username = authentication.getName();
 
 		return bService.findMyBookings(username);
+	}
+	
+	@RequestMapping(value = "/showfacilitytypes")
+	@ResponseBody
+	public ArrayList<FacilityType> jsonFacilityTypes() {
+		return ftService.findAllFacilityTypes();
 	}
 
 }

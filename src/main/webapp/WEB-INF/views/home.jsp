@@ -65,17 +65,7 @@
 
 						<br>
 					</div>
-					<sec:authorize access="hasRole('ADMIN')">
-					<div class="row">
-						<div class="col-sm-6">
-
-							<input type="checkbox" name="isMaintenance">For
-							Maintenance
-							<br><br>
-						</div>
-						<div class="col-sm-6"></div>
-					</div>
-					</sec:authorize>
+					
 					
 					<div class="row">
 						<div class="col-sm-2">

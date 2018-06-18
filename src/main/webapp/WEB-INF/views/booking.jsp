@@ -19,7 +19,7 @@
 <div class="form-group">
 <form:form action="${pageContext.request.contextPath}/booking" method="POST" id="form">
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<label>Choose Facility Type</label>
 			<select id="typeId" name="typeId" class="form-control" data-validation="required">
 				<option value="-1" selected disabled hidden>- Select a Facility Type -</option>
@@ -29,7 +29,9 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
-			<input id="submit" type="submit" value="Load">
+			<br>
+			<button class="btn btn-default" id="submit" type="submit" value="Load"><i class="fa fa-refresh " style="font-size:20px;" ></i>
+			</button>
 			<br>
 			<label class="hidden">Choose Facility</label>
 <%-- 			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label> --%>
@@ -44,7 +46,8 @@
 <%-- 				</c:forEach> --%>
 <!-- 			</select> -->
 		</div>
-		<div class="col-md-5">
+		<div class="row">
+		<div class="col-md-4">
 			<label>Date</label> <input id="datepicker" name="date" type="text"
 				class="form-control datepicker" value="${date}" autocomplete="off" data-validation="required">
 <!-- 			<label>Start Time</label> -->
@@ -52,8 +55,10 @@
 <!-- 			<label>End Time</label> -->
 			<input class="timepicker form-control hidden" name="endtime" id="endtime" type="text" step=3600 value="${endtime}" autocomplete="off" data-validation="required" hidden=true>
 		</div>
-		<div class="col-md-2">
-			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit" ${facilitySchedules == null ? 'disabled' : '' }>
+		<div class="col-md-4">
+		<br>
+			<span class="pull-right"><input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit" ${facilitySchedules == null ? 'disabled' : '' }></span>
+		</div>
 		</div>
 	</div>
 </form:form>

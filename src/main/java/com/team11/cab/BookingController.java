@@ -55,11 +55,11 @@ public class BookingController {
 		// Display menu of Facilities
 		ArrayList<Facility> facilities;
 		
-//		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
-//			modelAndView.setViewName("redirect:home");
-//			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
-//			return modelAndView;
-//		}
+		if(request.getParameter("typeId")==null || request.getParameter("date").isEmpty()) {
+			modelAndView.setViewName("redirect:home");
+			redir.addFlashAttribute("TimeErrorMessage", "Please enter BOTH facility type and date");
+			return modelAndView;
+		}
 		
 		if ((request.getParameter("typeId") != null) && (request.getParameter("date")!="")) {
 			boolean showFacility = true;
@@ -188,12 +188,5 @@ public class BookingController {
 		b.setStatus("Maintenance");
 		bookingService.changeBooking(b);
 		return "booking-list" ;
-	}
-	
-	@RequestMapping(value = "/booking/fnamelist")
-	public @ResponseBody List<Facility> getFacilities(@RequestParam(value="typeID", required=true) String typeId)
-	{
-		int id = Integer.parseInt(typeId);
-		return facilityService.findFacilitiesByFacilityType(id);
 	}
 }
