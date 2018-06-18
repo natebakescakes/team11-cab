@@ -29,7 +29,7 @@
 						${facilityType.typeName}</option>
 				</c:forEach>
 			</select>
-			<input id="submit" type="submit" value="Load">
+			<input class="btn btn-default" id="submit" type="submit" value="Load">
 			<br>
 			<label class="hidden">Choose Facility</label>
 <%-- 			<label class="${showFacility == true ? '' : 'hidden' }">Choose Facility</label> --%>
