@@ -104,5 +104,10 @@ public class FacilityController {
 		return "admin-facility-list";
 
 	}
+	
+	@RequestMapping(value = "/admin/facilities/types", method=RequestMethod.GET)
+	public String facilityTypesList() {
+		return "facility-types-list";
+	}
 
 }

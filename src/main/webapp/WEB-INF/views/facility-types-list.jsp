@@ -22,27 +22,21 @@
 		</div>
 	</div>
 
-	<h3>Manage Facilities</h3>
+	<h3>Manage Facility Types</h3>
 	<div class="row">
-		<a href="${pageContext.request.contextPath}/admin/facilities/create" class="btn btn-primary">
-			Add New Facility
-		</a>
-		<a href="${pageContext.request.contextPath}/admin/facilities/types" class="btn btn-primary">
-			Manage Facility Types
+		<a href="${pageContext.request.contextPath}/admin/facilities" class="btn btn-primary">
+			Back to Manage Facilities
 		</a>
 	</div>
 
 	<div class="row">
-		<table id="myFacTable" style="width: 100%"
+		<table id="facilityTypesTable" style="width: 100%"
 			class="table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th>Facility ID</th>
-					<th>Facility Name</th>
-					<th>Facility Type</th>
-					<th>Location</th>
+					<th>Facility Type ID</th>
+					<th>Facility Type Name</th>
 					<th>Description</th>
-					<th>Status</th>
 					<th>Edit</th>
 				</tr>
 			</thead>
