@@ -7,10 +7,12 @@
 
 1. Unzip team11-cab-master.zip
 2. Import the unzipped folder into your Eclipse workspace
-3. Execute SQL script first (Unzip "SQL.zip" file and import into MYSQL Workbench)
-4. Update Maven
-5. Run on server
-6. Go to URL `http://localhost:8080/cab/home
+3. Create a schema in your local database with the name 'team11_cab'
+4. Execute SQL script (Unzip "SQL.zip" file and import into MYSQL Workbench)
+5. Update Maven
+6. Run on server
+7. Go to URL 'http://localhost:8080/cab/home'
+
 
 ## Members
 
