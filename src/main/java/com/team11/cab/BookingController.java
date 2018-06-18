@@ -189,11 +189,4 @@ public class BookingController {
 		bookingService.changeBooking(b);
 		return "booking-list" ;
 	}
-	
-	@RequestMapping(value = "/booking/fnamelist")
-	public @ResponseBody List<Facility> getFacilities(@RequestParam(value="typeID", required=true) String typeId)
-	{
-		int id = Integer.parseInt(typeId);
-		return facilityService.findFacilitiesByFacilityType(id);
-	}
 }
