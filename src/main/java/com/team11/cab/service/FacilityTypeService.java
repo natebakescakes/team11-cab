@@ -12,4 +12,6 @@ public interface FacilityTypeService {
 	
 	public FacilityType updateFacilityType(FacilityType facilityType);
 
+	public FacilityType createFacilityType(FacilityType facilityType);
+
 }

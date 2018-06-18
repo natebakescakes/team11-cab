@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "facilitytype")
 public class FacilityType {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int typeId;
 	private String typeName;
 	private String description;

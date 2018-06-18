@@ -27,6 +27,9 @@
 		<a href="${pageContext.request.contextPath}/admin/facilities" class="btn btn-primary">
 			Back to Manage Facilities
 		</a>
+		<a href="${pageContext.request.contextPath}/admin/facilities/types/create" class="btn btn-primary">
+			Add New Facility Type
+		</a>
 	</div>
 
 	<div class="row">

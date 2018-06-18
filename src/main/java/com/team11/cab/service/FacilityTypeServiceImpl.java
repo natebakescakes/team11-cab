@@ -31,4 +31,9 @@ public class FacilityTypeServiceImpl implements FacilityTypeService {
 		return facilityTypeRepository.saveAndFlush(facilityType);
 	}
 
+	@Override
+	public FacilityType createFacilityType(FacilityType facilityType) {
+		return facilityTypeRepository.saveAndFlush(facilityType);
+	}
+
 }
